@@ -1,0 +1,27 @@
+body {
+
+}
+
+a {
+
+}
+
+/*Login Page*/
+.LoginPage {vertical-align: middle; text-align: center;}
+.LOGIN1 {float: left;}
+.LOGIN2 {float: right; margin-left: 20px;}
+.LOGIN3 {display: inline-block; margin: 155px 0;}
+
+/*signUp 페이지*/
+.ALL{max-width:2000px;}
+.LOGO{float:left;padding-left:6.25%;padding-top:3.75%;}
+.LEFT{float:left;padding-left:2.5%;padding-right:2.5%;}
+.RIGHT{float:left;padding-left:2.5%;border-left:1px solid #22E2BF;}
+.TOTAL{height:400px; padding-top:6.25%;}
+.SPACE1{line-height: 2.5em;}
+.SPACE2{line-height: 2em;}
+.SPACE3{line-height: 3em;}
+.BOX{border:solid 1px #22E2BF; width:400px;height:30px;}
+.AGREE{margin-top:30px;}
+.SIGNUP{margin-top:50px;}
+.RIGHT2{text-align: top; float:left;}
