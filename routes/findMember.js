@@ -31,7 +31,7 @@ router.post('/', function(req, res, next) {
             	pageLang : rows[0].page_language,
             	prohibit_account : rows[0].prohibit_account
             };
-            res.render('index', {nickName: req.session.inform.nick, password: rows[0].password});
+            res.redirect('/main');
             
             // Don't use the connection here, it has been returned to the pool.
             }

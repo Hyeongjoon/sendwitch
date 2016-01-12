@@ -6,15 +6,77 @@
 	    <title>menubar</title>
 	   <meta charset="UTF-8">
 	<style type="text/css">
+           #navi, #navi ul, #navi ul li, #navi ul li ul
+                {margin:0 0 0 0;
+                 padding:0;}
+           #navi{float:none;
+                 background:#22E2BF;
+                 }
+           #navi ul li
+                {float:left;
+                 list-style:none;
+                 padding-right:70px;
+                 }
+           #navi ul 
+                 {white-space:nowrap;}
+           #navi a
+                 {color:#f1f1f1;
+                 font-family:arial;
+                 padding:0 8px 0 8px;
+                 text-decoration: none;}
+           #navi a:hover
+                 {color:red;
+                  }
+           #navi ul ul{display:none;
+                       position:absolute;
+                       margin-bottom: 100px;}
+           #navi ul li:hover ul{display:block;}
+           #navi ul ul li{float:none;}
 
 	</style>
 </head>
 <body>
 <div id="navi">
 	<ul>
-		<li class="menu"><a href="#">MENU</a></li>
-		<li class="searchbar"<a hredf="#">
-		  <form action="#" method="post">
-		  	<input name="serach" type="search">
+		<li class="MENU"><a href="#">MENU</a>
+			<ul>
+            	<li class="MYPAGE"><a href="#">my page</a></li>
+                <li class="CHAT"><a href="#">chat</a></li>
+                <li class="SEARCHBYMAP"><a href="#">search By Map</a></li>
+                <li class="OPTION"><a href="#">option</a></li>
+                <li class="GOTOMAIN"><a href="#">go To Main</a></li>
+            </ul>
+		</li>
+		<li class="SEARCHBAR"><a href="#">
+		    <form action="#" method="post">
+		  	   <input name="bar" type="search" style="width:400px;">
+		    </form>
+		</li>
+		<li class="CALENDER"><a href="#">
+			<form action="#" method="post">
+			   <input name="cal1" type="button" value="cal 1">
+			</form>
+		</li>
+		<li class="CALENDER"><a href="#">
+			<form action="#" method="post">
+			   <input name="cal2" type="button" value="cal 2">
+			</form>
+		</li>
+		<li class="SEARCHBUTTON"><a href="#">
+			<form action="#" method="post">
+			   <input name="search" type="button" value="search">
+			</form>
+		</li>
+		<li class="SEARCHINRESULT"><a href="#">
+			<form action="#" method="post">
+		       <input name="searchinresult" type="checkbox" checked>결과 내 검색
+		    </form>
+		</li>
+    </ul>
+</div>
+            
+
+
+
 </body>
 </html>

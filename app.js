@@ -50,6 +50,7 @@ app.engine('ejs', engine);
 
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'view')));
 
 
 app.use('/' , login);
