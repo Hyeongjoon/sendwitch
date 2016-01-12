@@ -4,8 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
-var redis = require('redis').createClient();
+//var RedisStore = require('connect-redis')(session);
+//var redis = require('redis').createClient();
 
 
 
@@ -19,6 +19,7 @@ var engine = require('ejs-locals');
 var login = require('./routes/login');
 var find = require('./routes/findMember');
 var signUp = require('./routes/signUp');
+var main = require('./routes/main');
 
  
 var app = express();
@@ -38,26 +39,28 @@ app.use(cookieParser('mysecretcode'));
 
 
 app.use(session({
-	store: new RedisStore({ 
-		host: 'localhost', 
-		port: 3000,
-		 }),
+    resave : false,
+    saveUninitialized : false,
     secret: 'keyboard cat'
 }));
+
+//EJS
+app.engine('ejs', engine);
 
 
 
 app.use(express.static(path.join(__dirname, 'public')));
- 
+
 
 app.use('/' , login);
 app.use('/findMember' , find);
 app.use('/signUp' , signUp);
+app.use('/main' , main);
 
+app.get('/error', function(req, res, next){
+	res.render('err');
+});
 
- 
-// EJS
-app.engine('ejs', engine);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
