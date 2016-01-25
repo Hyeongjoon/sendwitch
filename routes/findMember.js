@@ -38,6 +38,15 @@ router.post('/', function(req, res, next) {
 				pageLang : tmp[0].page_language,
 				prohibit_account : tmp[0].prohibit_account
 			};
+			if (results != undefined) {
+				var today = new Date();
+				var time = today.getFullYear() + '-' + (today.getMonth() + 1)
+						+ '-' + today.getDate();
+				for (var i = 0; i < results.length; i++) {
+					results[i].from = time;
+					results[i].to = undefined;
+				}
+			}
 			req.session.searchCity = results;
 			res.redirect('/main');
 		}

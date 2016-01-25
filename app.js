@@ -22,6 +22,7 @@ var login = require('./routes/login');
 var find = require('./routes/findMember');
 var signUp = require('./routes/signUp');
 var main = require('./routes/main');
+var addSearching = require('./routes/addSearchingCity');
 
  
 var app = express();
@@ -65,6 +66,9 @@ app.use('/' , login);
 app.use('/findMember' , find);
 app.use('/signUp' , signUp);
 app.use('/main' , main);
+app.use('/addSearching', addSearching);
+
+
 
 app.get('/error', function(req, res, next){
 	res.render('err');

@@ -1,274 +1,355 @@
 body {
-
+	
 }
 
 a {
-
+	
 }
 
 /*Login Page*/
-.LoginPage {vertical-align: middle; text-align: center;}
-.LOGIN1 {float: left;}
-.LOGIN2 {float: right; margin-left: 20px;}
-.LOGIN3 {display: inline-block; margin: 155px 0;}
+.LoginPage {
+	vertical-align: middle;
+	text-align: center;
+}
+
+.LOGIN1 {
+	float: left;
+}
+
+.LOGIN2 {
+	float: right;
+	margin-left: 20px;
+}
+
+.LOGIN3 {
+	display: inline-block;
+	margin: 155px 0;
+}
 
 /*signUp 페이지*/
-.ALL{max-width:2000px;}
-.LOGO{float:left;padding-left:6.25%;padding-top:3.75%;}
-.LEFT{float:left;padding-left:2.5%;padding-right:2.5%;}
-.RIGHT{float:left;padding-left:2.5%;border-left:1px solid #22E2BF;}
-.TOTAL{height:400px; padding-top:6.25%;}
-.SPACE1{line-height: 2.5em;}
-.SPACE2{line-height: 2em;}
-.SPACE3{line-height: 3em;}
-.BOX{border:solid 1px #22E2BF; width:400px;height:30px;}
-.AGREE{margin-top:30px;}
-.SIGNUP{margin-top:50px;}
-.RIGHT2{text-align: top; float:left;}
+.ALL {
+	max-width: 2000px;
+}
+
+.LOGO {
+	float: left;
+	padding-left: 6.25%;
+	padding-top: 3.75%;
+}
+
+.LEFT {
+	float: left;
+	padding-left: 2.5%;
+	padding-right: 2.5%;
+}
+
+.RIGHT {
+	float: left;
+	padding-left: 2.5%;
+	border-left: 1px solid #22E2BF;
+}
+
+.TOTAL {
+	height: 400px;
+	padding-top: 6.25%;
+}
+
+.SPACE1 {
+	line-height: 2.5em;
+}
+
+.SPACE2 {
+	line-height: 2em;
+}
+
+.SPACE3 {
+	line-height: 3em;
+}
+
+.BOX {
+	border: solid 1px #22E2BF;
+	width: 400px;
+	height: 30px;
+}
+
+.AGREE {
+	margin-top: 30px;
+}
+
+.SIGNUP {
+	margin-top: 50px;
+}
+
+.RIGHT2 {
+	text-align: top;
+	float: left;
+}
 
 /* mainFrame*/
-    /*****container*****/
-  #yj-container {
-        width: 940px;
-        margin: 0px auto;
-        padding: 20px;
-        border:1px solid none;
-      }
-      #yj-nav {
-        position:fixed;
-        width: 120px;
-        padding: 20px;
-        margin-right: 10px;
-        border: 1px solid none;
-        height:400px;
-        float:left;
-        text-align: center;
-        background: #CEF6EC;
-      }
-      #yj-content {
-        width: 570px;
-        height:100%;
-        padding: 20px;
-        margin-right: 10px;
-        margin-bottom: 5%;
-        margin-left:170px;
-        float: left;
-        border: 2px solid #CEF6EC;
-        border-bottom: none;
-        border-radius: 10px;
-      }
-      #sendwich-box{
-        border:solid 1px none;
-        padding-left:10px;
-        padding-top:1px;
-        padding-bottom:1px;
-        border-top-left-radius:20px;
-        border-top-right-radius: 20px;
-        background: #CEF6EC;
-      }
-      #content-box{
-        margin-top: 30px;
-        border:1px solid #CEF6EC;
-        padding:10px;
-      }
-      .othernickname{
-        height:30px;
-        border-bottom:1px solid #CEF6EC;
-      }
-      #yj-sidebar {
-        position: fixed;
-        width:150px;
-        height:400px;
-        padding:10px;
-        margin-left:795px;
-        margin-bottom: 20px;
-        float: left;
-        border: 1px solid none;
-        background: #CEF6EC;
-      }
-      #sidebar{
-        border:1px solid black;
-        width:130px auto;
-        height:150px;
-      }
-      #mynickname{
-        height:20px;
-        border-bottom:1px solid black;
-        padding-left: 10px;
-      }
-      #addcountry{
-        border:1px solid none;
-        font-size: 5px;
-        padding:2px;
-      }
-      #country-box{
-        width:148px;
-        border:1px solid none;
-        margin-top:5px;
-        margin-bottom: 5px;
-      }
-      #country{
-        width:59px;
-        height:11px;
-        float:left;
-        margin:1px;
-        border:1px solid black;
-        padding-left: 1px;
-      }
-      #t-country{
-        position: relative;
-        top:-11px;
-      }
-      #period{
-        width:60px;
-        height:11px;
-        float:left;
-        margin:1px;
-        border:1px solid black;
-        padding-left: 1px;
-      }
-      #t-period{
-        position: relative;
-        top:-11px;
-      }
-      #cancel{
-        width:11px;
-        height:11px;
-        float:right;
-        margin:1px;
-        border:1px solid black;
-      }
-      #yj-menubar{
-        width:965px;
-        height: 25px;
-        bottom:0px;
-        border:1px solid none;
-        position: fixed;
-      }
-/*****************etc**********************/
-.logo{
-  width: 100px;
-  height: 100px;
+
+/**container**/
+#yj-container {
+	width: 1040px;
+	margin: 0px auto;
+	padding: 20px;
+	border: 1px solid none;
+}
+/**navigation**/
+#yj-nav {
+	position: fixed;
+	width: 120px;
+	padding: 20px;
+	margin-right: 10px;
+	border: 1px solid none;
+	height: 400px;
+	float: left;
+	text-align: center;
+	background: #CEF6EC;
 }
 
- #yj-menubar a{
-  height:16px;
-  color:#f1f1f1;
-  font-family:arial;
-  font-size:12px;
-  padding:0 10px 0 10px;
-  text-decoration:none;
- }
- #yj-menubar{
-  color:#D4F4FA;
-  border-bottom:3px solid #22E2BF;
- }
- #menu ul{
-  display: none;
-  position: absolute;
-  background: #5c5c5c;
-  padding:5px;
+.logo {
+	width: 100px;
+	height: 100px;
 }
- #menu:hover ul{
-  display: block;
-  top:-115px;
-  border-radius: 10px;
+/**content**/
+#yj-content {
+	width: 570px;
+	height: 100%;
+	padding: 20px;
+	margin-right: 10px;
+	margin-bottom: 5%;
+	margin-left: 170px;
+	float: left;
+	border: 2px solid #CEF6EC;
+	border-bottom: none;
+	border-radius: 10px;
 }
-#menu ul li{
-  float:none;
-  text-align: center;
+
+#sendwich-box {
+	border: solid 1px none;
+	padding-left: 10px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	background: #CEF6EC;
+}
+
+#content-box {
+	margin-top: 30px;
+	border: 1px solid #CEF6EC;
+	padding: 10px;
+}
+
+.othernickname {
+	height: 30px;
+	border-bottom: 1px solid #CEF6EC;
+}
+/**sidebar**/
+#yj-sidebar {
+	position: fixed;
+	width: 250px;
+	padding: 10px;
+	margin-left: 795px;
+	margin-bottom: 20px;
+	float: left;
+	border: 1px solid none;
+	background: #CEF6EC;
+}
+
+#sidebar {
+	border: 1px solid black;
+	width: 130px auto;
+	float: left;
+}
+
+#mynickname {
+	width : 240px;
+	height: 20px;
+	border-bottom: 1px solid black;
+	padding-left : 10px;
+}
+
+#country-box {
+	width: 245px;
+	border: 1px solid #5c5c5c;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 2px;
+	float: left;
+}
+
+.c-box {
+	float: left;
+}
+
+#country {
+	width: 110px;
+	height: 11px;
+	margin: 1px;
+	border: 1px solid none;
+	padding-left: 1px;
+}
+
+.textc-box {
+	float: left;
+	position: relative;
+	top: -15px;
+	font-size: 12px;
+}
+
+#period {
+	width: 109px;
+	height: 11px;
+	margin: 1px;
+	border: 1px solid none;
+	padding-left: 1px;
+}
+
+#cancel {
+	width: 11px;
+	height: 11px;
+	margin: 1px;
+	border: 1px solid black;
+}
+/*******************menubar*********************/
+#yj-menubar {
+	width: 1065px;
+	height: 25px;
+	bottom: 0px;
+	border: 1px solid none;
+	position: fixed;
+	float: right;
+	margin: 0 auto;
+	padding: 0;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, .3);
+	-moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, .3);
+	-webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, .3);
+	-o-box-shadow: 0px 0px 15px rgba(0, 0, 0, .3);
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 10px;
+	background-color: #5c5c5c;
+	font: "Lucida Sans Unicode", "Bitstream Vera Sans",
+		"Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica,
+		sans-serif, arial;
+}
+
+.menu-li {
+	float: left;
+	list-style-type: none;
+}
+
+#yj-menubar a {
+	height: 16px;
+	color: #f1f1f1;
+	font-family: arial;
+	font-size: 12px;
+	padding: 0 10px 0 10px;
+	text-decoration: none;
+}
+
+#yj-menubar {
+	color: #D4F4FA;
+	border-bottom: 3px solid #22E2BF;
+}
+
+#menu ul {
+	display: none;
+	position: absolute;
+	background: #5c5c5c;
+	padding: 5px;
+}
+
+#menu:hover ul {
+	display: block;
+	bottom: 25px;
+	border-radius: 10px;
+}
+
+#menu ul li {
+	float: none;
+	text-align: center;
+	width: 150px;
 }
 /*menu-li*/
-#menu{
-  width:110px;
-  text-align: center;
- }
-#searchbar{
-  width:320px;
+#menu {
+	width: 150px;
+	text-align: center;
 }
-#i-searchbar{
-  width:300px;
-  border-radius:10px;
+
+#searchbar {
+	width: 370px;
 }
-#calender1{
-  width:110px;
+
+#i-searchbar {
+	width: 360px;
+	border-radius: 10px;
+	border-style: none;
+	outline-style: none;
 }
-#from{
-  width:100px;
-  position: absolute;
-  top:3px;
-  padding-right:0px;
+
+#calender1 {
+	width: 150px;
 }
-#flow{
-  margin-left: 540px;
-  position: absolute;
-  top:-15px;
+
+#from {
+	width: 140px;
+	position: absolute;
+	top: 3px;
+	padding-right: 0px;
+	margin-left: 30px;
 }
-#calender2{
-  width:110px;
+
+#flow {
+	margin-left: 700px;
+	position: absolute;
+	top: -15px;
 }
-#to{
-  width:100px;
-  position: absolute;
-  top:3px;
-  margin-left: 130px;
-  padding-left:0px;
+
+#calender2 {
+	width: 150px;
 }
-#searchbutton{
-  width:100px;
-  margin-left: 250px;
+
+#to {
+	width: 140px;
+	position: absolute;
+	top: 3px;
+	margin-left: 200px;
+	padding-left: 0px;
 }
-#checkbox{
-  position: relative;
-  top: 3px;
-  margin-left: 10px;
+
+#searchbutton {
+	width: 100px;
+	margin-left: 400px;
+}
+
+#i-searchbutton {
+	border-radius: 10px;
+	border-style: none;
+	outline-style: none;
 }
 
 /*************반응형 웹****************/
-
-      @media screen and (max-width:480px) {
-        #yj-container {
-          width: auto;
-        }
-        #yj-nav{
-          float:none;
-          width:auto;
-        }
-        #yj-content {
-          float: none;
-          width: auto;
-        }
-        #yj-sidebar {
-          float: none;
-          width: auto;
-        }
-        #yj-menubar{
-          float:none;
-          width: auto;
-        }
-
-      }
-/*******************menubar*********************/
- #yj-menubar{
-  float:right;
-  margin:0 auto;
-  padding:0;
-  box-shadow: 0px 0px 15px rgba(0,0,0,.3);
-  -moz-box-shadow: 0px 0px 15px rgba(0,0,0,.3);
-  -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,.3);
-  -o-box-shadow: 0px 0px 15px rgba(0,0,0,.3);
-  -moz-border-radius: 3px;
-  -khtml-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 10px;
-  background-color:#5c5c5c;
-  font:"Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif, arial;
- }
- .menu-li{
-  float:left;
-  list-style-type: none;
- }
-
-
-
-
+@media screen and (max-width:480px) {
+	#yj-container {
+		width: auto;
+	}
+	#yj-nav {
+		float: none;
+		width: auto;
+	}
+	#yj-content {
+		float: none;
+		width: auto;
+	}
+	#yj-sidebar {
+		float: none;
+		width: auto;
+	}
+	#yj-menubar {
+		float: none;
+		width: auto;
+	}
+}
