@@ -1,14 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql');
+var async = require('async');
+var AccountDAO = require('../controller/AccountDAO.js');
 
-var pool = mysql.createPool({
-	connectionLimit : 3,
-	host : 'localhost',
-	user : 'root',
-	database : 'sendwitch',
-	password : '1234'
-});
 
 router.get('/register', function(req, res, next) {
 	res.render('err', {});
@@ -17,6 +11,7 @@ router.get('/register', function(req, res, next) {
 router.get('/chkNick', function(req, res, next) {
 	res.render('err', {});
 });
+
 
 router.post('/register', function(req, res, next) {
 	var nick = req.body.usernickname;
@@ -51,149 +46,142 @@ router.post('/register', function(req, res, next) {
 			'addtional_language' : aLang,
 			'page_language' : dLang
 		};
-		// (nickname , password, email, default_language, addtional_language,
-		// page_language)
-		pool.getConnection(function(err, connection) {
-			connection.query('INSERT INTO account set ?', insert, function(err,
-					result) {
-				connection.release();
-				if (err) {
-					console.error(err);
-					connection.rollback(function() {
-						console.error('rollback error');
-						res.render('loginErr', {});
-					});
-				} else {
-					delete req.session.chkEmail;
-					delete req.session.chkNick;
-					delete req.session.email;
-					delete req.session.nick;
-					console.log("로그부분 : 삽입됐다.");
-					res.render('success', {});
-				}
-			});
-		});
+		async.parallel([function(callback) {
+			AccountDAO.register(insert, callback);
+		} ], function(err, results) {
+			if((!err)&&(results[0]==true)){
+				delete req.session.inform;
+				delete req.session.chkEmail;
+				delete req.session.chkNick;
+				delete req.session.email;
+				delete req.session.nick;
+				res.render('success');
+			}else{
+				res.render('unCertified', {
+					errMsg : '내부 서버 오류입니다. 다시 작성해주세요'
+				});
+			}
+		}
+		);
 	}
 });
 
 router.get('/', function(req, res, next) {
-	req.session.chkEmail = 'uncertified';
-	req.session.chkNick = 'uncertified';
-	req.session.email = null;
-	req.session.nick = null;
-	res.render('signUp', {
-		email : '',
-		emailResult : '',
-		nickResult : '',
-		Nick : ''
-	});
-
-});
-
-router.post('/', function(req, res, next) {
-	var tmpValue = req.body.useremail;
-	if (tmpValue.indexOf('@') != -1 && tmpValue.indexOf('.') != -1
-			&& tmpValue.indexOf(' ') == -1) {
-		if (tmpValue.indexOf('.') - tmpValue.indexOf('@') > 1) {
-			if (tmpValue.indexOf('.') != (tmpValue.length - 1)
-					&& tmpValue.indexOf('@') != 0) {
-				pool.getConnection(function(err, connection) {
-					connection.query('SELECT * FROM account WHERE email = '
-							+ mysql.escape(req.body.useremail), function(err,
-							rows) {
-						if (err) {
-							console.error("err : " + err);
-						}
-						connection.release();
-						if (rows[0] == undefined) {
-							req.session.chkEmail = 'certified';
-							req.session.email = req.body.useremail;
-							res.render('signUp', {
-								email : req.body.useremail,
-								Nick : req.body.usernickname,
-								emailResult : 'you can use this Email',
-								nickResult : req.body.resultNick
-							});
-						} else {
-							res.render('signUp', {
-								email : req.body.useremail,
-								Nick : req.body.usernickname,
-								emailResult : 'it is already used',
-								nickResult : req.body.resultNick
-							});
-							// Don't use the connection here, it has been
-							// returned to the
-							// pool.
-						}
-					});
-				});
-			} else {
-				res.render('signUp', {
-					email : req.body.useremail,
-					Nick : req.body.usernickname,
-					emailResult : '',
-					nickResult : req.body.resultNick
-				});
-			}
-
+	if (req.session.inform == undefined) {
+		req.session.chkEmail = 'uncertified';
+		req.session.chkNick = 'uncertified';
+		req.session.email = null;
+		req.session.nick = null;
+		res.render('signUp', {
+			email : '',
+			emailResult : '',
+			nickResult : '',
+			Nick : ''
+		});
+	} else {
+		if (req.session.inform.login == 'sucess') {
+			res.render('err');
 		} else {
+			req.session.chkEmail = 'uncertified';
+			req.session.chkNick = 'uncertified';
+			req.session.email = null;
+			req.session.nick = null;
 			res.render('signUp', {
-				email : req.body.useremail,
-				Nick : req.body.usernickname,
+				email : '',
 				emailResult : '',
-				nickResult : req.body.resultNick
+				nickResult : '',
+				Nick : ''
 			});
 		}
-	} else {
-		res.render('signUp', {
-			email : req.body.useremail,
-			Nick : req.body.usernickname,
-			emailResult : '',
-			nickResult : req.body.resultNick
-		});
 	}
 
 });
 
+router.post('/', function(req, res, next) {
+					var tmpValue = req.body.useremail;
+					if (!((tmpValue.indexOf('@') != -1
+							&& tmpValue.indexOf('.') != -1 && tmpValue
+							.indexOf(' ') == -1)
+							&& (tmpValue.indexOf('.') - tmpValue.indexOf('@') > 1) && (tmpValue
+							.indexOf('.') != (tmpValue.length - 1) && tmpValue
+							.indexOf('@') != 0))) {
+						res.render('signUp', {
+							email : req.body.useremail,
+							Nick : req.body.usernickname,
+							emailResult : 'it is wrong email',
+							nickResult : req.body.resultNick
+						});
+					} else {
+						async.parallel([ function(callback) {
+							AccountDAO.certifyEmail(tmpValue, callback);
+						} ], function(err, results) {
+							if(!err){
+							var tmp = arguments[1][0];
+							if (tmp[0] == undefined) {
+								req.session.chkEmail = 'certified';
+								req.session.email = req.body.useremail;
+								res.render('signUp', {
+									email : req.body.useremail,
+									Nick : req.body.usernickname,
+									emailResult : 'you can use this Email',
+									nickResult : req.body.resultNick
+								});
+							} else {
+								res.render('signUp', {
+									email : req.body.useremail,
+									Nick : req.body.usernickname,
+									emailResult : 'it is already used',
+									nickResult : req.body.resultNick
+								});
+
+							}} else{
+								res.render('unCertified', {
+									errMsg : '내부 서버 오류입니다. 다시 작성해주세요'
+								});
+								
+							} 
+						});
+					}
+				});
+
 router.post('/chkNick', function(req, res, next) {
-	
 	var tmpValue = req.body.usernickname;
 	if (tmpValue.length <= 0 || tmpValue > 19) {
 		res.render('signUp', {
 			email : req.body.useremail,
 			Nick : req.body.usernickname,
 			emailResult : req.body.resultEmail,
-			nickResult : ''
+			nickResult : 'it is wrong nickname'
 		});
 	} else {
-		pool.getConnection(function(err, connection) {
-			connection.query('SELECT * FROM account WHERE nickname = '
-					+ mysql.escape(req.body.usernickname), function(err, rows) {
-				if (err) {
-					console.error("err : " + err);
-				}
-				connection.release();
-				if (rows[0] == undefined) {
-					req.session.chkNick = 'certified';
-					req.session.nick = req.body.usernickname;
-					res.render('signUp', {
-						email : req.body.useremail,
-						Nick : req.body.usernickname,
-						emailResult : req.body.resultEmail,
-						nickResult : 'you can use this Nickname'
-					});
-				} else {
-					res.render('signUp', {
-						email : req.body.useremail,
-						Nick : req.body.usernickname,
-						emailResult : req.body.resultEmail,
-						nickResult : 'it is already used'
-					});
-					// Don't use the connection here, it has been returned to the
-					// pool.
-				}
-			});
+		async.parallel([ function(callback) {
+			AccountDAO.certifyNick(tmpValue, callback);
+		} ], function(err, results) {
+			if(!err){
+			var tmp = arguments[1][0];
+			if (tmp[0] == undefined) {
+				req.session.chkNick = 'certified';
+				req.session.nick = req.body.usernickname;
+				res.render('signUp', {
+					email : req.body.useremail,
+					Nick : req.body.usernickname,
+					emailResult : req.body.resultEmail,
+					nickResult : 'you can use this Nickname'
+				});
+			} else {
+				res.render('signUp', {
+					email : req.body.useremail,
+					Nick : req.body.usernickname,
+					emailResult : req.body.resultEmail,
+					nickResult : 'it is already used'
+				});
+			}} else{
+				res.render('unCertified', {
+					errMsg : '내부 서버 오류입니다. 다시 작성해주세요'
+				});
+			}
 		});
+
 	}
 });
 

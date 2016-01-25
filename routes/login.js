@@ -2,11 +2,19 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-
-	res.render('login', {
-		title : 'sendwitch'
-	});
-
+	if (req.session.inform == undefined) {
+		res.render('login', {
+			title : 'sendwitch'
+		});
+	} else {
+		if (req.session.inform.login == 'sucess') {
+			res.redirect('/main');
+		} else {
+			res.render('login', {
+				title : 'sendwitch'
+			});
+		}
+	}
 });
 
 module.exports = router;

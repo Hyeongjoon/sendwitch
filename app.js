@@ -9,6 +9,8 @@ var session = require('express-session');
 
 
 
+
+
 var bodyParser = require('body-parser');
 
 
@@ -26,7 +28,7 @@ var app = express();
  
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
+
 //EJS
 app.set('view engine', 'ejs');
  
@@ -35,11 +37,17 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser('mysecretcode'));
+app.use(cookieParser('secretkey'));
 
 
 app.use(session({
-    resave : false,
+	//store: new RedisStore({
+	//}),
+	cookie:{
+		maxAge: 1000 * 60 * 60
+	},
+	key : 'sid',
+	resave : false,
     saveUninitialized : false,
     secret: 'keyboard cat'
 }));
@@ -50,7 +58,7 @@ app.engine('ejs', engine);
 
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'view')));
+
 
 
 app.use('/' , login);
@@ -60,6 +68,8 @@ app.use('/main' , main);
 
 app.get('/error', function(req, res, next){
 	res.render('err');
+	req.session.destroy();
+	res.clearCookie('sid');
 });
 
 
