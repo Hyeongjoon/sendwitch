@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+
 //var RedisStore = require('connect-redis')(session);
 //var redis = require('redis').createClient();
 
@@ -23,12 +24,17 @@ var find = require('./routes/findMember');
 var signUp = require('./routes/signUp');
 var main = require('./routes/main');
 var addSearching = require('./routes/addSearchingCity');
+var liveSearch = require('./routes/liveSearch');
 
  
 var app = express();
- 
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+
+
+
 
 //EJS
 app.set('view engine', 'ejs');
@@ -60,14 +66,16 @@ app.engine('ejs', engine);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
+app.use(':3001/' , liveSearch);
 app.use('/' , login);
 app.use('/findMember' , find);
 app.use('/signUp' , signUp);
 app.use('/main' , main);
 app.use('/addSearching', addSearching);
-
+app.get('/autocomplete', function(req, res,next){
+	
+	console.log("시발 ㅇ여긴 실행되냐??");
+})
 
 
 app.get('/error', function(req, res, next){

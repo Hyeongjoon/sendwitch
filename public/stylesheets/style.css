@@ -117,7 +117,7 @@ a {
 	height: 100%;
 	padding: 20px;
 	margin-right: 10px;
-	margin-bottom: 5%;
+	margin-bottom: 10px;
 	margin-left: 170px;
 	float: left;
 	border: 2px solid #CEF6EC;
@@ -211,6 +211,11 @@ a {
 	height: 11px;
 	margin: 1px;
 	border: 1px solid black;
+}
+.t-cancel{
+	text-align:center;
+	position:relative;
+	bottom:23px;
 }
 /*******************menubar*********************/
 #yj-menubar {
