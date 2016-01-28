@@ -1,5 +1,4 @@
 var base = require('./BaseDAO.js');
-var async = require('async');
 var mysql = require('mysql');
 
 var sqlQuery = '';

@@ -1,5 +1,5 @@
 body {
-	
+	background-color: #F6F7E6;
 }
 
 a {
@@ -139,56 +139,73 @@ a {
 	margin-top: 30px;
 	border: 1px solid #CEF6EC;
 	padding: 10px;
+	padding-bottom: 50px;
 }
 
 .othernickname {
 	height: 30px;
 	border-bottom: 1px solid #CEF6EC;
 }
+
+.main-time {
+	border: 0px solid white;
+	width: 150px;
+	height: 18px;
+	float: right;
+	text-align: right;
+}
+
+.main-where {
+	border: 0px solid white;
+	width: 500px;
+	height: 18px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.main-chating {
+	border: 0px solid white;
+	width: 100px;
+	height: 18px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	float: right;
+}
 /**sidebar**/
 #yj-sidebar {
 	position: fixed;
-	width: 250px;
-	padding: 10px;
+	width: 265px;
 	margin-left: 795px;
 	margin-bottom: 20px;
 	float: left;
 	border: 1px solid none;
 	background: #CEF6EC;
+	padding: 5px;
 }
 
 #sidebar {
-	border: 1px solid black;
-	width: 130px auto;
+	border: 1px solid #47AFD2;
 	float: left;
 }
 
 #mynickname {
-	width : 240px;
+	width: 252px;
 	height: 20px;
-	border-bottom: 1px solid black;
-	padding-left : 10px;
+	border-bottom: 1px solid #47AFD2;
+	padding-left: 10px;
 }
 
 #country-box {
-	width: 245px;
-	border: 1px solid #5c5c5c;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	margin-left: 2px;
+	position: relative;
+	width: 250px;
+	border: 1px solid #47AFD2;
+	margin: 0 auto;
 	float: left;
+	margin: 5px;
 }
 
 .c-box {
 	float: left;
-}
-
-#country {
-	width: 110px;
-	height: 11px;
-	margin: 1px;
-	border: 1px solid none;
-	padding-left: 1px;
 }
 
 .textc-box {
@@ -198,11 +215,19 @@ a {
 	font-size: 12px;
 }
 
-#period {
-	width: 109px;
+#country {
+	width: 110px;
 	height: 11px;
 	margin: 1px;
-	border: 1px solid none;
+	border: 1px solid #CEF6EC;
+	padding-left: 1px;
+}
+
+#period {
+	width: 110px;
+	height: 11px;
+	margin: 1px;
+	border: 1px solid #CEF6EC;
 	padding-left: 1px;
 }
 
@@ -212,10 +237,11 @@ a {
 	margin: 1px;
 	border: 1px solid black;
 }
-.t-cancel{
-	text-align:center;
-	position:relative;
-	bottom:23px;
+
+.t-cancel {
+	text-align: center;
+	position: relative;
+	bottom: 23px;
 }
 /*******************menubar*********************/
 #yj-menubar {
@@ -284,56 +310,49 @@ a {
 	text-align: center;
 }
 
-#searchbar {
-	width: 370px;
-}
-
 #i-searchbar {
 	width: 360px;
 	border-radius: 10px;
 	border-style: none;
 	outline-style: none;
-}
-
-#calender1 {
-	width: 150px;
+	position: absolute;
+	vertical-align: middle;
+	margin-top: 4px;
+	padding-left: 5px;
 }
 
 #from {
 	width: 140px;
+	height: 18px;
 	position: absolute;
-	top: 3px;
-	padding-right: 0px;
-	margin-left: 30px;
+	vertical-align: middle;
+	margin-left: 370px;
+	margin-top: 4px;
 }
 
 #flow {
-	margin-left: 700px;
+	margin-left: 670px;
 	position: absolute;
-	top: -15px;
-}
-
-#calender2 {
-	width: 150px;
+	margin-top: 4px;
 }
 
 #to {
 	width: 140px;
+	height: 18px;
 	position: absolute;
-	top: 3px;
-	margin-left: 200px;
-	padding-left: 0px;
-}
-
-#searchbutton {
-	width: 100px;
-	margin-left: 400px;
+	margin-left: 540px;
+	vertical-align: middle;
+	margin-top: 4px;
 }
 
 #i-searchbutton {
 	border-radius: 10px;
 	border-style: none;
 	outline-style: none;
+	width: 100;
+	position: absolute;
+	margin-left: 730px;
+	margin-top: 4px;
 }
 
 /*************반응형 웹****************/

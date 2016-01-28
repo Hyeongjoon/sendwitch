@@ -11,12 +11,254 @@
         margin: 0; 
         padding: 0;
       }
+      /**container**/
+      #yj-container {
+        width: 1040px;
+        margin: 0px auto;
+        padding: 20px;
+        border:1px solid none;
+      }
+      /**navigation**/
+      #yj-nav {
+        position:fixed;
+        width: 120px;
+        padding: 20px;
+        margin-right: 10px;
+        border: 1px solid none;
+        height:400px;
+        float:left;
+        text-align: center;
+        background: #CEF6EC;
+      }
+      .logo{
+        width: 100px;
+        height: 100px;
+      }
+      /**content**/
+      #yj-content {
+        width: 570px;
+        height:100%;
+        padding: 20px;
+        margin-right: 10px;
+        margin-bottom: 5%;
+        margin-left:170px;
+        float: left;
+        border: 2px solid #CEF6EC;
+        border-bottom: none;
+        border-radius: 10px;
+      }
+      #sendwich-box{
+        border:solid 1px none;
+        padding-left:10px;
+        padding-top:1px;
+        padding-bottom:1px;
+        border-top-left-radius:20px;
+        border-top-right-radius: 20px;
+        background: #CEF6EC;
+      }
+      #content-box{
+        margin-top: 30px;
+        border:1px solid #CEF6EC;
+        padding:10px;
+      }
+      .othernickname{
+        height:30px;
+        border-bottom:1px solid #CEF6EC;
+      }
+      /**sidebar**/
+      #yj-sidebar {
+        position: fixed;
+        width:265px;
+        margin-left:795px;
+        margin-bottom: 20px;
+        float: left;
+        border: 1px solid none;
+        background: #CEF6EC;
+        padding:5px;
+      }
+      #sidebar{
+        border:1px solid #47AFD2;
+        float:left;
+      }
+      #mynickname{
+        width:252px;
+        height:20px;
+        border-bottom:1px solid #47AFD2;
+        padding-left: 10px;
+      }
+      #country-box{
+        position: relative;
+        width:250px;
+        border:1px solid #47AFD2;
+        margin: 0 auto;
+        float:left;
+        margin:5px;
+      }
+      .c-box{
+        float:left;
+      }
+      .textc-box{
+        float:left;
+        position: relative;
+        top:-15px;
+        font-size: 12px;
+      }
+      #country{
+        width:120px;
+        height:11px;
+        margin:1px;
+        border:1px solid #CEF6EC;
+        padding-left: 1px;
+      }
+      
+      #period{
+        width:100px;
+        height:11px;
+        margin:1px;
+        border:1px solid #CEF6EC;
+        padding-left: 1px;
+      }
+      #cancel{
+        width:11px;
+        height:11px;
+        margin:1px;
+        border:1px solid black;
+      }
+      
 /*******************menubar*********************/
 div, ul, li{
   margin:0;
   padding:0;
 }
- 
+ #yj-menubar{
+  width:1065px;
+  height: 25px;
+  bottom:0px;
+  border:1px solid none;
+  position: fixed;
+  float:right;
+  margin:0 auto;
+  padding:0;
+  box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+  -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+  -o-box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 10px;
+  background-color:#5c5c5c;
+  font:"Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif, arial;
+ }
+ .menu-li{
+  float:left;
+  list-style-type: none;
+ }
+ #yj-menubar a{
+  height:16px;
+  color:#f1f1f1;
+  font-family:arial;
+  font-size:12px;
+  padding:0 10px 0 10px;
+  text-decoration:none;
+ }
+ #yj-menubar{
+  color:#D4F4FA;
+  border-bottom:3px solid #22E2BF;
+ }
+ #menu ul{
+  display: none;
+  position: absolute;
+  background: #5c5c5c;
+  padding:5px;
+}
+ #menu:hover ul{
+  display: block;
+  bottom:25px;
+  border-radius: 10px;
+}
+#menu ul li{
+  float:none;
+  text-align: center;
+  width:150px;
+}
+/*menu-li*/
+#menu{
+  width:150px;
+  text-align: center;
+ }
+
+#i-searchbar{
+  width:360px;
+  border-radius:10px;
+  border-style:none;
+  outline-style: none;
+  vertical-align: middle;
+  position: absolute;
+  margin-top: 4px;
+}
+#from{
+  width:140px;
+  height:18px;
+  position: absolute;
+  margin-left: 370px;
+  vertical-align: middle;
+  margin-top: 4px;
+}
+#flow{
+  margin-left: 670px;
+  position: absolute;
+  margin-top: 4px;
+}
+#to{
+  width:140px;
+  height: 18px;
+  position: absolute;
+  margin-left: 540px;
+  vertical-align: middle;
+  margin-top: 4px;
+}
+
+#i-searchbutton{
+  border-radius: 10px;
+  border-style:none;
+  outline-style: none;
+  width:100px;
+  position:absolute;
+  margin-left: 730px;
+  margin-top: 4px;
+}
+
+
+
+
+
+
+/*************반응형 웹****************/
+
+      @media screen and (max-width:480px) {
+        #yj-container {
+          width: auto;
+        }
+        #yj-nav{
+          float:none;
+          width:auto;
+        }
+        #yj-content {
+          float: none;
+          width: auto;
+        }
+        #yj-sidebar {
+          float: none;
+          width: auto;
+        }
+        #yj-menubar{
+          float:none;
+          width: auto;
+        }
+      }
+
+
     </style>
   </head>
   <body>
@@ -41,6 +283,24 @@ div, ul, li{
         purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
 sollicitudin sapien eget, adipiscing risus.
         purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. Aenean et nibh eu purus scelerisque aliquet nec non justo. Aliquam vitae aliquet ipsum. Etiam condimentum varius purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
+        purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
+        sollicitudin sapien eget, adipiscing risus.
+        purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
+sollicitudin sapien eget, adipiscing risus.
+        purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. Aenean et nibh eu purus scelerisque aliquet nec non justo. Aliquam vitae aliquet ipsum. Etiam condimentum varius purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
+        purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
+        sollicitudin sapien eget, adipiscing risus.
+        purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
+sollicitudin sapien eget, adipiscing risus.
+        purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
+        purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
+sollicitudin sapien eget, adipiscing risus.
+        purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
+        purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
+sollicitudin sapien eget, adipiscing risus.
+        purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.장코쟁이개새끼야
+        장코쟁이개새끼야장코쟁이개새끼야장코쟁이개새끼야장코쟁이개새끼야장코쟁이개새끼야장코쟁이개새끼야장코쟁이개새끼야장코쟁이개새끼야장코쟁이개새끼야장코쟁이개새끼야장코쟁이개새끼야장코쟁이개새끼야장코쟁이개새끼야장코쟁이개새끼야
 
 
         </div>
@@ -106,7 +366,6 @@ sollicitudin sapien eget, adipiscing risus.
             </div>
           </div>
 
-
           <div id="country-box" class="totalc-box">
             <div id="country" class="c-box">
               <p id="t-country" class="textc-box">paris</p>
@@ -129,84 +388,7 @@ sollicitudin sapien eget, adipiscing risus.
             </div>
           </div>
 
-          <div id="country-box" class="totalc-box">
-            <div id="country" class="c-box">
-              <p id="t-country" class="textc-box">paris</p>
-            </div>
-            <div id="period" class="c-box">
-              <p id="t-period" class="textc-box">(12.31~01.31)</p>
-            </div>
-            <div id="cancel" class="c-box">
-            </div>
-          </div>
-
-          <div id="country-box" class="totalc-box">
-            <div id="country" class="c-box">
-              <p id="t-country" class="textc-box">paris</p>
-            </div>
-            <div id="period" class="c-box">
-              <p id="t-period" class="textc-box">(12.31~01.31)</p>
-            </div>
-            <div id="cancel" class="c-box">
-            </div>
-          </div>
-
-          <div id="country-box" class="totalc-box">
-            <div id="country" class="c-box">
-              <p id="t-country" class="textc-box">paris</p>
-            </div>
-            <div id="period" class="c-box">
-              <p id="t-period" class="textc-box">(12.31~01.31)</p>
-            </div>
-            <div id="cancel" class="c-box">
-            </div>
-          </div>
-
-          <div id="country-box" class="totalc-box">
-            <div id="country" class="c-box">
-              <p id="t-country" class="textc-box">paris</p>
-            </div>
-            <div id="period" class="c-box">
-              <p id="t-period" class="textc-box">(12.31~01.31)</p>
-            </div>
-            <div id="cancel" class="c-box">
-            </div>
-          </div>
-
-          <div id="country-box" class="totalc-box">
-            <div id="country" class="c-box">
-              <p id="t-country" class="textc-box">paris</p>
-            </div>
-            <div id="period" class="c-box">
-              <p id="t-period" class="textc-box">(12.31~01.31)</p>
-            </div>
-            <div id="cancel" class="c-box">
-            </div>
-          </div>
-
-          <div id="country-box" class="totalc-box">
-            <div id="country" class="c-box">
-              <p id="t-country" class="textc-box">paris</p>
-            </div>
-            <div id="period" class="c-box">
-              <p id="t-period" class="textc-box">(12.31~01.31)</p>
-            </div>
-            <div id="cancel" class="c-box">
-            </div>
-          </div>
-
-          <div id="country-box" class="totalc-box">
-            <div id="country" class="c-box">
-              <p id="t-country" class="textc-box">paris</p>
-            </div>
-            <div id="period" class="c-box">
-              <p id="t-period" class="textc-box">(12.31~01.31)</p>
-            </div>
-            <div id="cancel" class="c-box">
-            </div>
-          </div>
-
-
+          
         </div>
       </div>
 <!--menubar-->
@@ -256,7 +438,9 @@ $(function() {
   dateFormat: 'yy-mm-dd',
   showMonthAfterYear: true,
   yearSuffix: '년',
-maxDate:'+30d',
+  minDate: 'od',
+  
+
   onSelect: function( selectedDate ) {
     var option = this.id == "from" ? "minDate" : "maxDate",
       instance = $( this ).data( "datepicker" ),
