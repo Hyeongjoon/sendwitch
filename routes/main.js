@@ -4,15 +4,17 @@ var async = require('async');
 var sandDAO = require('../controller/SandDAO.js')
 
 router.get('/', function(req, res, next) {
+	
 	if (req.session.inform == undefined) {
 		res.redirect('/error');
 	} else {
 		if (req.session.inform.login !== 'sucess') {
 			res.redirect('/error');
 		} else {
+			
 			async.waterfall([
 					function(callback) {
-						if (req.session.searchCity == undefined) {
+						if (req.session.searchCity == undefined||req.session.searchCity.length==0) {
 							callback(null, null);
 						} else {
 							sandDAO.findSandByCity(req.session.searchCity, callback);
