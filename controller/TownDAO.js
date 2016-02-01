@@ -8,10 +8,10 @@ exports.findCityById = function(city_code, callback) {
 		sqlQuery = sqlQuery + ' or city_id = ' + mysql.escape(tmp[i]);
 	}
 	base.select(sqlQuery, callback);
-}
+};
 
 exports.findCityByName = function(city_name, callback){
 	city_name = city_name + '%';
 	var sqlQuery = 'SELECT * FROM town WHERE english_city_name LIKE ' +mysql.escape(city_name)+ ' LIMIT 20';
 	base.select(sqlQuery , callback);
-}
+};

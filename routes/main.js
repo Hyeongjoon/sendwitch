@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var async = require('async');
-var sandDAO = require('../controller/SandDAO.js')
+var sandDAO = require('../controller/SandDAO.js');
+var townDAO = require('../controller/TownDAO.js');
+var sandHelper = require('../helper/SandHelper.js');
 
 router.get('/', function(req, res, next) {
 	
@@ -11,7 +13,7 @@ router.get('/', function(req, res, next) {
 		if (req.session.inform.login !== 'sucess') {
 			res.redirect('/error');
 		} else {
-			
+			var tmp; 
 			async.waterfall([
 					function(callback) {
 						if (req.session.searchCity == undefined||req.session.searchCity.length==0) {
@@ -21,17 +23,31 @@ router.get('/', function(req, res, next) {
 						}
 					},
 					function(arg1, callback) {
-						if (arg1 == undefined) {
+						if (arg1[0] == undefined) {
 							callback(null, null);
 						} else {
-							sandDAO.filterByLanguage(arg1, req.session.inform, callback);
+							callback(null, sandHelper.filterByLanguage(arg1, req.session.inform));
 						}
-					} ], function(err, results) {
-				res.render('main', {
-					inform : req.session.inform,
-					city : req.session.searchCity,
-					sand : results
-				});
+					}, function(arg1 , callback){
+						tmp = arg1;
+						if(arg1[0] == undefined){
+							callback(null,null);
+						} else{
+							var city_code = sandHelper.extractsCityId(arg1);
+						    townDAO.findCityById(city_code, callback);
+						}	
+					}, function(arg1 , callback){
+						if(arg1[0] == undefined){
+							callback(null,null);
+						} else{
+							callback(null ,sandHelper.addCityNameInSand (arg1 , tmp));
+						}
+					}], function(err, results) {
+					res.render('main', {
+						inform : req.session.inform,
+						city : req.session.searchCity,
+						sand : results 
+						});
 			});
 		}
 	}

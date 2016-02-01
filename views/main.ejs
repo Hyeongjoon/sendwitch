@@ -37,8 +37,9 @@ div, ul, li {
         <div id="sendwich-box">
           <h3>SendwicH</h3>
         </div>
-        <input name="start" value="date" type="checkbox" onklick>시작날짜순&nbsp;&nbsp;&nbsp;
-        <input name="end" value="date" type="checkbox" onklick>끝난날짜순
+        <input name="sort"  type="radio" checked id="updated" onclick="">최신 업데이트순&nbsp;&nbsp;&nbsp;
+        <input name="sort" type="radio" id="">끝난날짜순&nbsp;&nbsp;&nbsp;
+        <input name="sort" type="radio" id="">시작날짜순
          <%if(sand==null || sand.length==0){%>
           <div id="content-box">
           <div class="othernickname">
@@ -52,9 +53,9 @@ div, ul, li {
           	calTime(<%=i%>, '<%=sand[i].updated_time%>'); 
           	</script></div>
           </div>
-          <div class="main-where"></div>
+          <div class="main-where"><%=sand[i].city_name%> (<%=sand[i].start_date.toDateString()%> ~ <%=sand[i].end_date.toDateString()%>)</div><br>
           <%=sand[i].contents%>
-          <div class="main-chating"></div>
+          <div class="main-chating">mainChat</div>
           </div><%}}%>
       </div>
       <div id="yj-sidebar">
@@ -118,6 +119,6 @@ div, ul, li {
     <input id="selectedCountryName" type="hidden">
     <input id="selectedCityId" type="hidden">
 
-<script src="http://192.168.0.66:3001/socket.io/socket.io.js"></script>
+<script src="http://192.168.0.18:3001/socket.io/socket.io.js"></script>
   </body>
 </html>

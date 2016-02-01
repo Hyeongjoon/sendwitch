@@ -4,8 +4,16 @@ function addSearching() {
 
 	if (from.value == 0) {
 		var today = new Date();
-		var time = today.getFullYear() + '-' + (today.getMonth() + 1) + '-'
-				+ today.getDate();
+		var month = today.getMonth() + 1;
+		var day = today.getDate();
+		if(month < 10){
+			month = '0' + month;
+		}
+		if(day < 10){
+			day = '0' + day;
+		}
+		var time = today.getFullYear() + '-' + month + '-'
+				+ day;
 		from.value = time;
 	}
 	if ($("#selectedCityName").val() == 0 || $("#selectedCityId").val() == 0
@@ -55,7 +63,7 @@ function addSearching() {
 }
 
 function connection(term, response) {
-	var socket = io.connect('http://192.168.0.66:3001');
+	var socket = io.connect('http://192.168.0.18:3001');
 	socket.emit('findCity', term);
 	socket.on('toclient', function(data) {
 		if (data.length == 0 ||data == null) {

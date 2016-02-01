@@ -40,8 +40,16 @@ router.post('/', function(req, res, next) {
 			};
 			if (results != undefined) {
 				var today = new Date();
-				var time = today.getFullYear() + '-' + (today.getMonth() + 1)
-						+ '-' + today.getDate();
+				var month = today.getMonth() + 1;
+				var day = today.getDate();
+				if(month<10){
+					month = '0' + month; 
+				}
+				if(day < 10){
+					day = '0'+day;
+				}
+				var time = today.getFullYear() + '-' + month
+						+ '-' + day;
 				for (var i = 0; i < results.length; i++) {
 					results[i].from = time;
 					results[i].to = undefined;

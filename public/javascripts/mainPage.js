@@ -71,3 +71,8 @@ function calTime(i, time) {
 	}
 	$("#time-value" + i).append(val);
 }
+
+function tmp(){
+	
+	
+}
