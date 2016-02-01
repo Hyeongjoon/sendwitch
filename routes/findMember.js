@@ -32,7 +32,8 @@ router.post('/', function(req, res, next) {
 				login : 'sucess',
 				nick : tmp[0].nickname,
 				email : tmp[0].email,
-				interesting_city : tmp[0].interesting_city_code,
+				interesting_city_code : tmp[0].interesting_city_code,
+				interesting_city: [],
 				dLang : tmp[0].default_language,
 				addLang : tmp[0].addtional_language,
 				pageLang : tmp[0].page_language,
@@ -51,11 +52,13 @@ router.post('/', function(req, res, next) {
 				var time = today.getFullYear() + '-' + month
 						+ '-' + day;
 				for (var i = 0; i < results.length; i++) {
+					req.session.inform.interesting_city.push(results[i]);
 					results[i].from = time;
 					results[i].to = undefined;
 				}
 			}
 			req.session.searchCity = results;
+			console.log(req.session.inform);
 			res.redirect('/main');
 		}
 	});

@@ -25,6 +25,7 @@ var signUp = require('./routes/signUp');
 var main = require('./routes/main');
 var addSearching = require('./routes/addSearchingCity');
 var liveSearch = require('./routes/liveSearch');
+var myPage = require('./routes/myPage');
 
  
 var app = express();
@@ -72,11 +73,7 @@ app.use('/findMember' , find);
 app.use('/signUp' , signUp);
 app.use('/main' , main);
 app.use('/addSearching', addSearching);
-app.get('/autocomplete', function(req, res,next){
-	
-	console.log("시발 ㅇ여긴 실행되냐??");
-})
-
+app.use('/myPage' , myPage);
 
 app.get('/error', function(req, res, next){
 	res.render('err');

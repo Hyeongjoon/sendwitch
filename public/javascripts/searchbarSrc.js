@@ -75,15 +75,12 @@ function connection(term, response) {
 }
 
 $(function() {
-	$("#from, #to").datepicker({
+	$(  "#from, #to").datepicker({
 		dateFormat : 'yy-mm-dd',
 		minDate : '0d',
 		maxDate : '1y',
 		showMonthAfterYear : true,
-		showAnim : "fold",
-		showOptions : {
-			direction : "left"
-		}
+		showAnim : "fold"
 	});
 	$('#from').datepicker("option", "onClose", function(selectedDate) {
 		if (selectedDate != 0) {
@@ -98,7 +95,7 @@ $(function() {
 	$("#i-searchbar")
 			.autocomplete(
 					{
-						source : function(request, response) {
+						source : function(request , response) {
 							var tmp = request.term;
 							tmp = tmp.replace(/^\s+/, "");
 							if (tmp.length > 1) {
