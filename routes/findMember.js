@@ -28,6 +28,9 @@ router.post('/', function(req, res, next) {
 		} else if (tmp.length >= 2) {
 			res.render('loginErr', {});
 		} else {
+			if(tmp[0].interesting_city_code==null){
+				tmp[0].interesting_city_code ='';
+			}
 			req.session.inform = {
 				login : 'sucess',
 				nick : tmp[0].nickname,
@@ -56,6 +59,9 @@ router.post('/', function(req, res, next) {
 					results[i].from = time;
 					results[i].to = undefined;
 				}
+			}
+			if(results ==undefined){
+				results = [];
 			}
 			req.session.searchCity = results;
 			res.redirect('/main');

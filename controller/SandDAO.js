@@ -29,4 +29,9 @@ exports.findSandByCity = function(cityArr, callback) {
 	base.select(sqlQuery, callback);
 };
 
+exports.registerSand = function(sand , callback){
+	
+	sqlQuery = 'INSERT INTO sand set ?';
+	base.insert(sqlQuery, sand, callback);
+};
 

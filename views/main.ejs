@@ -87,7 +87,7 @@ div, ul, li {
             <% }} %>
         </div>
       </div>
-       <div id="goToTopLogo">
+       <div id="goToTopLogo" onclick="window.scrollTo(0,0)" style="cursor: pointer">
       </div>
       
 <!--menubar-->
@@ -122,6 +122,7 @@ div, ul, li {
     <input id="selectedCityName" type="hidden">
     <input id="selectedCountryName" type="hidden">
     <input id="selectedCityId" type="hidden">
+   
 
 <script src="http://192.168.0.9:3001/socket.io/socket.io.js"></script>
   </body>

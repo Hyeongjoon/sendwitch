@@ -34,8 +34,6 @@ exports.insert = function(params, inform, callback){
 
 exports.update = function(params , callback){
 	connection.query(params, function(err, rows, fields) {
-		console.log(params);
-		console.log("여기까진 왔냐?");
 		if (!err) {
 			callback(null, true);
 		} else {

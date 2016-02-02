@@ -38,6 +38,7 @@ router.get('/', function(req, res, next) {
 							callback(null, null);
 						} else {
 							var city_code = sandHelper.extractsCityId(arg1);
+							console.log(city_code);
 							townDAO.findCityById(city_code, callback);
 						}
 					},

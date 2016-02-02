@@ -1,9 +1,10 @@
 exports.extractsCityId = function(sand){
-	var results = sand[0].city_code;
-	for (var i = 1 ; i < sand.length ; i++){
+	var results = '';
+	for (var i = 0 ; i < sand.length ; i++){
 		
 		results = results + ' ' + sand[i].city_code;
 	}
+	results = results.replace(/(^\s*)|(\s*$)/gi, "");
 	return results;
 }
 

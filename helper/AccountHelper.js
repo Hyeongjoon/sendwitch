@@ -17,9 +17,15 @@ exports.deleteCityId = function(cityArray , cityID){
 				for(var j= 0 ; j < tmp.length ; j++){
 					result = result + tmp[j] + ' ';
 				}
-				result.replace(/^\s+/, "");
+				result = result.replace(/(^\s*)|(\s*$)/gi, "");
 				return result;
 			} 
 		}
 		return false;
+}
+
+exports.addCityId = function(cityArr , cityID){
+	var result = cityArr + ' ' + cityID;
+	result = result.replace(/(^\s*)|(\s*$)/gi, "");
+	return result;
 }

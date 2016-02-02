@@ -94,10 +94,9 @@ $(function() {
 $(function() {
 	$("#i-searchbar")
 			.autocomplete(
-					{
-						source : function(request , response) {
+					{		source : function(request , response) {
 							var tmp = request.term;
-							tmp = tmp.replace(/^\s+/, "");
+							tmp = tmp.replace(/(^\s*)|(\s*$)/gi, "");
 							if (tmp.length > 1) {
 								connection(tmp, response);
 							} 

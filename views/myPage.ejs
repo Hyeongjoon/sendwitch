@@ -55,21 +55,20 @@ div, ul, li {
                 <input type="search" id="tool-bar">
               </li>
               <li id="tool-insertimage" class="tool-li">
-                <input type="submit" value="insert" id="tool-insert" onklick="">
+                <input type="button" value="insert" id="tool-insert" onklick="">
               </li>
               <li id="tool-regist" class="tool-li">
-                <input type="submit" value="register" id="tool-button" onklick="">
+                <input type="button" value="register" id="tool-button" onklick="">
               </li>
             </ul>
-
           </div>
           <div id="mypage-text">
            <textarea id="mypage-textarea" cols="77" rows="15"></textarea>
           </div>
           <div id="mypage-default">
             Language
-            <select name="default language" id="selectmenu">
-              <option value="select">작성언어</option>
+            <select name="default language" id="selectLanguage">
+              <option value="default">default Language</option>
               <option value="korean">한국어</option>
               <option value="english">English</option>
               <option value="japanese">Japanese</option>
@@ -213,7 +212,7 @@ div, ul, li {
         </div>
       </div>
 <!--go to main logo-->
-      <div id="goToTopLogo">
+      <div id="goToTopLogo" onclick="window.scrollTo(0,0)" style="cursor: pointer">
       </div>
 
 <!--interesting city-->
@@ -274,6 +273,12 @@ div, ul, li {
     <input id="selectedCityName" type="hidden">
     <input id="selectedCountryName" type="hidden">
     <input id="selectedCityId" type="hidden">
+    <input id="interestingCityName" type="hidden">
+    <input id="interestingCountryName" type="hidden">
+    <input id="interestingCityId" type="hidden">
+    <input id="sandCityName" type="hidden">
+    <input id="sandCountryName" type="hidden">
+    <input id="sandCityId" type="hidden">
 
 <script src="http://192.168.0.9:3001/socket.io/socket.io.js"></script>
   </body>
