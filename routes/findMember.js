@@ -58,7 +58,6 @@ router.post('/', function(req, res, next) {
 				}
 			}
 			req.session.searchCity = results;
-			console.log(req.session.inform);
 			res.redirect('/main');
 		}
 	});

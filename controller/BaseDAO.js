@@ -24,12 +24,25 @@ exports.select = function(params, callback) {
 exports.insert = function(params, inform, callback){
 	connection.query(params, inform , function(err, rows, fields) {
 		if (!err) {
-			console.log("err" + err);
 			callback(null, true);
 		} else {
+			console.log("err" + err);
 			callback(err, false);
 		}
 	});	
+};
+
+exports.update = function(params , callback){
+	connection.query(params, function(err, rows, fields) {
+		console.log(params);
+		console.log("여기까진 왔냐?");
+		if (!err) {
+			callback(null, true);
+		} else {
+			console.log("err" + err);
+			callback(err, false);
+		}
+	});
 };
 
 
