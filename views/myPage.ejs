@@ -26,6 +26,7 @@ div, ul, li {
 <script src="/jQuery-ui/jquery-ui.js" ></script>
 <script src ='/javascripts/searchbarSrc.js'></script>	
 <script src ='/javascripts/myPageSrc.js'></script>
+<script src ='/javascripts/commonSrc.js'></script>
   </head>
   <body>
 <!--container-->
@@ -55,10 +56,10 @@ div, ul, li {
                 <input type="search" id="tool-bar">
               </li>
               <li id="tool-insertimage" class="tool-li">
-                <input type="button" value="insert" id="tool-insert" onklick="">
+                <input type="button" value="insert" id="tool-insert" >
               </li>
               <li id="tool-regist" class="tool-li">
-                <input type="button" value="register" id="tool-button" onklick="">
+                <input type="button" value="register" id="tool-button" style="cursor: pointer">
               </li>
             </ul>
           </div>
@@ -69,6 +70,8 @@ div, ul, li {
             Language
             <select name="default language" id="selectLanguage">
               <option value="default">default Language</option>
+              <option value="<%=inform.dLang%>"><%=inform.dLang%></option>
+              <%var tmp = inform.addLang %>
               <option value="korean">한국어</option>
               <option value="english">English</option>
               <option value="japanese">Japanese</option>
@@ -78,140 +81,51 @@ div, ul, li {
         </div>
       </div>
       <!--wrote-->
+      <% if(mySand.length!=0){  for(var i = 0 ; i < mySand.length; i++) {%>
       <div id="yj-wrote">
         <div id="mywrote">
           <div id="mywrote-title">
-            <a id="wroteid" href="">wkdzh</a>
-            <div id="wrote-cancel">
+            <a id="wroteid" href=""><%=mySand[i].nick%></a>
+            <div id="wrote-cancel" style="cursor: pointer" onclick="deleteSand(<%=mySand[i].id%>)">
             </div>
-            <div id="daysago">
+           
+            <input id="revise" type="button" value="revise" style="cursor: pointer">
+            <img id="active" <%if(mySand[i].activated==true) {%>src="/images/activated.png" <%} else { %> 
+            src="/images/deActivated.png"
+            <%}%>style="cursor: pointer" onclick = "transActivation(<%=mySand[i].id%> , <%=mySand[i].activated %>)">
+          </div>
+          <div id="mywrote-content">
+            <div class="mypage-time" id ="sandTime<%=i%>"><%=mySand[i].city_name%>, <%=mySand[i].country_name%> <script>
+            transTime(<%=i%>, '<%=mySand[i].start_date%>' , '<%=mySand[i].end_date%>'); 
+          	</script> Language = <%=mySand[i].language%>
             </div>
-            <input id="revise" type="button" value="revise">
-            <input id="active" type="radio">
+            <div id="time-value<%=i%>" class ="daysago"><script>
+          	calTime(<%=i%>, '<%=mySand[i].updated_time%>'); 
+          	</script>
+            </div>
+          </div>
+          <div id="mywrote-content">
+            <%=mySand[i].contents%>
+          </div>
+        </div>
+      </div><%}} else {%>
+      
+      <div id="yj-wrote">
+        <div id="mywrote">
+          <div id="mywrote-title">
+            <a id="wroteid" href=""></a>
           </div>
           <div id="mywrote-content">
             <div id="mypage-time">
             </div>
           </div>
           <div id="mywrote-content">
-            장형준은 장코이다</br>
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br>  
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
+              첫번째 글을 작성 해보세요!!!
           </div>
         </div>
-      </div>
+      </div> <% }%>
 
-      <div id="yj-wrote">
-        <div id="mywrote">
-          <div id="mywrote-title">
-            <a id="wroteid" href="">wkdzh</a>
-            <input id="revise"type="button" value="revise">
-            <div id="daysago">
-            </div>
-          </div>
-          <div id="mywrote-content">
-            장형준은 장코이다</br>
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br>  
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-          </div>
-        </div>
-      </div>
-
-
-      <div id="yj-wrote">
-        <div id="mywrote">
-          <div id="mywrote-title">
-            <a id="wroteid" href="">wkdzh</a>
-            <input id="revise"type="button" value="revise">
-            <div id="daysago">
-            </div>
-          </div>
-          <div id="mywrote-content">
-            장형준은 장코이다</br>
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br>  
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-          </div>
-        </div>
-      </div>
-
-      <div id="yj-wrote">
-        <div id="mywrote">
-          <div id="mywrote-title">
-            <a id="wroteid" href="">wkdzh</a>
-            <input id="revise"type="button" value="revise">
-            <div id="daysago">
-            </div>
-          </div>
-          <div id="mywrote-content">
-            장형준은 장코이다</br>
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br>  
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-          </div>
-        </div>
-      </div>
-
-      <div id="yj-wrote">
-        <div id="mywrote">
-          <div id="mywrote-title">
-            <a id="wroteid" href="">wkdzh</a>
-            <input id="revise"type="button" value="revise">
-            <div id="daysago">
-            </div>
-          </div>
-          <div id="mywrote-content">
-            장형준은 장코이다</br>
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br>  
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-          </div>
-        </div>
-      </div>
-
-      <div id="yj-wrote">
-        <div id="mywrote">
-          <div id="mywrote-title">
-            <a id="wroteid" href="">wkdzh</a>
-            <input id="revise"type="button" value="revise">
-            <div id="daysago">
-            </div>
-          </div>
-          <div id="mywrote-content">
-            장형준은 장코이다</br>
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br>  
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-            장형준은 장코이다</br> 
-          </div>
-        </div>
-      </div>
-<!--go to main logo-->
+<!--go to top logo-->
       <div id="goToTopLogo" onclick="window.scrollTo(0,0)" style="cursor: pointer">
       </div>
 

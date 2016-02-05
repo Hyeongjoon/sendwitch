@@ -215,3 +215,42 @@ $(function() {
 						}
 					});
 });
+
+function deleteSand(sandID){
+	if (confirm("delete???") === false){
+		return;
+	} else{
+		var form = document.createElement("form");
+		var input = document.createElement("input");
+		
+		form.setAttribute("method", "post");
+		form.setAttribute("action", "/myPage/deleteSand");
+		input.type = "hidden";
+		input.name = "sandID";
+		input.value = sandID;
+		form.appendChild(input);
+		document.body.appendChild(form);
+		form.submit();
+	}
+}
+
+function transActivation(sandID , activation){
+	var form = document.createElement("form");
+	var input = document.createElement("input");
+	
+	form.setAttribute("method", "post");
+	form.setAttribute("action", "/myPage/transActivation");
+	input.type = "hidden";
+	input.name = "sandID";
+	input.value = sandID;
+	form.appendChild(input);
+	
+	var input2 = document.createElement("input");
+	input2.type = "hidden";
+	input2.name = "activation";
+	input2.value = activation;
+	form.appendChild(input2);
+	
+	document.body.appendChild(form);
+	form.submit();
+}

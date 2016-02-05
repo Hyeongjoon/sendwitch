@@ -1,40 +1,31 @@
-exports.extractsCityId = function(sand){
+exports.extractsCityId = function(sand) {
 	var results = '';
-	for (var i = 0 ; i < sand.length ; i++){
-		
+	for (var i = 0; i < sand.length; i++) {
+
 		results = results + ' ' + sand[i].city_code;
 	}
 	results = results.replace(/(^\s*)|(\s*$)/gi, "");
 	return results;
 }
 
-
 exports.filterByLanguage = function(args, inform) {
 	var result = [];
-	for (var i = 0; i < args.length; i++) {
-		if (args[i].language == inform.dLang) {
-			result.push(args[i]);
-		}
-	}
-	if (inform.addLang != '') {
-		var tmp = inform.addLang.split(' ');
-		for (var i = 0; i < tmp.length; i++) {
-			for (var j = 0; j < args.length; j++) {
-				if(args[j].language == tmp[i]){
-					result.push(args[j]);
-				}
+		for (var i = 0; i < args.length; i++) {
+			if (args[i].language == inform.dLang || inform.addLang.indexOf(args[i].language)!==-1) {
+				result.push(args[i]);
 			}
 		}
-	}
+		console.log(result);
 	return result;
 };
 
-exports.addCityNameInSand = function(town , sand){
-	for(var i = 0 ; i < town.length ; i++){
-		for(var j = 0 ; j < sand.length ; j++){
-			if(town.city_name ==undefined){
-				if(sand[j].city_id==town[i].city_code){
+exports.addCityNameInSand = function(town, sand) {
+	for (var i = 0; i < town.length; i++) {
+		for (var j = 0; j < sand.length; j++) {
+			if (sand.city_name == undefined) {
+				if (sand[j].city_code === town[i].city_id) {
 					sand[j].city_name = town[i].english_city_name;
+					sand[j].country_name = town[i].english_country_name;
 				}
 			}
 		}

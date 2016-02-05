@@ -3,15 +3,39 @@ var router = express.Router();
 var accountDAO = require('../controller/AccountDAO.js');
 var accountHelper = require('../helper/AccountHelper.js');
 var sandDAO = require('../controller/SandDAO.js');
+var sandHelper = require('../helper/SandHelper.js');
+var townDAO = require('../controller/TownDAO.js');
 var async = require('async');
 
 router.get('/', function(req, res, next) {
-
-	res.render('myPage', {
-		inform : req.session.inform,
-		city : req.session.searchCity
+	var tmp;
+	async.waterfall([ function(callback) { 
+		sandDAO.findMySand(req.session.inform , callback);
+	} , function(arg1 , callback){
+		if(arg1.length==0){
+			callback(null , []);
+		} else{
+			tmp = arg1;
+			var cityCode = sandHelper.extractsCityId(arg1);
+			townDAO.findCityById(cityCode, callback);
+		}
+	} , function(arg1 , callback){
+		if(arg1.length == 0){
+			callback(null , []);
+		}else {
+			callback(null, sandHelper.addCityNameInSand(arg1, tmp));
+		}
+	}], function(err, results) {  
+		if(err){
+			res.redirect('/error');
+		} else{
+			res.render('myPage', {
+				inform : req.session.inform,
+				city : req.session.searchCity,
+				mySand : results
+			});
+		}
 	});
-
 });
 
 router.post('/deleteInteresting', function(req, res, next) {
@@ -94,6 +118,33 @@ router.post('/addSand', function(req, res, next) {
 		if(results!=true){
 			res.redirect('/error');
 		} else {
+			res.redirect('/myPage');
+		}
+	});
+});
+
+router.post('/deleteSand', function(req , res , next) {
+	var sandID = req.body.sandID;
+	async.waterfall([ function(callback) {
+		sandDAO.deleteSand(req.session.inform , sandID , callback);
+	} ], function(err, results) {
+		if(err || results!=true){
+			res.redirect('/error');
+		} else{
+			res.redirect('/myPage');
+		}
+	});
+});
+
+router.post('/transActivation' , function(req, res , next){
+	var sandID = req.body.sandID;
+	var activation = req.body.activation;
+	async.waterfall([ function(callback) {
+		sandDAO.switchActivation(sandID , activation , callback);
+	}], function(err, results) {
+		if(err || results != true){
+			res.redirect('/error');
+		} else{
 			res.redirect('/myPage');
 		}
 	});

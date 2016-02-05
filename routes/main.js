@@ -16,17 +16,16 @@ router.get('/', function(req, res, next) {
 			var tmp;
 			async.waterfall([
 					function(callback) {
-						if (req.session.searchCity == undefined
-								|| req.session.searchCity.length == 0) {
-							callback(null, null);
+						if (req.session.searchCity.length == 0) {
+							callback(null, []);
 						} else {
 							sandDAO.findSandByCity(req.session.searchCity,
 									callback);
 						}
 					},
 					function(arg1, callback) {
-						if (arg1 == null||arg1.length==0) {
-							callback(null, null);
+						if (arg1.length==0) {
+							callback(null, []);
 						} else {
 							callback(null, sandHelper.filterByLanguage(arg1,
 									req.session.inform));
@@ -34,17 +33,16 @@ router.get('/', function(req, res, next) {
 					},
 					function(arg1, callback) {
 						tmp = arg1;
-						if (arg1 == null|| arg1.length==0) {
-							callback(null, null);
+						if (arg1.length==0) {
+							callback(null, []);
 						} else {
 							var city_code = sandHelper.extractsCityId(arg1);
-							console.log(city_code);
 							townDAO.findCityById(city_code, callback);
 						}
 					},
 					function(arg1, callback) {
-						if (arg1 == null||arg1.length==0) {
-							callback(null, null);
+						if (arg1.length==0) {
+							callback(null, []);
 						} else {
 							callback(null, sandHelper.addCityNameInSand(arg1, tmp));
 						}
