@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>my page 1-22</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    /*****container*****/
+      html,body {
+        height: 100%; 
+        margin: 0; 
+        padding: 0;
+      } 
+      #yj-container {
+        width: 940px;
+        margin: 0px auto;
+        padding: 20px;
+        border:1px solid none;
+      }
+      #yj-nav {
+        position:fixed;
+        width: 120px;
+        padding: 20px;
+        margin-right: 10px;
+        border: 1px solid none;
+        height:400px;
+        float:left;
+        text-align: center;
+        background: #CEF6EC;
+      }
+      #yj-content {
+        width: 570px;
+        height:100%;
+        padding: 20px;
+        margin-right: 10px;
+        margin-bottom: 5%;
+        margin-left:170px;
+        float: left;
+        border: 2px solid #CEF6EC;
+        border-bottom: none;
+        border-radius: 10px;
+      }
+      #sendwich-box{
+        border:solid 1px none;
+        padding-left:10px;
+        padding-top:1px;
+        padding-bottom:1px;
+        border-top-left-radius:20px;
+        border-top-right-radius: 20px;
+        background: #CEF6EC;
+      }
+      #content-box{
+        margin-top: 30px;
+        border:1px solid #CEF6EC;
+        padding:10px;
+      }
+      .othernickname{
+        height:30px;
+        border-bottom:1px solid #CEF6EC;
+      }
+      #yj-sidebar {
+        position: fixed;
+        width:150px;
+        height:400px;
+        padding:10px;
+        margin-left:795px;
+        margin-bottom: 20px;
+        float: left;
+        border: 1px solid none;
+        background: #CEF6EC;
+      }
+      #sidebar{
+        border:1px solid black;
+        width:130px auto;
+        height:150px;
+      }
+      #mynickname{
+        height:20px;
+        border-bottom:1px solid black;
+        padding-left: 10px;
+      }
+      #addcountry{
+        border:1px solid none;
+        font-size: 5px;
+        padding:2px;
+      }
+      #country-box{
+        width:148px;
+        border:1px solid none;
+        margin-top:5px;
+        margin-bottom: 5px;
+      }
+      #country{
+        width:59px;
+        height:11px;
+        float:left;
+        margin:1px;
+        border:1px solid black;
+        padding-left: 1px;
+      }
+      #t-country{
+        position: relative;
+        top:-11px;
+      }
+      #period{
+        width:60px;
+        height:11px;
+        float:left;
+        margin:1px;
+        border:1px solid black;
+        padding-left: 1px;
+      }
+      #t-period{
+        position: relative;
+        top:-11px;
+      }
+      #cancel{
+        width:11px;
+        height:11px;
+        float:right;
+        margin:1px;
+        border:1px solid black;
+      }
+      #yj-menubar{
+        width:965px;
+        height: 25px;
+        bottom:0px;
+        border:1px solid none;
+        position: fixed;
+      }
+/*****************etc**********************/
+.logo{
+  width: 100px;
+  height: 100px;
+}
+/*******************menubar*********************/
+div, ul, li{
+  margin:0;
+  padding:0;
+}
+ #yj-menubar{
+  float:right;
+  margin:0 auto;
+  padding:0;
+  box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+  -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+  -o-box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 10px;
+  background-color:#5c5c5c;
+  font:"Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif, arial;
+ }
+ .menu-li{
+  float:left;
+  list-style-type: none;
+ }
+ #yj-menubar a{
+  height:16px;
+  color:#f1f1f1;
+  font-family:arial;
+  font-size:12px;
+  padding:0 10px 0 10px;
+  text-decoration:none;
+ }
+ #yj-menubar{
+  color:#D4F4FA;
+  border-bottom:3px solid #22E2BF;
+ }
+ #menu ul{
+  display: none;
+  position: absolute;
+  background: #5c5c5c;
+  padding:5px;
+}
+ #menu:hover ul{
+  display: block;
+  top:-115px;
+  border-radius: 10px;
+}
+#menu ul li{
+  float:none;
+  text-align: center;
+}
+/*menu-li*/
+#menu{
+  width:110px;
+  text-align: center;
+ }
+#searchbar{
+  width:320px;
+}
+#i-searchbar{
+  width:300px;
+  border-radius:10px;
+}
+#calender1{
+  width:120px;
+}
+#from{
+  width:100px;
+  position: absolute;
+  top:3px;
+  padding-right:0px;
+}
+#flow{
+  margin-left: 30px;
+  position: relative;
+}
+#calender2{
+  width:120px;
+}
+#to{
+  width:100px;
+  position: absolute;
+  top:3px;
+  margin-left: 10px
+  padding-left:0px;
+}
+#searchbutton{
+  width:100px;
+  margin-left: 130px;
+}
+#checkbox{
+  position: relative;
+  top: 3px;
+  margin-left: 10px;
+}
+
+
+
+
+
+/*************반응형 웹****************/
+
+      @media screen and (max-width:480px) {
+        #yj-container {
+          width: auto;
+        }
+        #yj-nav{
+          float:none;
+          width:auto;
+        }
+        #yj-content {
+          float: none;
+          width: auto;
+        }
+        #yj-sidebar {
+          float: none;
+          width: auto;
+        }
+        #yj-menubar{
+          float:none;
+          width: auto;
+        }
+
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div id="yj-container">
+      <div id="yj-nav">
+        <img class="logo" src="../../사진/사진이다.jpg">
+      </div>
+
+      <div id="yj-content">
+        <div id="sendwich-box">
+          <h3>SendwicH</h3>
+        </div>
+        <input name="start" value="date" type="checkbox" onklick>시작날짜순&nbsp;&nbsp;&nbsp;
+        <input name="end" value="date" type="checkbox" onklick>끝난날짜순
+        <div id="content-box">
+          <div class="othernickname">
+             나는 장코 대마왕ㅇ
+          </div>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. Aenean et nibh eu purus scelerisque aliquet nec non justo. Aliquam vitae aliquet ipsum. Etiam condimentum varius purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.</p>
+        </div>
+      </div>
+      <div id="yj-sidebar">
+        <div id="sidebar">
+          <div id="mynickname">
+            장코
+          </div>
+          <div id="addcountry">
+            <div class="country-box">
+              <div id="country">
+                <p id="t-country">paris</p>
+              </div>
+              <div id="period">
+                <p id="t-period">(12.31~01.31)</p>
+              </div>
+              <div id="cancel">
+              </div>
+            </div>
+            <div class="country-box">
+              <div id="country">
+                <p id="t-country">paris</p>
+              </div>
+              <div id="period">
+                <p id="t-period">(12.31~01.31)</p>
+              </div>
+              <div id="cancel">
+              </div>
+            </div>
+            <div class="country-box">
+              <div id="country">
+                <p id="t-country">paris</p>
+              </div>
+              <div id="period">
+                <p id="t-period">(12.31~01.31)</p>
+              </div>
+              <div id="cancel">
+              </div>
+            </div>
+            <div class="country-box">
+              <div id="country">
+                <p id="t-country">paris</p>
+              </div>
+              <div id="period">
+                <p id="t-period">(12.31~01.31)</p>
+              </div>
+              <div id="cancel">
+              </div>
+            </div>
+            <div class="country-box">
+              <div id="country">
+                <p id="t-country">paris</p>
+              </div>
+              <div id="period">
+                <p id="t-period">(12.31~01.31)</p>
+              </div>
+              <div id="cancel">
+              </div>
+            </div>
+            <div class="country-box">
+              <div id="country">
+                <p id="t-country">paris</p>
+              </div>
+              <div id="period">
+                <p id="t-period">(12.31~01.31)</p>
+              </div>
+              <div id="cancel">
+              </div>
+            </div>
+            <div class="country-box">
+              <div id="country">
+                <p id="t-country">paris</p>
+              </div>
+              <div id="period">
+                <p id="t-period">(12.31~01.31)</p>
+              </div>
+              <div id="cancel">
+              </div>
+            </div>
+           
+          </div>
+          
+        </div>
+      </div>
+<!--menubar-->
+      <div id="yj-menubar">
+        <ul class="menubar">
+          <li id="menu" class="menu-li"><a href="#">menu</a>
+            <ul>
+              <li><a href="#">my page</a></li>
+              <li><a href="#">chat</a></li>
+              <li><a href="#">search by map</a></li>
+              <li><a href="#">option</a></li>
+              <li><a href="#">go to main</a></li>
+            </ul>
+          </li>
+          <li id="searchbar" class="menu-li">
+            <input type="search" id="i-searchbar">
+          </li>
+          <li id="calender1" class="menu-li">
+            <input type="button" id="from">
+            <p id="flow">~</P>
+          </li>
+          <li id="calender2" class="menu-li">
+            <input type="button" id="to">
+          </li>
+          <li id="searchbutton" class="menu-li">
+            <input type="submit" value="search" onklick="">
+          </li>
+          <li id="insearchresult" class="menu-li">
+            <input id="checkbox" type="checkbox">in search result
+          </li>
+        </ul>
+      </div>
+    </div>
+<!--calender sourrce-->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+<script>
+$(function() {
+  var dates = $( "#from, #to " ).datepicker({
+  prevText: '이전 달',
+  nextText: '다음 달',
+  monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+  monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+  dayNames: ['일','월','화','수','목','금','토'],
+  dayNamesShort: ['일','월','화','수','목','금','토'],
+  dayNamesMin: ['일','월','화','수','목','금','토'],
+  dateFormat: 'yy-mm-dd',
+  showMonthAfterYear: true,
+  yearSuffix: '년',
+maxDate:'+30d',
+  onSelect: function( selectedDate ) {
+    var option = this.id == "from" ? "minDate" : "maxDate",
+      instance = $( this ).data( "datepicker" ),
+      date = $.datepicker.parseDate(
+        instance.settings.dateFormat ||
+        $.datepicker._defaults.dateFormat,
+        selectedDate, instance.settings );
+    dates.not( this ).datepicker( "option", option, date );
+  }
+  });
+});
+</script>
+
+
+  </body>
+</html>

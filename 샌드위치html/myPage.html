@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>4.my page 1-22</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    /*****container*****/
+      html,body {
+        height: 100%; 
+        margin: 0; 
+        padding: 0;
+      }
+      /**container**/
+      #yj-container {
+        width: 1040px;
+        margin: 0px auto;
+        padding: 20px;
+        border:1px solid none;
+      }
+      /**navigation**/
+      #yj-nav {
+        position:fixed;
+        width: 120px;
+        padding: 20px;
+        margin-right: 10px;
+        border: 1px solid none;
+        height:400px;
+        float:left;
+        text-align: center;
+        background: #CEF6EC;
+      }
+      .logo{
+        width: 100px;
+        height: 100px;
+      }
+      /**content**/
+      #yj-content {
+        width: 570px;
+        height:100%;
+        padding: 20px;
+        padding-bottom: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-left:170px;
+        float: left;
+        border: 2px solid #CEF6EC;
+        border-bottom: none;
+        border-radius: 10px;
+      }
+      #sendwich-box{
+        border:solid 1px none;
+        padding-left:10px;
+        padding-top:1px;
+        padding-bottom:1px;
+        border-top-left-radius:20px;
+        border-top-right-radius: 20px;
+        background: #CEF6EC;
+      }
+/**new**/
+      /**go to main logo**/
+      #gotomainlogo{
+         width: 0; 
+         height: 0; 
+         border: 20px solid #D9E57E;
+         border-bottom-color: transparent;
+         border-right-color: transparent;
+         border-top-color: transparent;
+         
+         position: fixed;
+         right: 90px;
+         bottom:50px;
+      }
+      /*all*/
+      #mypage{
+        border:solid 1px #FFFFFF;
+        margin-top: 10px;
+      }
+      /*tool*/
+      .tool-li{
+        float:left;
+        list-style-type: none;
+      }
+      #mypage-tool{
+        width:568px;
+        border-bottom:solid 1px none;
+        float:left;
+        background: #E8D1D1;
+        border-radius: 10px;
+        padding-top: 3px;
+        padding-bottom: 5px;
+      }
+      #tool-from{
+        width:100px;
+        margin-left:10px;  
+        vertical-align: middle; 
+      }
+      #flow2{
+        margin-left: 115px;
+        position: absolute;
+        top:105px;
+      }
+      #tool-to{
+        width:100px;
+        margin-left:20px;
+        vertical-align: middle; 
+      }
+      #tool-bar{
+        width:190px;
+        margin-left:10px;
+      }
+      #tool-insert{
+        width:50px;
+        margin-left: 5px;
+      }
+      #tool-button{
+        width:70px;
+        margin-left: 5px;
+      }
+      /*text*/
+      #mypage-text{
+        border:1px solid #FFFFFF;
+        overflow-x:hidden;
+        overflow-y:scroll;
+        height:200px;
+      }
+      /*default*/
+      #mypage-default{
+        border:1px solid #ffffff;
+        border-radius: 10px;
+        margin-top: 10px;
+        padding-left:20px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        background: #E8D1D1;
+      }
+      #selectmenu{
+        width:150px;
+        margin-left: 250px;
+      }
+      /***wrote***/
+      #yj-wrote{
+        width: 570px;
+        height:100%;
+        padding: 20px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-left:170px;
+        float: left;
+        border: 2px solid #CEF6EC;
+        border-bottom: none;
+        border-radius: 10px;
+      }
+      #mywrote{
+        border:1px solid white;
+      }
+      #mywrote-title{
+        border:1px solid white;
+        border-radius: 10px;
+        padding:2px 10px 2px 20px;
+        background: #CCCEDF;
+      }
+      #wroteid{
+        text-decoration: none;
+        color:black;
+        font-family: Malgun Gothic;
+        font-weight: bold;
+      }
+      #revise{margin-left: 320px;
+
+      }
+      #daysago{
+        border: 1px solid black;
+        width:100px;
+        height:18px;
+        float:right;
+        margin-top: 2px;
+      }
+      #mywrote-content{
+        border:1px solid white;
+      }
+
+      /**interesting city**/
+      #yj-icity{
+        position: fixed;
+        width:265px;
+        margin-left:795px;
+        margin-bottom: 20px;
+        float: left;
+        border: 1px solid none;
+        background: #CEF6EC;
+        padding:5px;
+      }
+      #icity{
+        border:1px solid #47AFD2;
+        float:left;
+      }
+      #i-title{
+        width:252px;
+        height:20px;
+        border-bottom:1px solid #47AFD2;
+        padding-left: 10px;
+      }
+      #searchadd{
+        width:190px;
+        margin-left: 10px;
+        margin-top:5px;
+        float:left;
+      }
+      #save{
+        position: absolute;
+        width:50px;
+		float:right;
+        margin:5px;
+
+      }
+      #country-box{
+        position: relative;
+        width:250px;
+        border:1px solid #47AFD2;
+        margin: 0 auto;
+        float:left;
+        margin:5px;
+      }
+      .c-box{
+        float:left;
+
+      }
+      #country{
+        width:120px;
+        height:11px;
+        margin:1px;
+        border:1px solid #CEF6EC;
+        padding-left: 1px;
+      
+      }
+      .textc-box{
+        float:left;
+        position: relative;
+        top:-15px;
+        font-size: 12px;
+      }
+      
+      #period{
+        width:100px;
+        height:11px;
+        margin:1px;
+        border:1px solid #CEF6EC;
+        padding-left: 1px;
+      }
+      #cancel{
+        width:11px;
+        height:11px;
+        margin:1px;
+        border:1px solid black;
+      }
+      
+/*******************menubar*********************/
+div, ul, li{
+  margin:0;
+  padding:0;
+}
+ #yj-menubar{
+  width:1065px;
+  height: 25px;
+  bottom:0px;
+  border:1px solid none;
+  position: fixed;
+  float:right;
+  margin:0 auto;
+  padding:0;
+  box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+  -moz-box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+  -webkit-box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+  -o-box-shadow: 0px 0px 15px rgba(0,0,0,.3);
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 10px;
+  background-color:#5c5c5c;
+  font:"Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif, arial;
+ }
+ .menu-li{
+  float:left;
+  list-style-type: none;
+ }
+ #yj-menubar a{
+  height:16px;
+  color:#f1f1f1;
+  font-family:arial;
+  font-size:12px;
+  padding:0 10px 0 10px;
+  text-decoration:none;
+ }
+ #yj-menubar{
+  color:#D4F4FA;
+  border-bottom:3px solid #22E2BF;
+ }
+ #menu ul{
+  display: none;
+  position: absolute;
+  background: #5c5c5c;
+  padding:5px;
+}
+ #menu:hover ul{
+  display: block;
+  bottom:25px;
+  border-radius: 10px;
+}
+#menu ul li{
+  float:none;
+  text-align: center;
+  width:150px;
+}
+/*menu-li*/
+#menu{
+  width:150px;
+  text-align: center;
+ }
+
+#i-searchbar{
+  width:360px;
+  border-radius:10px;
+  border-style:none;
+  outline-style: none;
+  vertical-align: middle;
+  position: absolute;
+  margin-top: 4px;
+  padding-left:5px;
+}
+#from{
+  width:140px;
+  height:18px;
+  position: absolute;
+  margin-left: 370px;
+  vertical-align: middle;
+  margin-top: 4px;
+}
+#flow{
+  margin-left: 670px;
+  position: absolute;
+  margin-top: 4px;
+}
+#to{
+  width:140px;
+  height: 18px;
+  position: absolute;
+  margin-left: 540px;
+  vertical-align: middle;
+  margin-top: 4px;
+}
+
+#i-searchbutton{
+  border-radius: 10px;
+  border-style:none;
+  outline-style: none;
+  width:100px;
+  position:absolute;
+  margin-left: 730px;
+  margin-top: 4px;
+}
+
+
+
+
+/*************반응형 웹****************/
+
+      @media screen and (max-width:480px) {
+        #yj-container {
+          width: auto;
+        }
+        #yj-nav{
+          float:none;
+          width:auto;
+        }
+        #yj-content {
+          float: none;
+          width: auto;
+        }
+        #yj-sidebar {
+          float: none;
+          width: auto;
+        }
+        #yj-menubar{
+          float:none;
+          width: auto;
+        }
+
+      }
+
+
+    </style>
+  </head>
+  <body>
+<!--container-->
+    <div id="yj-container">
+      <div id="yj-nav">
+        <img class="logo" src="../../사진/사진이다.jpg">
+      </div>
+
+<!--content-->
+      <div id="yj-content">
+        <div id="sendwich-box">
+          <h3>SendwicH</h3>
+        </div>
+        
+        <div id="mypage">
+          <div id="mypage-tool">
+
+            <ul class="tool">
+              <li id="tool-cal1" class="tool-li">
+                <input type="button" id="tool-from">
+              </li>
+              <p id="flow2">~</p>
+              <li id="tool-cal2" class="tool-li">
+                <input type="button" id="tool-to">
+              </li>
+              <li id="tool-searchbar"  class="tool-li">
+                <input type="search" id="tool-bar">
+              </li>
+              <li id="tool-insertimage" class="tool-li">
+                <input type="submit" value="insert" id="tool-insert"onklick="">
+              </li>
+              <li id="tool-regist" class="tool-li">
+                <input type="submit" value="register" id="tool-button"onklick="">
+              </li>
+            </ul>
+
+          </div>
+          <div id="mypage-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. Aenean et nibh eu purus scelerisque aliquet nec non justo. Aliquam vitae aliquet ipsum. dddEtiam condimentum varius purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus.
+           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. Aenean et nibh eu purus scelerisque aliquet nec non justo. Aliquam vitae aliquet ipsum. dddEtiam condimentum varius purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. Aenean et nibh eu purus scelerisque aliquet nec non justo. Aliquam vitae aliquet ipsum. dddEtiam condimentum varius purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nec mollis nulla. Phasellus lacinia tempus mauris eu laoreet. Proin gravida velit dictum dui consequat malesuada. Aenean et nibh eu purus scelerisque aliquet nec non justo. Aliquam vitae aliquet ipsum. dddEtiam condimentum varius purus ut ultricies. Mauris id odio pretium, sollicitudin sapien eget, adipiscing risus</p>
+          </div>
+          <div id="mypage-default">
+            default language
+            <select name="default language" id="selectmenu">
+              <option value="select">작성언어</option>
+              <option value="korean">한국어</option>
+              <option value="english">English</option>
+              <option value="japanese">Japanese</option>
+              <option value="chinese">Chinese</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!--wrote-->
+      <div id="yj-wrote">
+        <div id="mywrote">
+          <div id="mywrote-title">
+            <a id="wroteid" href="">wkdzh</a>
+            <input id="revise"type="button" value="revise">
+            <div id="daysago">
+            </div>
+          </div>
+          <div id="mywrote-content">
+            장형준은 장코이다</br>
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br>  
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+          </div>
+        </div>
+      </div>
+
+      <div id="yj-wrote">
+        <div id="mywrote">
+          <div id="mywrote-title">
+            <a id="wroteid" href="">wkdzh</a>
+            <input id="revise"type="button" value="revise">
+            <div id="daysago">
+            </div>
+          </div>
+          <div id="mywrote-content">
+            장형준은 장코이다</br>
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br>  
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+          </div>
+        </div>
+      </div>
+
+
+      <div id="yj-wrote">
+        <div id="mywrote">
+          <div id="mywrote-title">
+            <a id="wroteid" href="">wkdzh</a>
+            <input id="revise"type="button" value="revise">
+            <div id="daysago">
+            </div>
+          </div>
+          <div id="mywrote-content">
+            장형준은 장코이다</br>
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br>  
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+          </div>
+        </div>
+      </div>
+
+      <div id="yj-wrote">
+        <div id="mywrote">
+          <div id="mywrote-title">
+            <a id="wroteid" href="">wkdzh</a>
+            <input id="revise"type="button" value="revise">
+            <div id="daysago">
+            </div>
+          </div>
+          <div id="mywrote-content">
+            장형준은 장코이다</br>
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br>  
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+          </div>
+        </div>
+      </div>
+
+      <div id="yj-wrote">
+        <div id="mywrote">
+          <div id="mywrote-title">
+            <a id="wroteid" href="">wkdzh</a>
+            <input id="revise"type="button" value="revise">
+            <div id="daysago">
+            </div>
+          </div>
+          <div id="mywrote-content">
+            장형준은 장코이다</br>
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br>  
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+          </div>
+        </div>
+      </div>
+
+      <div id="yj-wrote">
+        <div id="mywrote">
+          <div id="mywrote-title">
+            <a id="wroteid" href="">wkdzh</a>
+            <input id="revise"type="button" value="revise">
+            <div id="daysago">
+            </div>
+          </div>
+          <div id="mywrote-content">
+            장형준은 장코이다</br>
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br>  
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+            장형준은 장코이다</br> 
+          </div>
+        </div>
+      </div>
+<!--go to main logo-->
+      <div id="gotomainlogo">
+      </div>
+
+<!--interesting city-->
+      <div id="yj-icity">
+        <div id="icity">
+          <div id="i-title">
+            interesting city
+          </div>
+
+          <div id="i-searchadd">
+            <input id="searchadd" type="search">
+          </div>
+          <div id="i-save">
+            <input id="save" type="button" value="save">
+          </div>
+         
+          <div id="country-box" class="totalc-box">
+            <div id="country" class="c-box">
+              <p id="t-country" class="textc-box">paris</p>
+            </div>
+            <div id="period" class="c-box">
+              <p id="t-period" class="textc-box">(12.31~01.31)</p>
+            </div>
+            <div id="cancel" class="c-box">
+            </div>
+          </div>
+
+        </div>
+      </div>
+<!--menubar-->
+      <div id="yj-menubar">
+        <ul class="menubar">
+          <li id="menu" class="menu-li"><a href="#">menu</a>
+            <ul>
+              <li><a href="#">my page</a></li>
+              <li><a href="#">chat</a></li>
+              <li><a href="#">search by map</a></li>
+              <li><a href="#">option</a></li>
+              <li><a href="#">go to main</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </li>
+          <li id="searchbar" class="menu-li">
+            <input type="search" id="i-searchbar">
+          </li>
+          <li id="calender1" class="menu-li">
+            <input type="button" id="from">
+          </li>
+          <p id="flow">~</p>
+          <li id="calender2" class="menu-li">
+            <input type="button" id="to">
+          </li>
+          <li id="searchbutton" class="menu-li">
+            <input id="i-searchbutton" type="submit" value="search" onklick="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+<!--calender sourrce-->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+<script>
+$(function() {
+  var dates = $( "#tool-from, #tool-to, #from, #to" ).datepicker({
+  prevText: '이전 달',
+  nextText: '다음 달',
+  monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+  monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+  dayNames: ['일','월','화','수','목','금','토'],
+  dayNamesShort: ['일','월','화','수','목','금','토'],
+  dayNamesMin: ['일','월','화','수','목','금','토'],
+  dateFormat: 'yy-mm-dd',
+  showMonthAfterYear: true,
+  yearSuffix: '년',
+  minDate: 'od',
+  showOptions: { top:100 },
+
+  onSelect: function( selectedDate ) {
+    var option = this.id == "from" ? "minDate" : "maxDate",
+      instance = $( this ).data( "datepicker" ),
+      date = $.datepicker.parseDate(
+        instance.settings.dateFormat ||
+        $.datepicker._defaults.dateFormat,
+        selectedDate, instance.settings );
+    dates.not( this ).datepicker( "option", option, date );
+  }
+  });
+});
+</script>
+
+
+  </body>
+</html>
