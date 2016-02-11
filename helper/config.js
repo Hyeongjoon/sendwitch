@@ -5,3 +5,5 @@ exports.mysql = {
 		password : '1234',
 		port : '3306'
 };
+
+exports.socketIODomain = "183.96.35.162";

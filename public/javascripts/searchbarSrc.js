@@ -64,7 +64,7 @@ function addSearching() {
 
 function connection(term, response) {
 
-	var socket = io.connect('http://192.168.0.5:3001');
+	var socket = io.connect('http://183.96.35.162:3001');
 
 	socket.emit('findCity', term);
 	socket.on('toclient', function(data) {

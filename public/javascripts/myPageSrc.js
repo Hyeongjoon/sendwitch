@@ -255,15 +255,7 @@ function transActivation(sandID , activation){
 	form.submit();
 }
 
-function revise(mySandId, startDate , endDate, city_code , country_name , city_name , image , contents){
-	console.log(mySandId);
-	console.log(startDate);
-	console.log(endDate);
-	console.log(city_code);
-	console.log(country_name);
-	console.log(city_name);
-	console.log(image);
-	console.log(contents);
+function revise(mySandId, startDate , endDate, city_code , country_name , city_name , image , contents, language){
 	
 	var form = document.createElement("form");
 	
@@ -273,7 +265,7 @@ function revise(mySandId, startDate , endDate, city_code , country_name , city_n
 	var input = document.createElement("input");
 	input.type = "hidden";
 	input.name = "sandID";
-	input.value = sandID;
+	input.value = mySandId;
 	form.appendChild(input);
 	
 	var input2 = document.createElement("input");
@@ -306,6 +298,26 @@ function revise(mySandId, startDate , endDate, city_code , country_name , city_n
 	input6.value = city_name;
 	form.appendChild(input6);
 	
+	var input7 = document.createElement("input");
+	input7.type = "hidden";
+	input7.name = "image";
+	input7.value = image;
+	form.appendChild(input7);
 	
-	//form.submit();
+	var input8 = document.createElement("input");
+	input8.type = "hidden";
+	input8.name = "contents";
+	input8.value = contents;
+	form.appendChild(input8);
+	
+	var input9 = document.createElement("input");
+	input9.type = "hidden";
+	input9.name = "language";
+	input9.value = language;
+	form.appendChild(input9);
+	
+	
+	document.body.appendChild(form);
+	form.submit();
+	
 }

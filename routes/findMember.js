@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var async = require('async');
+var config = require('../helper/config.js');
 var AccountDAO = require('../controller/AccountDAO.js');
 var TownDAO = require('../controller/TownDAO.js');
 
@@ -42,7 +43,7 @@ router.post('/', function(req, res, next) {
 				pageLang : tmp[0].page_language,
 				prohibit_account : tmp[0].prohibit_account
 			};
-			req.session.socketIp = "192.168.0.5";
+			req.session.socketIp = config.socketIODomain;
 			if (results != undefined) {
 				var today = new Date();
 				var month = today.getMonth() + 1;

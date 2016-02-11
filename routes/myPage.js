@@ -29,7 +29,6 @@ router.get('/', function(req, res, next) {
 		if(err){
 			res.redirect('/error');
 		} else{
-			console.log(results);
 			res.render('myPage', {
 				inform : req.session.inform,
 				city : req.session.searchCity,
@@ -151,13 +150,37 @@ router.post('/transActivation' , function(req, res , next){
 
 
 router.post('/revise' , function(req, res , next){
-	
+	var reviseSand = {
+			sandID : req.body.sandID,
+			startDate : req.body.startDate,
+			endDate : req.body.endDate,
+			city_code : req.body.city_code,
+			country_name : req.body.country_name,
+			city_name : req.body.city_name,
+			image : req.body.image,
+			contents : req.body.contents,
+			language : req.body.language
+	};
 	res.render('revise', {
 		inform : req.session.inform,
 		city : req.session.searchCity,
+		reviseSand : reviseSand,
 		socketIP : req.session.req.session.socketIp
 	});
 	
+});
+
+
+router.post('/reviseSand' , function(req, res, next){
+	var reviseSand = {
+			id : req.body.sandID,
+			start_date : req.body.sandFrom,
+			endDate : req.body.sandTo,
+			city_code : req.body.sandCityId,
+			contents : req.body.contents,
+			language : req.body.language
+	};
+
 });
 
 module.exports = router;
