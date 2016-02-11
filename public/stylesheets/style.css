@@ -586,6 +586,9 @@ div, ul, li{
          outline-style: none;
          border-radius: 10px;
          padding:5px;
+         width : 555px;
+         height : 220px;
+         overflow : auto;
          resize:none;
          margin-top: 5px;
       }
