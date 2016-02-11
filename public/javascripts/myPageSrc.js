@@ -10,11 +10,11 @@ $(function() {
 				},
 				select : function(event, ui) {
 					var tmp = ui.item.english_city_name + ", "
-							+ ui.item.english_country_name;
+							+ ui.item.country_code;
 					$("#myPage-searchadd").val(tmp);
 					$("#interestingCityName").val(ui.item.english_city_name);
 					$("#interestingCountryName").val(
-							ui.item.english_country_name);
+							ui.item.country_code);
 					$("#interestingCityId").val(ui.item.city_id);
 					return false;
 				},
@@ -29,7 +29,7 @@ $(function() {
 		} else {
 			return $("<li>").append(
 					"<a>" + item.english_city_name + ", "
-							+ item.english_country_name + "</a>").appendTo(ul);
+							+ item.country_code + "</a>").appendTo(ul);
 		}
 
 	}
@@ -47,10 +47,10 @@ $(function() {
 				},
 				select : function(event, ui) {
 					var tmp = ui.item.english_city_name + ", "
-							+ ui.item.english_country_name;
+							+ ui.item.country_code;
 					$("#tool-bar").val(tmp);
 					$("#sandCityName").val(ui.item.english_city_name);
-					$("#sandCountryName").val(ui.item.english_country_name);
+					$("#sandCountryName").val(ui.item.country_code);
 					$("#sandCityId").val(ui.item.city_id);
 					return false;
 				},
@@ -65,7 +65,7 @@ $(function() {
 		} else {
 			return $("<li>").append(
 					"<a>" + item.english_city_name + ", "
-							+ item.english_country_name + "</a>").appendTo(ul);
+							+ item.country_code + "</a>").appendTo(ul);
 		}
 
 	}
@@ -252,5 +252,13 @@ function transActivation(sandID , activation){
 	form.appendChild(input2);
 	
 	document.body.appendChild(form);
+	form.submit();
+}
+
+function revise(mysand){
+	console.log(mysand);
+	var form = document.createElement("form");
+	form.setAttribute("method", "post");
+	form.setAttribute("action", "/myPage/revise");
 	form.submit();
 }

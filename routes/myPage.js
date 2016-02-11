@@ -32,7 +32,8 @@ router.get('/', function(req, res, next) {
 			res.render('myPage', {
 				inform : req.session.inform,
 				city : req.session.searchCity,
-				mySand : results
+				mySand : results,
+				socketIP : req.session.socketIp
 			});
 		}
 	});
@@ -80,7 +81,7 @@ router.post('/addInteresting', function(req, res, next) {
 		req.session.inform.interesting_city_code = cityArr;
 		var city = {
 			city_id : req.body.CityId,
-			english_country_name : req.body.CountryName,
+			country_code : req.body.CountryName,
 			english_city_name : req.body.CityName,
 			from : req.body.from
 		};
@@ -109,9 +110,6 @@ router.post('/addSand', function(req, res, next) {
 		start_date : req.body.sandFrom,
 		end_date : req.body.sandTo
 	};
-	if (req.body.language == 'default') {
-		newSand.language = req.session.inform.dLang;
-	}
 	async.waterfall([ function(callback) {
 		sandDAO.registerSand(newSand , callback);
 	} ], function(err, results) {
@@ -148,6 +146,17 @@ router.post('/transActivation' , function(req, res , next){
 			res.redirect('/myPage');
 		}
 	});
+});
+
+
+router.post('/revise' , function(req, res , next){
+	
+	res.render('revise', {
+		inform : req.session.inform,
+		city : req.session.searchCity,
+		socketIP : req.session.req.session.socketIp
+	});
+	
 });
 
 module.exports = router;

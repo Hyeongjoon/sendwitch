@@ -6,7 +6,7 @@ router.post('/' ,  function(req, res, next) {
 	if(req.session.searchCity==null){
 		req.session.searchCity = [];
 	}
-	var addCity = {'to' : req.body.to , 'from' : req.body.from , 'english_city_name' : req.body.cityName , 'english_country_name' : req.body.countryName , 'city_id' : req.body.cityId};
+	var addCity = {'to' : req.body.to , 'from' : req.body.from , 'english_city_name' : req.body.cityName , 'country_code' : req.body.countryName , 'city_id' : req.body.cityId};
 	if(addCity.to==0){
 		addCity.to = undefined;
 	}

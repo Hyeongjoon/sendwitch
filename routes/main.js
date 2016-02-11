@@ -54,7 +54,8 @@ router.get('/', function(req, res, next) {
 					res.render('main', {
 						inform : req.session.inform,
 						city : req.session.searchCity,
-						sand : results
+						sand : results,
+						socketIP : req.session.socketIp
 					});
 				}
 			});

@@ -69,7 +69,7 @@ div, ul, li {
             <% if(city!=undefined) {for(var i =0; i<city.length; i++) {%>
              <div id="country-box" class="totalc-box">
              <div id="country" class="c-box">
-             <p id="t-country" class = "textc-box"><%= city[i].english_city_name %>, <%= city[i].english_country_name%></p>
+             <p id="t-country" class = "textc-box"><%= city[i].english_city_name %>, <%= city[i].country_code%></p>
              </div>
              <div id="period" class="c-box">
              <p id="t-period" class="textc-box"><%=
@@ -124,12 +124,7 @@ div, ul, li {
     <input id="selectedCityName" type="hidden">
     <input id="selectedCountryName" type="hidden">
     <input id="selectedCityId" type="hidden">
-   
-
-
-
-
-<script src="http://192.168.0.27:3001/socket.io/socket.io.js"></script>
+<script src="http://<%=socketIP%>:3001/socket.io/socket.io.js"></script>
 
   </body>
 </html>

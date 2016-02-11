@@ -42,6 +42,7 @@ router.post('/', function(req, res, next) {
 				pageLang : tmp[0].page_language,
 				prohibit_account : tmp[0].prohibit_account
 			};
+			req.session.socketIp = "192.168.0.5";
 			if (results != undefined) {
 				var today = new Date();
 				var month = today.getMonth() + 1;

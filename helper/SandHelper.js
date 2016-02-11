@@ -25,7 +25,7 @@ exports.addCityNameInSand = function(town, sand) {
 			if (sand.city_name == undefined) {
 				if (sand[j].city_code === town[i].city_id) {
 					sand[j].city_name = town[i].english_city_name;
-					sand[j].country_name = town[i].english_country_name;
+					sand[j].country_name = town[i].country_code;
 				}
 			}
 		}

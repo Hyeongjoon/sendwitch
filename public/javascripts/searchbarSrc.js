@@ -64,7 +64,7 @@ function addSearching() {
 
 function connection(term, response) {
 
-	var socket = io.connect('http://192.168.0.27:3001');
+	var socket = io.connect('http://192.168.0.5:3001');
 
 	socket.emit('findCity', term);
 	socket.on('toclient', function(data) {
@@ -105,12 +105,12 @@ $(function() {
 						},
 						select : function(event, ui) {
 							var tmp = ui.item.english_city_name + ", "
-									+ ui.item.english_country_name;
+									+ ui.item.country_code;
 							$("#i-searchbar").val(tmp);
 							$("#selectedCityName").val(
 									ui.item.english_city_name);
 							$("#selectedCountryName").val(
-									ui.item.english_country_name);
+									ui.item.country_code);
 							$("#selectedCityId").val(ui.item.city_id);
 							return false;
 						},
@@ -131,7 +131,7 @@ $(function() {
 		}else{
 		return $("<li>").append(
 				"<a>" + item.english_city_name + ", "
-						+ item.english_country_name + "</a>").appendTo(ul);}
+						+ item.country_code + "</a>").appendTo(ul);}
 
 	}
 });
