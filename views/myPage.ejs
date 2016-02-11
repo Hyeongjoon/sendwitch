@@ -88,7 +88,8 @@ div, ul, li {
             <div id="wrote-cancel" style="cursor: pointer" onclick="deleteSand(<%=mySand[i].id%>)">
             </div>
            
-            <input id="revise" type="button" value="revise" style="cursor: pointer" onclick="revise(<%=mySand[i]%>)">
+            <input id="revise" type="button" value="revise" style="cursor: pointer" 
+            onclick="revise(<%=mySand[i].id%> , '<%=mySand[i].start_date%>' , '<%=mySand[i].end_date%>' , <%=mySand[i].city_code%>, '<%=mySand[i].country_name%>' , '<%=mySand[i].city_name%>' , '<%=mySand[i].image%>' ,'<%=mySand[i].contents%>'  )">
             <img id="active" <%if(mySand[i].activated==true) {%>src="/images/activated.png" <%} else { %> 
             src="/images/deActivated.png"
             <%}%>style="cursor: pointer" onclick = "transActivation(<%=mySand[i].id%> , <%=mySand[i].activated %>)">

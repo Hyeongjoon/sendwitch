@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>6.option</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' type="text/css" href="../../public/stylesheets/style.css">
+    
+
+    <!--new- arcodian-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js">
+    </script>
+    <script type="text/javascript">
+    $(function(){
+    $(".option-submenu").hide();
+    $(".option-menu").click(function(){
+    $(".option-submenu:visible").slideUp("middle");
+    $(this).next('.option-submenu:hidden').slideDown("middle");
+        return false;
+    })
+});
+    </script>
+
+
+    <style>
+/**************************menubar**************************/
+
+.ui-autocomplete-loading{background: white url("images/searchBarWait.gif") right center no-repeat;}
+
+
+    </style>
+  </head>
+
+
+
+
+  <body>
+<!--container-->
+    <div id="yj-container">
+      <div id="yj-nav">
+        <img class="logo" src="../../사진/사진이다.jpg">
+      </div>
+
+  <!--option content-->
+      <div id="yj-content">
+        <div id="sendwich-box">
+          <h3>SendwicH</h3>
+        </div>
+  <!--new-option-->
+        <div id="option-accordion">
+
+          <div id="option-menu1" class="option-menu">
+            private
+            <div id="option-p">
+              <input id="option-passwordok" type="button" value="ok">
+              <input id="option-password" type="password">
+              <div id="optiontext-password">
+            password
+              </div>
+            </div>
+          </div>
+            <ul class="option-submenu">
+              <li>
+                <div id="o-menu1-submenu1">
+                  password 재설정
+                  <input id="submenu1-password"type="password">
+                </div>
+              </li>
+              <li>
+                <div id="o-menu1-submenu2">
+                  password 확인
+                  <input id="submenu2-passwordok" type="button" value="변경">
+                  <input id="submenu2-password"type="password">
+                </div>
+              </li>
+              <li>
+                <div id="o-menu1-submenu3">
+                  facebook과 연동
+                  <input id="submenu3-link" type="button" value="연동하기">
+                </div>
+              </li>
+              <li>
+                <div id="o-menu1-submenu4">
+                  회원탈퇴
+                  <input id="submenu4-resign" type="button" value="탈퇴하기">
+                </div>
+              </li>
+            </ul>
+           
+
+          <div id="option-menu2" class="option-menu">
+            page language
+          </div>
+            <ul class="option-submenu">
+              <li>
+                <div id="o-menu2-submenu1">
+                language
+                  <input id="submenu1-change1" type="button" value="수정">
+                  <select id="submenu1-select1">
+                    <option value="korean">한국어</option>
+                    <option value="english">English</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="chinese">Chinese</option>
+                  </select>
+                </div>
+              </li>
+            </ul>
+         
+
+          <div id="option-menu3" class="option-menu">
+            searching language
+          </div>
+            <ul class="option-submenu">
+              <li>
+                <div id="o-menu3-submenu1">
+                기본 검색 언어
+                  <input id="submenu1-change2" type="button" value="수정">
+                  <select id="submenu1-select2">
+                    <option value="korean">한국어</option>
+                    <option value="english">English</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="chinese">Chinese</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div id="o-menu3-submenu2">
+                  검색 표시 언어
+                  <input id="submenu2-add" type="button" value="추가">
+                  <select id="submenu2-select3">
+                    <option value="korean">한국어</option>
+                    <option value="english">English</option>
+                    <option value="japanese">Japanese</option>
+                    <option value="chinese">Chinese</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <div id="o-menu3-submenu3">
+                  <div id="submenu3-addbox">
+                    한국
+                  </div>
+                </div>
+              </li>
+            </ul>
+         
+
+          <div id="option-menu4" class="option-menu">
+            차단사용자 관리
+          </div>
+            <ul class="option-submenu">
+              <li>
+                <div id="o-menu4-submenu1">
+                  nickname
+                  <div id="submenu1-nickname">
+                    <div id="Tlqkf">
+                    x
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+        </div>
+        
+      </div>
+      
+<!--go to main logo-->
+      <div id="goToTopLogo">
+      </div>
+
+<!--menubar-->
+      <div id="yj-menubar">
+        <ul class="menubar">
+          <li id="menu" class="menu-li"><a href="#">menu</a>
+            <ul>
+              <li><a href="#">my page</a></li>
+              <li><a href="#">chat</a></li>
+              <li><a href="#">search by map</a></li>
+              <li><a href="#">option</a></li>
+              <li><a href="#">go to main</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </li>
+          <li id="searchbar" class="menu-li">
+            <input type="search" id="i-searchbar">
+          </li>
+          <li id="calender1" class="menu-li">
+            <input type="button" id="from">
+          </li>
+          <p id="flow">~</p>
+          <li id="calender2" class="menu-li">
+            <input type="button" id="to">
+          </li>
+          <li id="searchbutton" class="menu-li">
+            <input id="i-searchbutton" type="submit" value="search" onklick="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+<!--calender sourrce-->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+<script>
+$(function() {
+  var dates = $( "#from, #to " ).datepicker({
+  prevText: '이전 달',
+  nextText: '다음 달',
+  monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+  monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+  dayNames: ['일','월','화','수','목','금','토'],
+  dayNamesShort: ['일','월','화','수','목','금','토'],
+  dayNamesMin: ['일','월','화','수','목','금','토'],
+  dateFormat: 'yy-mm-dd',
+  showMonthAfterYear: true,
+  yearSuffix: '년',
+  minDate: 'od',
+  
+
+  onSelect: function( selectedDate ) {
+    var option = this.id == "from" ? "minDate" : "maxDate",
+      instance = $( this ).data( "datepicker" ),
+      date = $.datepicker.parseDate(
+        instance.settings.dateFormat ||
+        $.datepicker._defaults.dateFormat,
+        selectedDate, instance.settings );
+    dates.not( this ).datepicker( "option", option, date );
+  }
+  });
+});
+</script>
+  </body>
+</html>

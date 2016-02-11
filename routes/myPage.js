@@ -29,6 +29,7 @@ router.get('/', function(req, res, next) {
 		if(err){
 			res.redirect('/error');
 		} else{
+			console.log(results);
 			res.render('myPage', {
 				inform : req.session.inform,
 				city : req.session.searchCity,
