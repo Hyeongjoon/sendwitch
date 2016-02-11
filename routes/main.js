@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 						}
 					},
 					function(arg1, callback) {
-						
+
 						if (arg1.length==0) {
 							callback(null, []);
 						} else {

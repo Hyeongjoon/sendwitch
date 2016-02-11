@@ -26,7 +26,6 @@ exports.findSandByCity = function(cityArr, callback) {
 		}
 	}
 	sqlQuery = sqlQuery + ') AND activated = ' + mysql.escape(true) + ' ORDER BY updated_time DESC';
-	console.log(sqlQuery);
 	
 	base.select(sqlQuery, callback);
 };
