@@ -26,6 +26,7 @@ var main = require('./routes/main');
 var addSearching = require('./routes/addSearchingCity');
 var liveSearch = require('./routes/liveSearch');
 var myPage = require('./routes/myPage');
+var option = require('./routes/option');
 
  
 var app = express();
@@ -74,6 +75,7 @@ app.use('/signUp' , signUp);
 app.use('/main' , main);
 app.use('/addSearching', addSearching);
 app.use('/myPage' , myPage);
+app.use('/option' , option);
 
 app.get('/error', function(req, res, next){
 	res.render('err');

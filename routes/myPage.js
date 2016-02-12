@@ -9,26 +9,26 @@ var async = require('async');
 
 router.get('/', function(req, res, next) {
 	var tmp;
-	async.waterfall([ function(callback) { 
-		sandDAO.findMySand(req.session.inform , callback);
-	} , function(arg1 , callback){
-		if(arg1.length==0){
-			callback(null , []);
-		} else{
+	async.waterfall([ function(callback) {
+		sandDAO.findMySand(req.session.inform, callback);
+	}, function(arg1, callback) {
+		if (arg1.length == 0) {
+			callback(null, []);
+		} else {
 			tmp = arg1;
 			var cityCode = sandHelper.extractsCityId(arg1);
 			townDAO.findCityById(cityCode, callback);
 		}
-	} , function(arg1 , callback){
-		if(arg1.length == 0){
-			callback(null , []);
-		}else {
+	}, function(arg1, callback) {
+		if (arg1.length == 0) {
+			callback(null, []);
+		} else {
 			callback(null, sandHelper.addCityNameInSand(arg1, tmp));
 		}
-	}], function(err, results) {  
-		if(err){
+	} ], function(err, results) {
+		if (err) {
 			res.redirect('/error');
-		} else{
+		} else {
 			res.render('myPage', {
 				inform : req.session.inform,
 				city : req.session.searchCity,
@@ -93,7 +93,7 @@ router.post('/addInteresting', function(req, res, next) {
 		} ], function(err, results) {
 			if (results != true) {
 				res.redirect('/error');
-				
+
 			} else {
 				res.redirect('/myPage');
 			}
@@ -111,9 +111,9 @@ router.post('/addSand', function(req, res, next) {
 		end_date : req.body.sandTo
 	};
 	async.waterfall([ function(callback) {
-		sandDAO.registerSand(newSand , callback);
+		sandDAO.registerSand(newSand, callback);
 	} ], function(err, results) {
-		if(results!=true){
+		if (results != true) {
 			res.redirect('/error');
 		} else {
 			res.redirect('/myPage');
@@ -121,45 +121,44 @@ router.post('/addSand', function(req, res, next) {
 	});
 });
 
-router.post('/deleteSand', function(req , res , next) {
+router.post('/deleteSand', function(req, res, next) {
 	var sandID = req.body.sandID;
 	async.waterfall([ function(callback) {
-		sandDAO.deleteSand(req.session.inform , sandID , callback);
+		sandDAO.deleteSand(req.session.inform, sandID, callback);
 	} ], function(err, results) {
-		if(err || results!=true){
+		if (err || results != true) {
 			res.redirect('/error');
-		} else{
+		} else {
 			res.redirect('/myPage');
 		}
 	});
 });
 
-router.post('/transActivation' , function(req, res , next){
+router.post('/transActivation', function(req, res, next) {
 	var sandID = req.body.sandID;
 	var activation = req.body.activation;
 	async.waterfall([ function(callback) {
-		sandDAO.switchActivation(sandID , activation , callback);
-	}], function(err, results) {
-		if(err || results != true){
+		sandDAO.switchActivation(sandID, activation, callback);
+	} ], function(err, results) {
+		if (err || results != true) {
 			res.redirect('/error');
-		} else{
+		} else {
 			res.redirect('/myPage');
 		}
 	});
 });
 
-
-router.post('/revise' , function(req, res , next){
+router.post('/revise', function(req, res, next) {
 	var reviseSand = {
-			sandID : req.body.sandID,
-			startDate : req.body.startDate,
-			endDate : req.body.endDate,
-			city_code : req.body.city_code,
-			country_name : req.body.country_name,
-			city_name : req.body.city_name,
-			image : req.body.image,
-			contents : req.body.contents,
-			language : req.body.language
+		sandID : req.body.sandID,
+		startDate : req.body.startDate,
+		endDate : req.body.endDate,
+		city_code : req.body.city_code,
+		country_name : req.body.country_name,
+		city_name : req.body.city_name,
+		image : req.body.image,
+		contents : req.body.contents,
+		language : req.body.language
 	};
 	res.render('revise', {
 		inform : req.session.inform,
@@ -167,20 +166,27 @@ router.post('/revise' , function(req, res , next){
 		reviseSand : reviseSand,
 		socketIP : req.session.req.session.socketIp
 	});
-	
+
 });
 
-
-router.post('/reviseSand' , function(req, res, next){
+router.post('/reviseSand', function(req, res, next) {
 	var reviseSand = {
-			id : req.body.sandID,
-			start_date : req.body.sandFrom,
-			endDate : req.body.sandTo,
-			city_code : req.body.sandCityId,
-			contents : req.body.contents,
-			language : req.body.language
+		id : req.body.sandID,
+		start_date : req.body.sandFrom,
+		end_date : req.body.sandTo,
+		city_code : req.body.sandCityId,
+		contents : req.body.contents,
+		language : req.body.language
 	};
-
+	async.waterfall([ function(callback) {
+		sandDAO.reviseSand(reviseSand, callback);
+	} ], function(err, results) {
+		if(err || results != true){
+			res.redirect('/error');
+		} else{
+			res.redirect('/myPage');
+		}
+	});
 });
 
 module.exports = router;

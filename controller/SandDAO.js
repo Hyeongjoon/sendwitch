@@ -1,8 +1,6 @@
 var base = require('./BaseDAO.js');
 var mysql = require('mysql');
 
-
-
 exports.findSandByCity = function(cityArr, callback) {
 	var sqlQuery = 'SELECT * FROM sand WHERE ((city_code = '
 			+ mysql.escape(cityArr[0].city_id) + ' AND end_date >= '
@@ -25,38 +23,51 @@ exports.findSandByCity = function(cityArr, callback) {
 					+ mysql.escape(cityArr[i].to) + ')';
 		}
 	}
-	sqlQuery = sqlQuery + ') AND activated = ' + mysql.escape(true) + ' ORDER BY updated_time DESC';
-	
+	sqlQuery = sqlQuery + ') AND activated = ' + mysql.escape(true)
+			+ ' ORDER BY updated_time DESC';
+
 	base.select(sqlQuery, callback);
 };
 
-exports.registerSand = function(sand , callback){
-	
-	var sqlQuery = 'INSERT INTO sand set ?';
+exports.registerSand = function(sand, callback) {
+
+	var sqlQuery = 'INSERT INTO sand SET ?';
 	base.insert(sqlQuery, sand, callback);
 };
 
-exports.findMySand = function(inform , callback){
-	
-	var sqlQuery = 'SELECT * FROM sand WHERE nick = ' + mysql.escape(inform.nick) + 'ORDER BY updated_time DESC';
-	base.select(sqlQuery , callback);
+exports.findMySand = function(inform, callback) {
+
+	var sqlQuery = 'SELECT * FROM sand WHERE nick = '
+			+ mysql.escape(inform.nick) + 'ORDER BY updated_time DESC';
+	base.select(sqlQuery, callback);
 };
 
-exports.deleteSand = function(inform , sandID , callback){
-	
-	var sqlQuery = 'DELETE FROM sand WHERE id = ' + mysql.escape(sandID) + ' AND nick = ' + mysql.escape(inform.nick);
-	base.deletion(sqlQuery , callback);
+exports.deleteSand = function(inform, sandID, callback) {
+
+	var sqlQuery = 'DELETE FROM sand WHERE id = ' + mysql.escape(sandID)
+			+ ' AND nick = ' + mysql.escape(inform.nick);
+	base.deletion(sqlQuery, callback);
 };
 
-exports.switchActivation = function(sandID , activation , callback){
+exports.switchActivation = function(sandID, activation, callback) {
 	var sqlQuery = 'UPDATE sand SET activated = '
-	if(activation == true){
+	if (activation == true) {
 		sqlQuery = sqlQuery + mysql.escape(false);
-	} else{
+	} else {
 		sqlQuery = sqlQuery + mysql.escape(true);
 	}
 	sqlQuery = sqlQuery + ' WHERE id = ' + mysql.escape(sandID);
 	base.update(sqlQuery, callback);
-} ;
+};
 
-
+exports.reviseSand = function(inform, callback) {
+	var sqlQuery = 'UPDATE sand SET city_code = ' + mysql.escape(inform.city_code)
+			 + ' , contents = ' + mysql.escape(inform.contents)
+			 + ' , language = ' + mysql.escape(inform.language)
+			 + ' , start_date = ' + mysql.escape(inform.start_date)
+			 + ' , end_date = ' + mysql.escape(inform.end_date)
+			 + ' , updated_time = ' + mysql.escape(new Date())
+			 + ' WHERE id = ' + mysql.escape(inform.id);
+	
+		base.update(sqlQuery, callback);
+};

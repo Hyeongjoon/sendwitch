@@ -217,6 +217,7 @@ a {
   margin:0; 
   padding:0; 
   list-style-type:none;
+  display: none;
 }
 .accordion li {
   margin:0; 
@@ -226,7 +227,6 @@ a {
 .option-menu {
   margin:0; 
   padding:10px;
-  cursor:pointer;
   color:magenta;
   border-top:0.5px solid #81BEF7;
   border-bottom:0.5px solid #81BEF7;
@@ -234,7 +234,9 @@ a {
 #submenu3-set{
   float:right;
 }
-
+#passwordworng{
+      text-align: center;
+      }
 
 
 
@@ -738,3 +740,50 @@ div, ul, li{
         margin:1px;
         border:1px solid black;
       }
+      
+      
+      /*new page7--------------chatmain*/
+
+#chat-room{
+  width:568px;
+  border:1px solid black;
+  margin-top: 10px;
+  float:left;
+}
+#chat-nickname{
+  width:110px;
+  height:32px;
+  border:0px solid red;
+  float:left;
+  padding-left:20px;
+  padding-top: 8px;
+  overflow: hidden;
+}
+#chat-nciknamelink{
+  text-decoration: none;
+}
+#chat-writing{
+  width:356px;
+  height:30px;
+  border:0px solid black;
+  float:left;
+  padding-left: 20px;
+  padding-top: 10px;
+  overflow: hidden;
+  line-height: 1.58em}
+#chat-number{
+  width:30px;
+  height:30px;
+  border:0px solid black;
+  float:left;
+  text-align: center;
+  padding-top: 10px;
+}
+#chat-cancel{
+  width:24px;
+  height:32px;
+  border:0px solid black;
+  float:left;
+  text-align: center;
+  padding-top: 8px;
+}

@@ -13,6 +13,7 @@ create table account
         page_language VARCHAR(255) NOT NULL , 
         prohibit VARCHAR (255) default '',
         interesting_city_code VARCHAR (255) default '',
+        facebook boolean default false,
         primary key (email),
         UNIQUE (nickname)
         )Engine =InnoDB DEFAULT CHARSET = utf8;
