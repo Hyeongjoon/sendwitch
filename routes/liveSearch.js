@@ -4,9 +4,9 @@ var async = require('async');
 var TownDAO = require('../controller/TownDAO.js');
 var accountDAO = require('../controller/AccountDAO.js');
 
-var io = require('socket.io').listen(3001);
+var io = require('../app.js').tmp;
 
-io.sockets.on('connection', function(socket) {
+io.on('connection', function(socket) {
 	socket.on('findCity', function(data) {
 		data = data.replace(/^\s+/, "");
 		if (data.length > 1) {
@@ -35,6 +35,120 @@ io.sockets.on('connection', function(socket) {
 			})
 		}
 	});
+	
+	socket.on('changeDLang', function(data){
+		if(data==null){
+			socket.emit('DLangResult', false);
+			return false;
+		} else{
+			data = data.replace(/^\s+/, "");
+			
+			var tmp = socket.handshake.session.inform.addLang.split(' ');
+			var result = ''
+			for(var i = 0 ; i < tmp.length ; i++){
+				if(tmp[i]!==data){
+					result = result + ' ' + tmp[i]
+				}
+			}
+			result = result.replace(/^\s+/, "");
+			async.parallel([ function(callback) {
+				if(data === socket.handshake.session.inform.dLang){
+					callback(null , true);
+				} else{
+					// 원래있던거랑 다른거 왔을때만 DB랑 연결
+				accountDAO.changeDefalutLang(socket.handshake.session.inform.email , data , callback);
+				}
+			} , function(callback){
+				if(result===socket.handshake.session.inform.addLang){
+					callback(null , true);
+				}else{
+					// 원래있던거랑 다른거 왔을때만 DB랑 연결
+				accountDAO.changeAddLang(socket.handshake.session.inform.email , result , callback);
+				}
+			}] , function(err, results){
+				if((results[0]!==true) || (results[1]!==true)||err){
+					socket.emit('DLangResult', false);
+				} else{
+				socket.handshake.session.inform.dLang = data;
+				socket.handshake.session.inform.addLang = result;
+				socket.handshake.session.save();
+				var finalResult = {dLang : data , addLang : result};
+				socket.emit('DLangResult', finalResult);
+				return false;
+				}
+			});
+		}
+	});
+	
+	socket.on('addAddLang', function(data){
+		data = data.replace(/^\s+/, "");
+		if(data==null){
+			socket.emit('addAddLangResult', false);
+			return false;
+		} else if(data==socket.handshake.session.inform.dLang){
+			socket.emit('addAddLangResult', false);
+			return false;
+		} else if(socket.handshake.session.inform.addLang.indexOf(data)!==-1){
+			socket.emit('addAddLangResult', false);
+			return false;
+		} else{
+			var tmp = socket.handshake.session.inform.addLang + ' ' + data;
+			tmp = tmp.replace(/^\s+/, "");
+			async.parallel([ function(callback) {
+				accountDAO.changeAddLang(socket.handshake.session.inform.email , tmp , callback);
+			}] , function(err, results){
+				if(results[0]!==true|| err ){
+					socket.emit('addAddLangResult', false);
+					return false;
+				} else{
+					socket.handshake.session.inform.addLang = tmp;
+					socket.handshake.session.save();
+					socket.emit('addAddLangResult', data);
+					return false;
+				}
+			});
+		}
+	});
+	socket.on('deleteAddLang', function(data){
+		if(data==null){
+			socket.emit('deleteAddLangResult', false);
+			return false;
+		} else if (data==socket.handshake.session.inform.dLang){
+			socket.emit('deleteAddLangResult', false);
+			return false;
+		} else if (socket.handshake.session.inform.addLang.indexOf(data)==-1){
+			socket.emit('deleteAddLangResult', false);
+			return false;
+		} else{
+			data = data.replace(/^\s+/, "");
+			
+			var tmp = socket.handshake.session.inform.addLang.split(' ');
+			console.log(tmp);
+			var result = ''
+			for(var i = 0 ; i < tmp.length ; i++){
+				if(tmp[i]!==data){
+					result = result + ' ' + tmp[i]
+				}
+			}
+			result = result.replace(/^\s+/, "");
+			console.log(result);
+			async.parallel([ function(callback) {
+				accountDAO.changeAddLang(socket.handshake.session.inform.email , result , callback);
+			}], function(err,results){
+				if(results[0]!==true || err){
+					socket.emit('deleteAddLangResult', false);
+					return false;
+				} else{
+					socket.handshake.session.inform.addLang = result;
+					socket.handshake.session.save();
+					socket.emit('deleteAddLangResult', true);
+					return false;
+				}
+			});
+		}
+	});
 });
+
+
 
 module.exports = router;

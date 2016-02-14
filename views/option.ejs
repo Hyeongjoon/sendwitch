@@ -10,10 +10,6 @@
 	<script src="/jQuery-ui/jquery-ui.js" ></script>
 	<script src ='/javascripts/searchbarSrc.js'></script>	
 	<script src ='/javascripts/optionSrc.js'></script>
-    <style>
-/**************************menubar**************************/
-.ui-autocomplete-loading{background: white url("images/searchBarWait.gif") right center no-repeat;}
-    </style>
   </head>
   <body>
 <!--container-->
@@ -53,6 +49,7 @@
                   password 확인
                   <input id="submenu2-passwordok" type="button" value="변경">
                   <input id="submenu2-password"type="password">
+                  
                 </div>
               </li>
               <li>
@@ -95,7 +92,7 @@
             <ul class="option-submenu">
               <li>
                 <div id="o-menu3-submenu1">
-                기본 검색 언어
+                default language
                   <input id="submenu1-change2" type="button" value="수정">
                   <select id="submenu1-select2">
                     <option value="korean">한국어</option>
@@ -107,7 +104,7 @@
               </li>
               <li>
                 <div id="o-menu3-submenu2">
-                  검색 표시 언어
+                 additional language
                   <input id="submenu2-add" type="button" value="추가">
                   <select id="submenu2-select3">
                     <option value="korean">한국어</option>
@@ -119,8 +116,20 @@
               </li>
               <li>
                 <div id="o-menu3-submenu3">
+                  <div id="submenu3-defaultbox">
+                    default 
+                    <p id="defaultL"><%=inform.dLang%></p>
+                  </div>
                   <div id="submenu3-addbox">
-                    한국
+                    additional
+                    <p id = "additionL">
+                    <% var tmp = inform.addLang.split(' ');
+                    	for(var i = 0 ; i < tmp.length ; i++){
+                    	
+                    %>
+                    <a class="option-addition" style="cursor: pointer" ><%=tmp[i]%></a>
+                    <%}%>
+                    </p>
                   </div>
                 </div>
               </li>
@@ -182,5 +191,6 @@
     <input id="selectedCityId" type="hidden">
     </div>
     <script src="http://<%=socketIP%>:3001/socket.io/socket.io.js"></script>
+    <script src ='/javascripts/connectionSrc.js'></script>
   </body>
 </html>

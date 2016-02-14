@@ -187,6 +187,10 @@ a {
 #o-menu3-submenu3{
   margin:10px 0 10px 20px;
 }
+#submenu3-defaultbox{
+  border:1px solid black;
+  width:425px;
+}
 #submenu3-addbox{
   border:1px solid black;
   width:425px;
@@ -787,3 +791,5 @@ div, ul, li{
   text-align: center;
   padding-top: 8px;
 }
+ /*  wait image  */
+.ui-autocomplete-loading{background: white url("../images/searchBarWait.gif") right center no-repeat;}

@@ -2,17 +2,34 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var session = require('express-session');
+var Session = require('express-session');
+var session = new Session({
+	//store: new RedisStore({
+	//}),
+	cookie:{
+		maxAge: 1000 * 60 * 60
+	},
+	key : 'sid',
+	resave : false,
+    saveUninitialized : false,
+    secret: 'keyboard cat'
+});
+var app = express();
+app.use(session);
+var sharedsession = require("express-socket.io-session");
+var io = require('socket.io').listen(3001);
+exports.tmp = io.use(sharedsession(session));
+
+
+
 
 //var RedisStore = require('connect-redis')(session);
 //var redis = require('redis').createClient();
 
 
 
-
-
-var bodyParser = require('body-parser');
 
 
 //EJS
@@ -24,18 +41,11 @@ var find = require('./routes/findMember');
 var signUp = require('./routes/signUp');
 var main = require('./routes/main');
 var addSearching = require('./routes/addSearchingCity');
-var liveSearch = require('./routes/liveSearch');
 var myPage = require('./routes/myPage');
 var option = require('./routes/option');
-
- 
-var app = express();
-
-
+var liveSearch = require('./routes/liveSearch');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-
-
 
 
 //EJS
@@ -49,17 +59,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('secretkey'));
 
 
-app.use(session({
-	//store: new RedisStore({
-	//}),
-	cookie:{
-		maxAge: 1000 * 60 * 60
-	},
-	key : 'sid',
-	resave : false,
-    saveUninitialized : false,
-    secret: 'keyboard cat'
-}));
 
 //EJS
 app.engine('ejs', engine);
@@ -77,11 +76,14 @@ app.use('/addSearching', addSearching);
 app.use('/myPage' , myPage);
 app.use('/option' , option);
 
+
 app.get('/error', function(req, res, next){
 	res.render('err');
 	req.session.destroy();
 	res.clearCookie('sid');
 });
+
+//liveSearch
 
 
 // catch 404 and forward to error handler

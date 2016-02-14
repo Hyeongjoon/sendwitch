@@ -2,7 +2,7 @@ var mysql = require('mysql');
 var config = require('../helper/config.js');
 
 
-connection = mysql.createConnection({
+var connection = mysql.createConnection({
 	host : config.mysql.host,
 	user : config.mysql.user,
 	database : config.mysql.database,
