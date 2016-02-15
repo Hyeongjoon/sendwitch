@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>8.chating</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' type="text/css" href="../../public/stylesheets/style.css">
+    
+
+    <!--new- arcodian-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js">
+    </script>
+    <script type="text/javascript">
+    $(function(){
+    $(".option-submenu").hide();
+    $(".option-menu").click(function(){
+    $(".option-submenu:visible").slideUp("middle");
+    $(this).next('.option-submenu:hidden').slideDown("middle");
+        return false;
+    })
+});
+    </script>
+
+
+    <style>
+/**************************menubar**************************/
+
+.ui-autocomplete-loading{background: white url("images/searchBarWait.gif") right center no-repeat;}
+
+
+    </style>
+  </head>
+
+
+
+
+  <body>
+<!--container-->
+    <div id="yj-container">
+      <div id="yj-nav">
+        <img class="logo" src="../../사진/사진이다.jpg">
+      </div>
+
+  <!--chat main-->
+      <div id="yj-content">
+        <div id="sendwich-box">
+          <h3>SendwicH</h3>
+        </div>
+        
+        <div id="chating-content">
+          <div id="chating-head">
+            <div id="chating-nickname">
+              <a href="#">장코흑코</a>
+            </div>
+            <input id="goToChatingMain" type="button" value="go To Chating Main">
+            </input>
+          </div>
+
+          <div id="chating-body">ㄴ
+            <div id="chating-mine">
+              은지 사랑해 장코흑코는 장코흑코이다 지랄 젠장맞을이다
+              퍽킥크레이지 앙맨얼냉러ㅐㅇ너랭너랜어래넝래ㅓㅇㄴ랜ㅇㄹ
+            </div>
+            <div id="chating-others">
+              나두 ㄴㄴㅇㄹㅇㄴㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴ
+            </div>
+            <div id="chating-mine">
+              은지 사랑해 장코흑코는 장코흑코이다 지랄 젠장맞을이다
+              퍽킥크레이지 앙맨얼냉러ㅐㅇ너랭너랜어래넝래ㅓㅇㄴ랜ㅇㄹ
+            </div>
+            <div id="chating-mine">
+              은지 사랑해 장코흑코는 장코흑코이다 지랄 젠장맞을이다
+              퍽킥크레이지 앙맨얼냉러ㅐㅇ너랭너랜어래넝래ㅓㅇㄴ랜ㅇㄹ
+            </div>
+            <div id="chating-readHere">
+            </div>
+          </div>
+
+          <div id="chating-foot">
+            <textarea id="chating-write">
+            </textarea>
+            <input id="chating-submit" type="button" value="submit">
+            </input>
+          </div>
+        </div>
+    
+        
+      </div>
+      
+<!--go to main logo-->
+      <div id="goToTopLogo">
+      </div>
+
+<!--menubar-->
+      <div id="yj-menubar">
+        <ul class="menubar">
+          <li id="menu" class="menu-li"><a href="#">menu</a>
+            <ul>
+              <li><a href="#">my page</a></li>
+              <li><a href="#">chat</a></li>
+              <li><a href="#">search by map</a></li>
+              <li><a href="#">option</a></li>
+              <li><a href="#">go to main</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </li>
+          <li id="searchbar" class="menu-li">
+            <input type="search" id="i-searchbar">
+          </li>
+          <li id="calender1" class="menu-li">
+            <input type="button" id="from">
+          </li>
+          <p id="flow">~</p>
+          <li id="calender2" class="menu-li">
+            <input type="button" id="to">
+          </li>
+          <li id="searchbutton" class="menu-li">
+            <input id="i-searchbutton" type="submit" value="search" onklick="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+<!--calender sourrce-->
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+<script>
+$(function() {
+  var dates = $( "#from, #to " ).datepicker({
+  prevText: '이전 달',
+  nextText: '다음 달',
+  monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+  monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+  dayNames: ['일','월','화','수','목','금','토'],
+  dayNamesShort: ['일','월','화','수','목','금','토'],
+  dayNamesMin: ['일','월','화','수','목','금','토'],
+  dateFormat: 'yy-mm-dd',
+  showMonthAfterYear: true,
+  yearSuffix: '년',
+  minDate: 'od',
+  
+
+  onSelect: function( selectedDate ) {
+    var option = this.id == "from" ? "minDate" : "maxDate",
+      instance = $( this ).data( "datepicker" ),
+      date = $.datepicker.parseDate(
+        instance.settings.dateFormat ||
+        $.datepicker._defaults.dateFormat,
+        selectedDate, instance.settings );
+    dates.not( this ).datepicker( "option", option, date );
+  }
+  });
+});
+</script>
+  </body>
+</html>
