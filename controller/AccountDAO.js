@@ -57,3 +57,9 @@ exports.changeAddLang = function(email , AddLang , callback){
 	var sqlQuery = 'UPDATE account SET addtional_language = ' + mysql.escape(AddLang) + ' WHERE email = ' +mysql.escape(email);
 	base.update(sqlQuery, callback);
 }
+
+exports.changeProhibitAccount = function (email , prohibitNick , callback){
+	var sqlQuery = 'UPDATE account SET prohibit_account = ' + mysql.escape(prohibitNick) + ' WHERE email = ' + mysql.escape(email);
+	base.update(sqlQuery, callback);
+	
+}

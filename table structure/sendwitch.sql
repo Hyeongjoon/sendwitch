@@ -11,7 +11,7 @@ create table account
         default_language  VARCHAR(30)   NOT NULL,
         addtional_language  VARCHAR(255) default '',
         page_language VARCHAR(255) NOT NULL , 
-        prohibit VARCHAR (255) default '',
+        prohibit_account VARCHAR (255) default '',
         interesting_city_code VARCHAR (255) default '',
         facebook boolean default false,
         primary key (email),

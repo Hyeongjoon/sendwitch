@@ -123,7 +123,6 @@ io.on('connection', function(socket) {
 			data = data.replace(/^\s+/, "");
 			
 			var tmp = socket.handshake.session.inform.addLang.split(' ');
-			console.log(tmp);
 			var result = ''
 			for(var i = 0 ; i < tmp.length ; i++){
 				if(tmp[i]!==data){
@@ -131,7 +130,6 @@ io.on('connection', function(socket) {
 				}
 			}
 			result = result.replace(/^\s+/, "");
-			console.log(result);
 			async.parallel([ function(callback) {
 				accountDAO.changeAddLang(socket.handshake.session.inform.email , result , callback);
 			}], function(err,results){
@@ -145,6 +143,38 @@ io.on('connection', function(socket) {
 					return false;
 				}
 			});
+		}
+	});
+	
+	socket.on('deleteProhibit' , function(data){
+		if(data == null){
+			socket.emit('deleteProhibitResult', false);
+			return false;
+		} else if(socket.handshake.session.inform.prohibit_account.indexOf(data.prohibitNick)!==-1){
+			var tmp = socket.handshake.session.inform.prohibit_account.split(' ');
+			var result = ''
+			for(var i = 0 ; i < tmp.length ; i++){
+					if(tmp[i]!==data.prohibitNick){
+						result = result + ' ' + tmp[i]
+					}
+				}
+			result = result.replace(/^\s+/, "");
+			async.parallel([ function(callback) {
+				accountDAO.changeProhibitAccount(socket.handshake.session.inform.email , result , callback);
+			}] , function(err,results){
+				if(results[0]!==true||err){
+					socket.emit('deleteProhibitResult', false);
+					return false;
+				} else{
+					socket.handshake.session.inform.prohibit_account = result;
+					socket.handshake.session.save();
+					socket.emit('deleteProhibitResult', data.num);
+					return false;
+				}
+			});
+		} else{
+			socket.emit('deleteProhibitResult', false);
+			return false;
 		}
 	});
 });

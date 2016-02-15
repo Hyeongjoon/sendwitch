@@ -1,7 +1,7 @@
 var base = require('./BaseDAO.js');
 var mysql = require('mysql');
 
-exports.findSandByCity = function(cityArr, callback) {
+exports.findSandByCity = function(cityArr, prohibit, callback) {
 	var sqlQuery = 'SELECT * FROM sand WHERE ((city_code = '
 			+ mysql.escape(cityArr[0].city_id) + ' AND end_date >= '
 			+ mysql.escape(cityArr[0].from);
@@ -23,9 +23,12 @@ exports.findSandByCity = function(cityArr, callback) {
 					+ mysql.escape(cityArr[i].to) + ')';
 		}
 	}
-	sqlQuery = sqlQuery + ') AND activated = ' + mysql.escape(true)
-			+ ' ORDER BY updated_time DESC';
-
+	sqlQuery = sqlQuery + ') AND activated = ' + mysql.escape(true) + ' AND nick NOT IN (' +mysql.escape(prohibit[0]) 
+	
+	for(var i = 1; i < prohibit.length ; i++){
+		sqlQuery = sqlQuery + ',' + mysql.escape(prohibit[i])
+	}
+	sqlQuery = sqlQuery	+ ') ORDER BY updated_time DESC';
 	base.select(sqlQuery, callback);
 };
 

@@ -133,16 +133,28 @@ function addDeletionEvent() {
 	$(function() {
 		$(".option-addition").off("click");
 		$(".option-addition").click(function() {
-			if(confirm("삭제하시겠습니까??") === false){
+			if (confirm("삭제하시겠습니까??") === false) {
 				return false;
 			} else {
-				 var tmp = $(this).text(); 
-				 $(this).text("");
-				 socket.emit('deleteAddLang', tmp);
-				 return false;
+				var tmp = $(this).text();
+				$(this).text("");
+				socket.emit('deleteAddLang', tmp);
+				return false;
 			}
 		});
 	});
+}
+
+function deleteNick(i, prohibitNick) {
+	if (confirm("차단사용자를 헤제하겠습니까???") == false) {
+		return false;
+	} else {
+		data = {
+			num : i,
+			prohibitNick : prohibitNick
+		};
+		socket.emit('deleteProhibit', data);
+	}
 }
 
 $(function() {
@@ -163,7 +175,7 @@ $(function() {
 				}
 			});
 });
-//받는부분
+// 받는부분
 $(function() {
 	socket.on('DLangResult', function(data) {
 		if (data == false) {
@@ -188,11 +200,15 @@ $(function() {
 									+ tmp[i] + "</a>");
 				}
 			}
+			if ($("#additionL").text().replace(/^\s+/, "") == '') {
+				$("#additionL").text("");
+				$("#additionL").append('<a id ="noAddLang" >no Language</a>');
+			}
 			addDeletionEvent();
 			return false;
 		}
 	});
-	
+
 	socket.on('addAddLangResult', function(data) {
 		if (data == false) {
 			var form = document.createElement("form");
@@ -201,6 +217,9 @@ $(function() {
 			document.body.appendChild(form);
 			form.submit();
 		} else {
+			if ($("#noAddLang").length > 0) {
+				$("#additionL").text("");
+			}
 			$("#additionL").append(' ');
 			$("#additionL").append(
 					"<a class='option-addition' style='cursor: pointer'>"
@@ -210,18 +229,43 @@ $(function() {
 		}
 	});
 
-	socket.on('deleteAddLangResult', function(data){
-		if(data==false){
+	socket.on('deleteAddLangResult', function(data) {
+		if (data == false) {
 			var form = document.createElement("form");
 			form.setAttribute("method", "get");
 			form.setAttribute("action", "/error");
 			document.body.appendChild(form);
 			form.submit();
-		} else{
+		} else {
+			if ($("#additionL").text().replace(/^\s+/, "") == '') {
+				$("#additionL").text("");
+				$("#additionL").append('<a id ="noAddLang" >no Language</a>');
+			}
 			return false;
 		}
 	});
-	
+	socket
+			.on(
+					'deleteProhibitResult',
+					function(data) {
+						if (data === false) {
+							var form = document.createElement("form");
+							form.setAttribute("method", "get");
+							form.setAttribute("action", "/error");
+							document.body.appendChild(form);
+							form.submit();
+						} else {
+							$("#prohibitNick" + data).text("");
+							if ($("#prohibit").text().replace(/^\s+/, "") == '') {
+								$("#prohibit").text("")
+								$("#prohibit")
+										.append(
+												'<li id="prohibitNick"><div id="o-menu4-submenu1">차단 사용자가 없습니다.'
+														+ '<div id="submenu1-nickname"><div id="prohibit-delete"></div></div></div></li>');
+							}
+						}
+					});
+
 });
 
 addDeletionEvent();

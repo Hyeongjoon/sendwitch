@@ -19,8 +19,8 @@ router.get('/', function(req, res, next) {
 						if (req.session.searchCity.length == 0) {
 							callback(null, []);
 						} else {
-							sandDAO.findSandByCity(req.session.searchCity,
-									callback);
+							var prohibit = req.session.inform.prohibit_account.split(' ');
+							sandDAO.findSandByCity(req.session.searchCity, prohibit , callback);
 						}
 					},
 					function(arg1, callback) {

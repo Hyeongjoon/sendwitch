@@ -41,26 +41,27 @@
               <li>
                 <div id="o-menu1-submenu1">
                   password 재설정
-                  <input id="submenu1-password"type="password" tabindex="1">
+                  <input id="submenu1-password"type="password">
                 </div>
               </li>
               <li>
                 <div id="o-menu1-submenu2">
                   password 확인
-                  <input id="submenu2-passwordok" type="button" value="변경" tabindex="3">
-                  <input id="submenu2-password"type="password" tabindex="2">
+                  <input id="submenu2-passwordok" type="button" value="변경">
+                  <input id="submenu2-password"type="password">
+                  
                 </div>
               </li>
               <li>
                 <div id="o-menu1-submenu3">
                   facebook과 연동
-                  <input id="submenu3-link" type="button" value="연동하기" tabindex="4">
+                  <input id="submenu3-link" type="button" value="연동하기">
                 </div>
               </li>
               <li>
                 <div id="o-menu1-submenu4">
                   회원탈퇴
-                  <input id="submenu4-resign" type="button" value="탈퇴하기" tabindex="5">
+                  <input id="submenu4-resign" type="button" value="탈퇴하기">
                 </div>
               </li>
             </ul>
@@ -115,57 +116,43 @@
               </li>
               <li>
                 <div id="o-menu3-submenu3">
-                  default
-                    <div id="defaultL"><%=inform.dLang%></div>
-                    </div>
-              </li>
-              <li>
-                  <div id="o-menu3-submenu4">
+                  <div id="submenu3-defaultbox">
+                    default 
+                    <p id="defaultL"><%=inform.dLang%></p>
+                  </div>
+                  <div id="submenu3-addbox">
                     additional
-                    <div id = "additionL"><%if(inform.addLang!==''){
-                     var tmp = inform.addLang.split(' ');
+                    <p id = "additionL">
+                    <% var tmp = inform.addLang.split(' ');
                     	for(var i = 0 ; i < tmp.length ; i++){
+                    	
                     %>
                     <a class="option-addition" style="cursor: pointer" ><%=tmp[i]%></a>
-                    <%}} else {%>
-                    <a id ="noAddLang" >no Language</a><%}%>
-                    </div>
+                    <%}%>
+                    </p>
                   </div>
+                </div>
               </li>
             </ul>
-            
+         
+
           <div id="option-menu4" class="option-menu" style="cursor: pointer">
             차단사용자 관리
           </div>
-            <ul class="option-submenu" id = "prohibit">
-            <% if(inform.prohibit_account!==''){
-              var prohibit = inform.prohibit_account.split(' ');
-              	for(var i = 0 ; i < prohibit.length ; i++){       	
-              %>
-              <li id="prohibitNick<%=i%>">
+            <ul class="option-submenu">
+              <li>
                 <div id="o-menu4-submenu1">
-                  <%=prohibit[i]%>
+                  nickname
                   <div id="submenu1-nickname">
-                    <div id="prohibit-delete" style="cursor: pointer" onclick="deleteNick(<%=i%> , '<%=prohibit[i]%>')">
+                    <div id="Tlqkf">
                     x
                     </div>
                   </div>
                 </div>
               </li>
-              <%}} else {%>
-              <li id="prohibitNick">
-                <div id="o-menu4-submenu1">
-                  차단 사용자가 없습니다.
-                  <div id="submenu1-nickname">
-                    <div id="prohibit-delete">
-                    </div>
-                  </div>
-                </div>
-              </li><%}%>
             </ul>
         </div>
       </div>
-     
       
 <!--go to main logo-->
         <div id="goToTopLogo" onclick="window.scrollTo(0,0)" style="cursor: pointer">
