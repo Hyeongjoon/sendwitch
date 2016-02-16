@@ -1,4 +1,8 @@
+DROP DATABASE IF exists sendwitch;
+CREATE DATABASE sendwitch;
+
 use sendwitch;
+
 
 SET foreign_key_checks = 0;
 
@@ -16,7 +20,7 @@ create table account
         facebook boolean default false,
         primary key (email),
         UNIQUE (nickname)
-        )Engine =InnoDB DEFAULT CHARSET = utf8;
+)Engine =InnoDB DEFAULT CHARSET = utf8;
 
 
 
@@ -35,20 +39,35 @@ create table sand (
          primary key (id),
          foreign key(nick) references account(nickname) ON DELETE CASCADE ON UPDATE CASCADE,
          foreign key(city_code) references town(city_id) ON DELETE CASCADE ON UPDATE CASCADE
-         )Engine =InnoDB DEFAULT CHARSET = utf8;
+)Engine =InnoDB DEFAULT CHARSET = utf8;
 
 
          
- DROP TABLE IF exists chat;
-create table chat (
-		id int unsigned NOT NULL  AUTO_INCREMENT,
-        contents  text(65535) NOT NULL,
-        updated_time DATETIME default now(),
-        nick1 varchar(20) NOT NULL,
-        nick2 varchar(20) NOT NULL,
-			primary key(id),
-            foreign key(nick1) references account(nickname) ON DELETE CASCADE ON UPDATE CASCADE,
-            foreign key(nick2) references account(nickname) ON DELETE CASCADE ON UPDATE CASCADE
+DROP TABLE IF exists chat_room;
+create table chat_room (
+		room_number int unsigned NOT NULL  AUTO_INCREMENT,
+        nick1 varchar(20),
+        nick2 varchar(20),
+        nick1_alram tinyint default 0,
+        nick2_alram tinyint default 0,
+        updated_time datetime NOT NULL default now(),
+			primary key(room_number),
+            foreign key(nick1) references account(nickname) ON DELETE set null ON UPDATE CASCADE,
+            foreign key(nick2) references account(nickname) ON DELETE set null ON UPDATE CASCADE
+)Engine =InnoDB DEFAULT CHARSET = utf8;
+
+
+
+DROP TABLE IF exists chat_log;
+create table chat_log (
+		room_number int unsigned NOT NULL,
+        from_user varchar(20),
+        to_user varchar(20),
+        log_text varchar(7000),
+        sended_time datetime NOT NULL default now(),
+            foreign key(from_user) references account(nickname) ON DELETE set null ON UPDATE CASCADE,
+            foreign key(to_user) references account(nickname) ON DELETE set null ON UPDATE CASCADE,
+            foreign key(room_number) references chat_room(room_number) ON UPDATE CASCADE
 )Engine =InnoDB DEFAULT CHARSET = utf8;
 
 
@@ -61,7 +80,7 @@ create table town (
         primary key(city_id),
          UNIQUE (english_city_name),
          foreign key(country_code) references country_name(country_code) ON DELETE CASCADE ON UPDATE CASCADE
-        )Engine =InnoDB DEFAULT CHARSET = utf8;
+)Engine =InnoDB DEFAULT CHARSET = utf8;
         
         
         
@@ -74,8 +93,3 @@ create table country_name(
 )Engine =InnoDB DEFAULT CHARSET = utf8;
 
  SET foreign_key_checks = 1;
- 
- 
- 
- 
-        

@@ -58,7 +58,7 @@ div, ul, li {
           <div class="main-where" id="sandTime<%=i%>"><%=sand[i].city_name%>, <%=sand[i].country_name%> 
           <script>transTime(<%=i%>, '<%=sand[i].start_date%>' , '<%=sand[i].end_date%>'); </script></div><br>
           <%=sand[i].contents%>
-          <div class="main-chating">mainChat</div>
+          <div class="main-chating" style="cursor: pointer" onclick="whithChat('<%=inform.nick%>' , '<%=sand[i].nick%>')">withChat</div>
           </div><%}}%>
       </div>
       <div id="yj-sidebar">
@@ -89,6 +89,7 @@ div, ul, li {
             <% }} %>
         </div>
       </div>
+      <!--go to main logo-->
        <div id="goToTopLogo" onclick="window.scrollTo(0,0)" style="cursor: pointer">
       </div>
       
@@ -98,7 +99,7 @@ div, ul, li {
           <li id="menu" class="menu-li"><a href="#">menu</a>
             <ul>
               <li><a href="/myPage">my page</a></li>
-              <li><a href="#">chat</a></li>
+              <li><a href="/chatMain">chat</a></li>
               <li><a href="#">search by map</a></li>
               <li><a href="/option">option</a></li>
               <li><a href="/main">go to main</a></li>

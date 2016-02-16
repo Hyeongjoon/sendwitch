@@ -43,6 +43,8 @@ var main = require('./routes/main');
 var addSearching = require('./routes/addSearchingCity');
 var myPage = require('./routes/myPage');
 var option = require('./routes/option');
+var chatMain = require('./routes/chatMain');
+var withChat = require('./routes/withChat');
 var liveSearch = require('./routes/liveSearch');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -75,6 +77,8 @@ app.use('/main' , main);
 app.use('/addSearching', addSearching);
 app.use('/myPage' , myPage);
 app.use('/option' , option);
+app.use('/chatMain' , chatMain);
+app.use('/withChat' , withChat);
 
 
 app.get('/error', function(req, res, next){
