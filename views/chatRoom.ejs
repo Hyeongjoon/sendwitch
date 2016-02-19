@@ -35,8 +35,11 @@
             <input id="goToChatingMain" type="button" value="go To Chating Main" style="cursor: pointer">
             </input>
           </div>
-
           <div id="chating-body">
+          <%if(existRoom==false) {
+          
+          
+          } else{%>
             <div id="chating-mine">
               은지 사랑해 장코흑코는 장코흑코이다 지랄 젠장맞을이다
               퍽킥크레이지 앙맨얼냉러ㅐㅇ너랭너랜어래넝래ㅓㅇㄴ랜ㅇㄹ
@@ -54,12 +57,11 @@
             </div>
             <div id="chating-readHere">
             </div>
+            <%}%>
           </div>
-
           <div id="chating-foot">
-            <textarea id="chating-write">
-            </textarea>
-            <input id="chating-submit" type="button" value="submit">
+            <textarea id="chating-write"></textarea>
+            <input id="chating-submit" type="button" value="reply" onclick="reply(<%=existRoom%>,'<%=roomNumber%>','<%=targetNick%>','<%=myNick%>')">
             </input>
           </div>
         </div>
@@ -68,7 +70,7 @@
       </div>
       
 <!--go to main logo-->
-      <div id="goToTopLogo">
+      <div id="goToTopLogo" onclick="window.scrollTo(0,0)" style="cursor: pointer">
       </div>
 
 
@@ -106,6 +108,6 @@
     <input id="selectedCityId" type="hidden">
 <script src="http://<%=socketIP%>:3001/socket.io/socket.io.js"></script>
 <script src ='/javascripts/connectionSrc.js'></script>
-
+<script type="text/javascript"> socket.emit('new', <%=roomNumber%>)</script>
   </body>
 </html>

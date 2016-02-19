@@ -4,7 +4,6 @@ var async = require('async');
 var accountDAO = require('../controller/AccountDAO.js');
 
 router.get('/', function(req, res, next) {
-	console.log(req.session);
 	res.render('option', {
 		socketIP : req.session.socketIp,
 		inform : req.session.inform
