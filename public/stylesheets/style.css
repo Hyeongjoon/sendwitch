@@ -339,7 +339,7 @@ a {
   margin-top:5px;
   margin-bottom: 5px;
   border-radius: 10px;
-
+  clear:both;
 }
 #chating-mine{
   max-width: 300px;
@@ -348,6 +348,7 @@ a {
   margin-top:5px;
   margin-bottom: 5px;
   border-radius: 10px;
+  clear: both;
 }
 #chating-foot{
   width:566px;

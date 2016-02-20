@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -12,7 +12,11 @@
 <script src="/jQuery-ui/jquery-ui.js" ></script>
 <script src ='/javascripts/searchbarSrc.js'></script>
 <script src ='/javascripts/commonSrc.js'></script>
-<script src ='/javascripts/chatRoomSrc.js'></script>		
+<script src ='/javascripts/chatRoomSrc.js'></script>
+<style type="text/css">
+li{
+    list-style:none;
+}</style>		
   </head>
   <body>
 <!--container-->
@@ -35,33 +39,24 @@
             <input id="goToChatingMain" type="button" value="go To Chating Main" style="cursor: pointer">
             </input>
           </div>
-          <div id="chating-body">
-          <%if(existRoom==false) {
+          <div id="chating-body"><ul>
+            <%if(roomNumber==undefined) {
           
           
-          } else{%>
-            <div id="chating-mine">
-              은지 사랑해 장코흑코는 장코흑코이다 지랄 젠장맞을이다
-              퍽킥크레이지 앙맨얼냉러ㅐㅇ너랭너랜어래넝래ㅓㅇㄴ랜ㅇㄹ
+          } else{
+          for(var i = chatInfo.length-1 ; i >= 0 ; i--){
+          	if(myNick==chatInfo[i].from_user) {
+          %><li id="chating-mine"><%=chatInfo[i].log_text%></li><%} else {%>
+           <li id="chating-others">
+          <%=chatInfo[i].log_text%>
+            </li><%}}} %>
+            </ul><div id="chating-readHere">
             </div>
-            <div id="chating-others">
-              나두 ㄴㄴㅇㄹㅇㄴㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴㄹㄴ
-            </div>
-            <div id="chating-mine">
-              은지 사랑해 장코흑코는 장코흑코이다 지랄 젠장맞을이다
-              퍽킥크레이지 앙맨얼냉러ㅐㅇ너랭너랜어래넝래ㅓㅇㄴ랜ㅇㄹ
-            </div>
-            <div id="chating-mine">
-              은지 사랑해 장코흑코는 장코흑코이다 지랄 젠장맞을이다
-              퍽킥크레이지 앙맨얼냉러ㅐㅇ너랭너랜어래넝래ㅓㅇㄴ랜ㅇㄹ
-            </div>
-            <div id="chating-readHere">
-            </div>
-            <%}%>
+         
           </div>
           <div id="chating-foot">
             <textarea id="chating-write"></textarea>
-            <input id="chating-submit" type="button" value="reply" onclick="reply(<%=existRoom%>,'<%=roomNumber%>','<%=targetNick%>','<%=myNick%>')">
+            <input id="chating-submit" type="button" value="reply" onclick="reply('<%=roomNumber%>','<%=targetNick%>','<%=myNick%>')">
             </input>
           </div>
         </div>
@@ -108,6 +103,6 @@
     <input id="selectedCityId" type="hidden">
 <script src="http://<%=socketIP%>:3001/socket.io/socket.io.js"></script>
 <script src ='/javascripts/connectionSrc.js'></script>
-<script type="text/javascript"> socket.emit('new', <%=roomNumber%>)</script>
+<script type="text/javascript"> $(function() {socket.emit('new', <%=roomNumber%>)});</script>
   </body>
 </html>

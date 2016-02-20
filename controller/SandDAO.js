@@ -41,7 +41,7 @@ exports.registerSand = function(sand, callback) {
 exports.findMySand = function(inform, callback) {
 
 	var sqlQuery = 'SELECT * FROM sand WHERE nick = '
-			+ mysql.escape(inform.nick) + 'ORDER BY updated_time DESC';
+			+ mysql.escape(inform.nick) + ' ORDER BY updated_time DESC';
 	base.select(sqlQuery, callback);
 };
 

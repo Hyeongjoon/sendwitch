@@ -15,7 +15,6 @@ exports.filterByLanguage = function(args, inform) {
 				result.push(args[i]);
 			}
 		}
-		console.log(result);
 	return result;
 };
 

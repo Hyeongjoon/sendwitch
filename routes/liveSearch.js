@@ -3,7 +3,8 @@ var router = express.Router();
 var async = require('async');
 var TownDAO = require('../controller/TownDAO.js');
 var accountDAO = require('../controller/AccountDAO.js');
-var chat_roomDAO = require('../controller/chat_roomDAO.js')
+var chat_roomDAO = require('../controller/chat_roomDAO.js');
+var chat_logDAO = require('../controller/chat_logDAO.js');
 
 var io = require('../app.js').tmp;
 
@@ -182,6 +183,8 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('chatRoom' , function (data){
+		var tmpRoomNum; // 중간에 방번호 기억할라고
+		
 		if(socket.handshake.session.inform.nick!== data.myNick){
 			socket.emit('submitResult' , false);
 			return false;
@@ -201,29 +204,34 @@ io.on('connection', function(socket) {
 				socket.emit('submitResult' , false);
 				return false;
 			}
+			} , function(args1 , callback){
+				if(room[args1[0].room_number]==undefined){
+					room[args1[0].room_number] = args1[0].room_number;
+					socket.join(room[args1[0].room_number]);
+				}
+				tmpRoomNum = args1[0].room_number;
+				chat_logDAO.insertChatlog(args1[0].room_number , data.myNick , data.targetNick , data.contents, callback);
+				
 			}], function(err, results) {
 			if(err){
 				socket.emit('submitResult' , false);
 				return false;
 			} else{
-			//console.log(results);
-				console.log(socket.rooms);
-			socket.join(results.room_number);
-			//socket.rooms.room[data.targetNick].push(socket.id);
-			console.log(socket.rooms);
-			 //socket(room[data.targetNick]).emit('broadcast_msg',"시이이이발련아 되라제발");
-			socket.in(results.room_number).emit('broadcast_msg',"시이이이발련아 되라제발");
+			socket.emit('submitResult' , data.contents );
+			socket.to(room[tmpRoomNum]).emit('broadcast_msg', data.contents);
 			}
 		});}
 	});
 	
 	socket.on('new' , function(data){
-		if(data==undefined){
+		if(data==null){
 			
 		} else{
+			room[data] = data;
+			socket.join(room[data]);
 		}
-		return false;
 	});
+	
 	
 });
 
