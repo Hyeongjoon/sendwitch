@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var async = require('async');
-var chat_roomDAO = require('../controller/chat_roomDAO.js');
-var chat_logDAO = require('../controller/chat_logDAO.js');
+var chat_roomDAO = require('../model/chat_roomDAO.js');
+var chat_logDAO = require('../model/chat_logDAO.js');
 
 router.post('/', function(req, res, next) {           //여기로 넘어올려면 내 닉네임이랑 타겟닉네임 필요함
 	

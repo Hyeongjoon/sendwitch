@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var async = require('async');
-var sandDAO = require('../controller/SandDAO.js');
-var townDAO = require('../controller/TownDAO.js');
+var sandDAO = require('../model/SandDAO.js');
+var townDAO = require('../model/TownDAO.js');
 var sandHelper = require('../helper/SandHelper.js');
 
 router.get('/', function(req, res, next) {

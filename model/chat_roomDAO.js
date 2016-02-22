@@ -16,3 +16,10 @@ exports.createRoom = function(data , callback){
 	base.insert(sqlQuery , tmp , callback);
 }
 
+exports.findMyChatRoom = function (myNick , callback){
+	var sqlQuery = 'SELECT * from chat_room WHERE (nick1 = ' + mysql.escape(myNick) + 
+	'AND nick1_deleted = ' + mysql.escape(false) + ' ) OR ( nick2 = ' + mysql.escape(myNick) + 
+    'AND nick2_deleted = ' + mysql.escape(false) + 
+	') ORDER BY updated_time DESC LIMIT 10';
+	base.select(sqlQuery , callback);
+}

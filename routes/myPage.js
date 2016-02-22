@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var accountDAO = require('../controller/AccountDAO.js');
+var accountDAO = require('../model/AccountDAO.js');
 var accountHelper = require('../helper/AccountHelper.js');
-var sandDAO = require('../controller/SandDAO.js');
+var sandDAO = require('../model/SandDAO.js');
 var sandHelper = require('../helper/SandHelper.js');
-var townDAO = require('../controller/TownDAO.js');
+var townDAO = require('../model/TownDAO.js');
 var async = require('async');
 
 router.get('/', function(req, res, next) {

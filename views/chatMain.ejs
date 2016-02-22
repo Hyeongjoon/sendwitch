@@ -8,8 +8,9 @@
    <link rel="stylesheet" href="/jQuery-ui/jquery-ui.css" type="text/css" media="all" />
 <script src="/jQuery/jquery-1.12.0.js" type="text/javascript"></script>
 <script src="/jQuery-ui/jquery-ui.js" ></script>
-    <script src ='/javascripts/searchbarSrc.js'></script>
-<script src ='/javascripts/commonSrc.js'></script>	
+<script src ='/javascripts/searchbarSrc.js'></script>
+<script src ='/javascripts/commonSrc.js'></script>
+<script src ='/javascripts/chatMainSrc.js'></script>	
   </head>
 
 
@@ -27,20 +28,30 @@
         <div id="sendwich-box">
           <h3>SendwicH</h3>
         </div>
+        <div id = "chat-body">
+        <%if(chatRoom==''){%>
+        <div id="chat-room-none">
+            	채팅방이 없습니다.</div>
+        <%} else {
+        for(var i = chatRoom.length -1 ; i >= 0 ; i--){
+        %>
         <div id="chat-room">
           <div id="chat-nickname">
-            <a id="chat-nciknamelink"href="#">jwwweqefSWEFWFWeeee
+            <a id="chat-nciknamelink"href="#"><%=chatRoom[i].targetNick%>
             </a>
           </div>
-          <div id="chat-writing">
-            만나요 만나요 은지보고싶다 tlqkfkk시바라라바랄바라발바라바랍랍라밟라ㅓㅂ라ㅓ바러ㅏ
+          <div id="chat-writing" onclick="withChat('<%=myNick%>' , '<%=chatRoom[i].targetNick%>')" style="cursor: pointer">
+            <%=chatRoom[i].log_text%>
           </div>
-          <div id="chat-number">
-            3
+          <div id="chat-number"><%
+            if(chatRoom[i].nick1==myNick){%>
+            <%=chatRoom[i].nick1_alram%><% } else{%>
+            <%=chatRoom[i].nick2_alram%> <% } %> 
           </div>
           <div id="chat-cancel">
             x
           </div>
+        </div><%}}%>
         </div>
     
         

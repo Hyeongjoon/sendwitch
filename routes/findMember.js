@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var async = require('async');
 var config = require('../helper/config.js');
-var AccountDAO = require('../controller/AccountDAO.js');
-var TownDAO = require('../controller/TownDAO.js');
+var AccountDAO = require('../model/AccountDAO.js');
+var TownDAO = require('../model/TownDAO.js');
 
 router.post('/', function(req, res, next) {
 	var tmp;

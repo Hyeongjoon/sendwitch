@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var async = require('async');
-var accountDAO = require('../controller/AccountDAO.js');
+var accountDAO = require('../model/AccountDAO.js');
 
 router.get('/', function(req, res, next) {
 	res.render('option', {

@@ -1,14 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var async = require('async');
-var TownDAO = require('../controller/TownDAO.js');
-var accountDAO = require('../controller/AccountDAO.js');
-var chat_roomDAO = require('../controller/chat_roomDAO.js');
-var chat_logDAO = require('../controller/chat_logDAO.js');
+var TownDAO = require('../model/TownDAO.js');
+var accountDAO = require('../model/AccountDAO.js');
+var chat_roomDAO = require('../model/chat_roomDAO.js');
+var chat_logDAO = require('../model/chat_logDAO.js');
 
 var io = require('../app.js').tmp;
 
 var room = [];
+var connectingUser = [];
 
 io.on('connection', function(socket) {
 	socket.on('findCity', function(data) {

@@ -253,12 +253,21 @@ a {
 
 
 /*new page7--------------chatmain*/
-
+#chat-body{
+	border:1px solid black;
+	float:left;
+	width:570px;
+	margin-top: 10px;
+}
 #chat-room{
   width:568px;
-  border:1px solid black;
   margin-top: 10px;
   float:left;
+}
+#chat-room-none{
+  width:568px;
+  margin-top: 10px;
+  text-align: center;
 }
 #chat-nickname{
   width:110px;

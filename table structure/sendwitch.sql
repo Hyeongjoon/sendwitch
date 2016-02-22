@@ -48,8 +48,12 @@ create table chat_room (
 		room_number int unsigned NOT NULL  AUTO_INCREMENT,
         nick1 varchar(20),
         nick2 varchar(20),
-        nick1_alram tinyint default 0,
-        nick2_alram tinyint default 0,
+        nick1_alram tinyint unsigned default 0,
+        nick2_alram tinyint unsigned default 0,
+        nick1_deleted_time datetime default null,
+        nick1_deleted boolean NOT null default false,
+        nick2_deleted_time datetime default null,
+        nick2_deleted boolean NOT null default false,
         updated_time datetime NOT NULL default now(),
 			primary key(room_number),
             foreign key(nick1) references account(nickname) ON DELETE set null ON UPDATE CASCADE,
@@ -67,7 +71,7 @@ create table chat_log (
         sended_time datetime NOT NULL default now(),
             foreign key(from_user) references account(nickname) ON DELETE set null ON UPDATE CASCADE,
             foreign key(to_user) references account(nickname) ON DELETE set null ON UPDATE CASCADE,
-            foreign key(room_number) references chat_room(room_number) ON UPDATE CASCADE
+            foreign key(room_number) references chat_room(room_number) ON DELETE CASCADE ON UPDATE CASCADE
 )Engine =InnoDB DEFAULT CHARSET = utf8;
 
 
