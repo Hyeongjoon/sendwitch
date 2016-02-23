@@ -37,13 +37,12 @@
         %>
         <div id="chat-room">
           <div id="chat-nickname">
-            <a id="chat-nciknamelink"href="#"><%=chatRoom[i].targetNick%>
-            </a>
+           <%=chatRoom[i].targetNick%>
           </div>
-          <div id="chat-writing" onclick="withChat('<%=myNick%>' , '<%=chatRoom[i].targetNick%>')" style="cursor: pointer">
+          <div id="chat-writing" class="<%=chatRoom[i].targetNick%>Contents" onclick="withChat('<%=myNick%>' , '<%=chatRoom[i].targetNick%>')" style="cursor: pointer">
             <%=chatRoom[i].log_text%>
           </div>
-          <div id="chat-number"><%
+          <div id="chat-number" class="<%=chatRoom[i].targetNick%>Number"><%
             if(chatRoom[i].nick1==myNick){%>
             <%=chatRoom[i].nick1_alram%><% } else{%>
             <%=chatRoom[i].nick2_alram%> <% } %> 

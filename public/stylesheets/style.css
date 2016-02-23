@@ -276,11 +276,11 @@ a {
   float:left;
   padding-left:20px;
   padding-top: 8px;
+  text-overflow:ellipsis;
   overflow: hidden;
+  white-space:nowrap;
 }
-#chat-nciknamelink{
-  text-decoration: none;
-}
+
 #chat-writing{
   width:356px;
   height:30px;
@@ -289,7 +289,12 @@ a {
   padding-left: 20px;
   padding-top: 10px;
   overflow: hidden;
-  line-height: 1.58em}
+  line-height: 1.58em;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space:nowrap;  
+  }
+  
 #chat-number{
   width:30px;
   height:30px;

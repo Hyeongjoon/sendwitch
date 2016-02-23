@@ -19,6 +19,7 @@ function reply(roomInfo , targetNick , myNick ){
 				myNick : myNick
 		}
 		socket.emit('chatRoom' , data);
+		socket.emit('updateContent' , data);
 	}
 }
 

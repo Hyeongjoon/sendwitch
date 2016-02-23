@@ -12,6 +12,12 @@ var room = [];
 var connectingUser = [];
 
 io.on('connection', function(socket) {
+	
+	//실시간 push 알람및 실시간 알람을 위한 연결
+	connectingUser[socket.handshake.session.inform.nick] = socket.handshake.session.inform.nick; 
+	socket.join(connectingUser[socket.handshake.session.inform.nick]);
+	
+	
 	socket.on('findCity', function(data) {
 		data = data.replace(/^\s+/, "");
 		if (data.length > 1) {
@@ -233,7 +239,10 @@ io.on('connection', function(socket) {
 		}
 	});
 	
-	
+	socket.on('updateContent' , function(data){
+		console.log(data);
+		socket.to(connectingUser[data.targetNick]).emit('contents' , data);
+	});
 });
 
 
