@@ -9,6 +9,7 @@ var chat_logDAO = require('../model/chat_logDAO.js');
 var io = require('../app.js').tmp;
 
 var room = [];
+var roomNum = [];
 var connectingUser = [];
 
 io.on('connection', function(socket) {
@@ -190,7 +191,7 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('chatRoom' , function (data){
-		var tmpRoomNum; // 중간에 방번호 기억할라고
+		var tmpRoomInfo; // 중간에 방정보 기억할라고
 		
 		if(socket.handshake.session.inform.nick!== data.myNick){
 			socket.emit('submitResult' , false);
@@ -216,32 +217,76 @@ io.on('connection', function(socket) {
 					room[args1[0].room_number] = args1[0].room_number;
 					socket.join(room[args1[0].room_number]);
 				}
-				tmpRoomNum = args1[0].room_number;
+				tmpRoomInfo = args1[0];
 				chat_logDAO.insertChatlog(args1[0].room_number , data.myNick , data.targetNick , data.contents, callback);
 				
+			} , function(args1 , callback){
+				if(args1 == true){
+					chat_roomDAO.updateAlramTime(data , tmpRoomInfo , callback);
+				}else {
+					socket.emit('submitResult' , false);
+					return false;
+				}
 			}], function(err, results) {
 			if(err){
 				socket.emit('submitResult' , false);
 				return false;
 			} else{
 			socket.emit('submitResult' , data.contents );
-			socket.to(room[tmpRoomNum]).emit('broadcast_msg', data.contents);
+			socket.to(room[tmpRoomInfo.room_number]).emit('broadcast_msg', data.contents);
 			}
 		});}
 	});
 	
 	socket.on('new' , function(data){
 		if(data==null){
-			
+			return false;
 		} else{
-			room[data] = data;
-			socket.join(room[data]);
+			roomNum[socket.handshake.session.inform.nick] = data.roomNumber;
+			room[data.roomNumber] = data.roomNumber;
+			socket.join(room[data.roomNumber]);
 		}
+		async.waterfall([
+		   function(callback){
+			   chat_roomDAO.alramZero(data.nick1 , data.myNick , data.roomNumber , callback);
+		       }] , function(err , results){
+			if(err ||results[0]==false){
+				socket.emit('submitResult' , false);
+				return false;
+			}
+		});
+		
 	});
 	
 	socket.on('updateContent' , function(data){
-		console.log(data);
 		socket.to(connectingUser[data.targetNick]).emit('contents' , data);
+	});
+	//연결끊어졌을때 작동될 함수
+	socket.on('disconnect' , function(data){
+		if(roomNum[socket.handshake.session.inform.nick]!=undefined){
+			 delete room[roomNum[socket.handshake.session.inform.nick]];
+			 delete roomNum[socket.handshake.session.inform.nick];
+		}
+		
+		if(connectingUser[socket.handshake.session.inform.nick]!=undefined){
+			 delete connectingUser[socket.handshake.session.inform.nick];
+		}
+	});
+	
+	socket.on('receive_msg', function(data){
+		async.waterfall([
+		      		   function(callback){
+		      			   chat_roomDAO.alramZero(data.nick1 , data.myNick , data.roomNumber , callback);
+		      		       }] , function(err , results){
+		      			if(err ||results[0]==false){
+		      				socket.emit('submitResult' , false);
+		      				return false;
+		      			}
+		});
+	});
+	
+	socket.on('searchBarUpdate' , function(data){
+		//console.log("여기까지옴");
 	});
 });
 

@@ -8,12 +8,12 @@ router.post('/', function(req, res, next) {           //여기로 넘어올려�
 	console.log(req.body.myNick);
 	console.log(req.body.targetNick);
 	var roomInfo;
+	var nick1;
 	if (req.body.myNick == req.body.targetNick) {
 		res.redirect('/error');
 	} else if (req.session.inform.nick !== req.body.myNick) {
 		res.redirect('/error');
 	} else {
-		console.log("여기까진 오지?????????");
 		var roomNumber;                       //view 에 보낼 변수
 		async.waterfall([
 				function(callback) {
@@ -25,6 +25,7 @@ router.post('/', function(req, res, next) {           //여기로 넘어올려�
 						roomNumber = undefined;
 					} else {
 						roomNumber = roomInfo[0].room_number;
+						nick1 = roomInfo[0].nick1;
 						chat_logDAO.findChatLog( roomInfo[0].room_number , callback );
 					}
 				} ], function(err, results) {	
@@ -37,7 +38,8 @@ router.post('/', function(req, res, next) {           //여기로 넘어올려�
 				chatInfo : results,
 				roomNumber : roomNumber,
 				targetNick : req.body.targetNick,
-				myNick : req.session.inform.nick
+				myNick : req.session.inform.nick,
+				nick1 : nick1
 			});
 			}
 		});

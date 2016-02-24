@@ -6,4 +6,4 @@ exports.mysql = {
 		port : '3306'
 };
 
-exports.socketIODomain = "192.168.0.4";
+exports.socketIODomain = "192.168.0.29";

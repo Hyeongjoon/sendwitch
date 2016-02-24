@@ -26,23 +26,55 @@ function withChat(myNickname, targetNick) {
 $(function() {
 	socket.on('contents', function(data) {
 		if ($('.' + data.myNick + 'Contents').length > 0) {
-			$('.' + data.myNick + 'Contents').text(data.contents);
 			var tmp = $('.' + data.myNick + 'Number').text();
-			tmp = tmp*1;
-			$('.' + data.myNick + 'Number').text(tmp + 1);
+			tmp = tmp*1 +1;
+			$("."+data.myNick +"Body").remove();
+			if($('#chat-room').length>0){
+				$('#chat-room').before(
+						'<div id="chat-room" class="' + data.myNick + 'Body"><div id="chat-nickname">'
+								+ data.myNick
+								+ '</div><div id="chat-writing" class="'
+								+ data.myNick + 'Contents"  onclick="withChat(' + '\''  
+								+ data.targetNick + '\'' + ' ,  ' + '\'' + data.myNick + '\''
+								+ ')" style="cursor: pointer">' + data.contents
+								+ '</div>' + '<div id="chat-number" class = "' +data.myNick+'Number" >'+ tmp
+								+ '</div><div id="chat-cancel">x</div></div>');	
+			} else{
+				$('#chat-body').append(
+						'<div id="chat-room" class="' + data.myNick + 'Body"><div id="chat-nickname">'
+								+ data.myNick
+								+ '</div><div id="chat-writing" class="'
+								+ data.myNick + 'Contents"  onclick="withChat(' + '\''  
+								+ data.targetNick + '\'' + ' ,  ' + '\'' + data.myNick + '\''
+								+ ')" style="cursor: pointer">' + data.contents
+								+ '</div>' + '<div id="chat-number" class = "' +data.myNick+'Number" >'+ tmp
+								+ '</div><div id="chat-cancel">x</div></div>');	
+			}
 		} else {
 			if($("#chat-room-none").length>0){
-				$("#chat-room-none").text("");
+				$("#chat-room-none").remove();
 			}
-			$('#chat-body').append(
-					'<div id="chat-room"><div id="chat-nickname">'
-							+ data.myNick
-							+ '</div><div id="chat-writing" class="'
-							+ data.myNick + 'Contents" + onclick="withChat(' + '\''  
-							+ data.targetNick + '\'' + ' ,  ' + '\'' + data.myNick + '\''
-							+ ')" style="cursor: pointer">' + data.contents
-							+ '</div>' + '<div id="chat-number">' + 1
-							+ '</div><div id="chat-cancel">x</div></div>');
+			if($('#chat-room').length>0){
+				$('#chat-room').before(
+						'<div id="chat-room" class="' + data.myNick + 'Body"><div id="chat-nickname">'
+								+ data.myNick
+								+ '</div><div id="chat-writing" class="'
+								+ data.myNick + 'Contents"  onclick="withChat(' + '\''  
+								+ data.targetNick + '\'' + ' ,  ' + '\'' + data.myNick + '\''
+								+ ')" style="cursor: pointer">' + data.contents
+								+ '</div>' + '<div id="chat-number" class = "' +data.myNick+'Number" >'+ 1
+								+ '</div><div id="chat-cancel">x</div></div>');	
+			} else{
+				$('#chat-body').append(
+						'<div id="chat-room" class="' + data.myNick + 'Body"><div id="chat-nickname">'
+								+ data.myNick
+								+ '</div><div id="chat-writing" class="'
+								+ data.myNick + 'Contents"  onclick="withChat(' + '\''  
+								+ data.targetNick + '\'' + ' ,  ' + '\'' + data.myNick + '\''
+								+ ')" style="cursor: pointer">' + data.contents
+								+ '</div>' + '<div id="chat-number" class = "' +data.myNick+'Number" >'+ 1
+								+ '</div><div id="chat-cancel">x</div></div>');	
+			}
 		}
 	});
 });

@@ -5,7 +5,7 @@ $(function(){
 });
 
 
-function reply(roomInfo , targetNick , myNick ){
+function reply(roomNumber , targetNick , myNick ){
 	var contents = $("#chating-write").val();
 	$("#chating-write").val('');
 	if(contents==''){
@@ -14,7 +14,7 @@ function reply(roomInfo , targetNick , myNick ){
 	} else {
 		data = {
 				contents : contents,
-				roomInfo : roomInfo,
+				roomNumber : 1*roomNumber,
 				targetNick : targetNick,
 				myNick : myNick
 		}
@@ -27,8 +27,12 @@ $(function(){
 	$("#chating-body").scrollTop($("#chating-body")[0].scrollHeight);
 });
 
+
+
+
 $(function(){
 	socket.on('broadcast_msg', function (data){
+		socket.emit('receive_msg' , inform);
 		$("#chating-body").append("<li id='chating-others'>" + data + "</li>");
 		$("#chating-body").scrollTop($("#chating-body")[0].scrollHeight);
 	});

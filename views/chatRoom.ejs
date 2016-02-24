@@ -103,6 +103,16 @@ li{
     <input id="selectedCityId" type="hidden">
 <script src="http://<%=socketIP%>:3001/socket.io/socket.io.js"></script>
 <script src ='/javascripts/connectionSrc.js'></script>
-<script type="text/javascript"> $(function() {socket.emit('new', <%=roomNumber%>)});</script>
+<script type="text/javascript"> 
+var inform = {roomNumber : <%=roomNumber%>,
+targetNick : '<%=targetNick%>',
+myNick : '<%=myNick%>',
+nick1 : '<%=nick1%>'
+};
+
+$(function() {socket.emit('new', inform)});
+
+
+</script>
   </body>
 </html>

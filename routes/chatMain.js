@@ -26,6 +26,7 @@ router.get('/', function(req, res, next) {
 		if(err){
 			res.redirect('/error');
 		} else {
+			console.log(results);
 			res.render('chatMain', {
 				myNick : req.session.inform.nick,
 				socketIP : req.session.socketIp,

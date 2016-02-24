@@ -33,9 +33,9 @@
         <div id="chat-room-none">
             	채팅방이 없습니다.</div>
         <%} else {
-        for(var i = chatRoom.length -1 ; i >= 0 ; i--){
+        for(var i = 0 ; i < chatRoom.length ; i++){
         %>
-        <div id="chat-room">
+        <div id="chat-room" class ="<%=chatRoom[i].targetNick%>Body">
           <div id="chat-nickname">
            <%=chatRoom[i].targetNick%>
           </div>
