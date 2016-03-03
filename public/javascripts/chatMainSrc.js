@@ -23,6 +23,9 @@ function withChat(myNickname, targetNick) {
 	form.submit();
 }
 
+//아래꺼 targetNick이랑 myNick 바뀜 
+//그니까 서버에서 받으니까 바뀐거 페이지 기준으로 바뀐거임
+//결론은 myNick은 보내는사람 Nickname임 
 $(function() {
 	socket.on('contents', function(data) {
 		if ($('.' + data.myNick + 'Contents').length > 0) {
@@ -38,7 +41,7 @@ $(function() {
 								+ data.targetNick + '\'' + ' ,  ' + '\'' + data.myNick + '\''
 								+ ')" style="cursor: pointer">' + data.contents
 								+ '</div>' + '<div id="chat-number" class = "' +data.myNick+'Number" >'+ tmp
-								+ '</div><div id="chat-cancel">x</div></div>');	
+								+ '</div><div id="chat-cancel" onclick ="deleteChatRoom('+'\''+data.targetNick+'\'' + ' ,  ' + '\'' + data.myNick + '\''+ ' ,  ' + data.roomNumber+ ')" style="cursor: pointer">x</div></div>');	
 			} else{
 				$('#chat-body').append(
 						'<div id="chat-room" class="' + data.myNick + 'Body"><div id="chat-nickname">'
@@ -48,7 +51,7 @@ $(function() {
 								+ data.targetNick + '\'' + ' ,  ' + '\'' + data.myNick + '\''
 								+ ')" style="cursor: pointer">' + data.contents
 								+ '</div>' + '<div id="chat-number" class = "' +data.myNick+'Number" >'+ tmp
-								+ '</div><div id="chat-cancel">x</div></div>');	
+								+ '</div><div id="chat-cancel" onclick ="deleteChatRoom('+'\''+data.targetNick+'\'' + ' ,  ' + '\'' + data.myNick + '\''  + ' ,  ' + data.roomNumber+ ')" style="cursor: pointer">x</div></div>');
 			}
 		} else {
 			if($("#chat-room-none").length>0){
@@ -63,7 +66,7 @@ $(function() {
 								+ data.targetNick + '\'' + ' ,  ' + '\'' + data.myNick + '\''
 								+ ')" style="cursor: pointer">' + data.contents
 								+ '</div>' + '<div id="chat-number" class = "' +data.myNick+'Number" >'+ 1
-								+ '</div><div id="chat-cancel">x</div></div>');	
+								+ '</div><div id="chat-cancel" onclick ="deleteChatRoom('+'\''+data.targetNick+'\'' + ' ,  ' + '\'' + data.myNick + '\'' + ' ,  '+ data.roomNumber+   ')" style="cursor: pointer">x</div></div>');
 			} else{
 				$('#chat-body').append(
 						'<div id="chat-room" class="' + data.myNick + 'Body"><div id="chat-nickname">'
@@ -73,8 +76,32 @@ $(function() {
 								+ data.targetNick + '\'' + ' ,  ' + '\'' + data.myNick + '\''
 								+ ')" style="cursor: pointer">' + data.contents
 								+ '</div>' + '<div id="chat-number" class = "' +data.myNick+'Number" >'+ 1
-								+ '</div><div id="chat-cancel">x</div></div>');	
+								+ '</div><div id="chat-cancel" onclick ="deleteChatRoom('+'\''+data.targetNick+'\'' + ' ,  ' + '\'' + data.myNick + '\'' + ' ,  '+ data.roomNumber+   ')" style="cursor: pointer">x</div></div>');
 			}
 		}
 	});
 });
+
+$(function() {
+	socket.on('deleteResult', function(data) {
+		if(data == false){
+			var form = document.createElement("form");
+			form.setAttribute("method", "get");
+			form.setAttribute("action", "/error");
+			document.body.appendChild(form);
+			form.submit();
+		} else {
+			console.log(data);
+			// 여기서 제이쿼리로 삭제하는거 작성하기
+		}
+	});
+});
+
+function deleteChatRoom(myNickname, targetNick , roomNumber) {
+	data = {
+		myNick : myNickname,
+		targetNick : targetNick,
+		roomNumber : roomNumber
+	};
+	socket.emit('delete_chat_room' , data);
+};

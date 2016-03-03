@@ -47,7 +47,7 @@
             <%=chatRoom[i].nick1_alram%><% } else{%>
             <%=chatRoom[i].nick2_alram%> <% } %> 
           </div>
-          <div id="chat-cancel">
+          <div id="chat-cancel" onclick="deleteChatRoom('<%=myNick%>' , '<%=chatRoom[i].targetNick%>' , <%=chatRoom[i].room_number%>)" style="cursor: pointer">
             x
           </div>
         </div><%}}%>

@@ -14,7 +14,7 @@ var connectingUser = [];
 
 io.on('connection', function(socket) {
 	
-	//실시간 push 알람및 실시간 알람을 위한 연결
+	// 실시간 push 알람및 실시간 알람을 위한 연결
 	connectingUser[socket.handshake.session.inform.nick] = socket.handshake.session.inform.nick; 
 	socket.join(connectingUser[socket.handshake.session.inform.nick]);
 	
@@ -261,7 +261,8 @@ io.on('connection', function(socket) {
 	socket.on('updateContent' , function(data){
 		socket.to(connectingUser[data.targetNick]).emit('contents' , data);
 	});
-	//연결끊어졌을때 작동될 함수
+	
+	// 연결끊어졌을때 작동될 함수
 	socket.on('disconnect' , function(data){
 		if(roomNum[socket.handshake.session.inform.nick]!=undefined){
 			 delete room[roomNum[socket.handshake.session.inform.nick]];
@@ -285,8 +286,32 @@ io.on('connection', function(socket) {
 		});
 	});
 	
+	socket.on('delete_chat_room' , function(data){
+		if(socket.handshake.session.inform.nick!== data.myNick){
+			socket.emit('deleteResult' , false);
+			return false;
+		} else {
+			async.waterfall([
+			    function(callback){
+				chat_roomDAO.findChatRoomByID(data.myNick , data.targetNick , data.roomNumber , callback);
+			} , function(args1 , callback){
+				if(args1[0]==null){
+					socket.emit('deleteResult' , false);
+				} else{
+					chat_roomDAO.deleteChatRoom(args1[0] , data.myNick , callback);
+				}
+			}] , function(err , results){
+				if(err||results==false){
+					socket.emit('deleteResult' , false);
+				} else{
+					socket.emit('deleteResult' , data);
+				}
+			});
+		}
+	});
+	
 	socket.on('searchBarUpdate' , function(data){
-		//console.log("여기까지옴");
+		// console.log("여기까지옴");
 	});
 });
 

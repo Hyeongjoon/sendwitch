@@ -9,6 +9,15 @@ exports.findChatRoom = function(myNick, targetNick, callback) {
 	base.select(sqlQuery, callback);
 };
 
+exports.findChatRoomByID = function(myNick, targetNick, roomNumber, callback) {
+	var sqlQuery = 'SELECT * from chat_room WHERE ((nick1 = '
+			+ mysql.escape(myNick) + ' AND nick2 = ' + mysql.escape(targetNick)
+			+ ') OR ( nick1 = ' + mysql.escape(targetNick) + ' AND nick2 = '
+			+ mysql.escape(myNick) + ')) AND room_number = '
+			+ mysql.escape(roomNumber);
+	base.select(sqlQuery, callback);
+};
+
 exports.createRoom = function(data, callback) {
 	var tmp = {
 		nick1 : data.myNick,
@@ -54,4 +63,28 @@ exports.updateAlramTime = function(dataInfo, roomInfo, callback) {
 			+ mysql.escape(new Date()) + ' WHERE room_number = '
 			+ mysql.escape(roomInfo.room_number);
 	base.update(sqlQuery, callback);
+}
+
+exports.deleteChatRoom = function(roomData, myNick, callback) {
+	var whatNick;
+	var targetNickDelete;
+	var sqlQuery;
+	if (roomData.nick1 == myNick) {
+		whatNick = 'nick1';
+		targetNickDelete = roomData.nick2_deleted;
+	} else {
+		whatNick = 'nick2';
+		targetNickDelete = roomData.nick1_deleted;
+	}
+
+	if (targetNickDelete == true) {
+		sqlQuery = 'DELETE FROM chat_room WHERE room_number = ' + mysql.escape(roomData.room_number);;
+		base.deletion(sqlQuery, callback);
+	} else {
+		sqlQuery = 'UPDATE chat_room SET ' + whatNick + '_deleted = '
+				+ mysql.escape(true) + ' , ' + whatNick + '_deleted_time = '
+				+ mysql.escape(new Date()) + ' WHERE room_number = '
+				+ mysql.escape(roomData.room_number);
+		base.update(sqlQuery, callback);
+	}
 }
