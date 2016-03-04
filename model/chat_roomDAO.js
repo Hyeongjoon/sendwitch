@@ -78,13 +78,29 @@ exports.deleteChatRoom = function(roomData, myNick, callback) {
 	}
 
 	if (targetNickDelete == true) {
-		sqlQuery = 'DELETE FROM chat_room WHERE room_number = ' + mysql.escape(roomData.room_number);;
+		sqlQuery = 'DELETE FROM chat_room WHERE room_number = '
+				+ mysql.escape(roomData.room_number);
+		;
 		base.deletion(sqlQuery, callback);
 	} else {
 		sqlQuery = 'UPDATE chat_room SET ' + whatNick + '_deleted = '
 				+ mysql.escape(true) + ' , ' + whatNick + '_deleted_time = '
-				+ mysql.escape(new Date()) + ' WHERE room_number = '
+				+ mysql.escape(new Date()) + ' , ' + whatNick
+				+ '_alram= ' + mysql.escape(0) + ' WHERE room_number = '
 				+ mysql.escape(roomData.room_number);
 		base.update(sqlQuery, callback);
 	}
+}
+
+exports.findMyAlramNick1 = function (myNick , callback){
+	var sqlQuery;
+	sqlQuery = 'SELECT sum(nick1_alram) from chat_room WHERE nick1 = ' + mysql.escape(myNick);
+	base.select(sqlQuery , callback);
+}
+
+exports.findMyAlramNick2 = function (myNick , callback){
+	var sqlQuery;
+	sqlQuery = 'SELECT sum(nick2_alram) from chat_room WHERE nick2 = ' + mysql.escape(myNick);
+	base.select(sqlQuery , callback);
+	
 }

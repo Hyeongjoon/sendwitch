@@ -91,17 +91,18 @@ $(function() {
 			document.body.appendChild(form);
 			form.submit();
 		} else {
-			console.log(data);
-			// 여기서 제이쿼리로 삭제하는거 작성하기
+			$("." + data.targetNick + "Body").remove();
 		}
 	});
 });
 
 function deleteChatRoom(myNickname, targetNick , roomNumber) {
+	if(confirm("delete???")==true){
 	data = {
 		myNick : myNickname,
 		targetNick : targetNick,
 		roomNumber : roomNumber
 	};
 	socket.emit('delete_chat_room' , data);
+	}
 };

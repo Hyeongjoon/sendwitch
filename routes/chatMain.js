@@ -29,7 +29,8 @@ router.get('/', function(req, res, next) {
 			res.render('chatMain', {
 				myNick : req.session.inform.nick,
 				socketIP : req.session.socketIp,
-				chatRoom : results
+				chatRoom : results,
+				inform : req.session.inform
 			});
 		}
 	});

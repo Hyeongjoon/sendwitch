@@ -253,13 +253,18 @@ io.on('connection', function(socket) {
 			if(err ||results[0]==false){
 				socket.emit('submitResult' , false);
 				return false;
+			} else{
+				socket.emit('searchBarAlram' , true);
 			}
 		});
 		
 	});
 	
 	socket.on('updateContent' , function(data){
+		
+		socket.to(connectingUser[data.targetNick]).emit('searchBarAlram' , true);
 		socket.to(connectingUser[data.targetNick]).emit('contents' , data);
+		//여기 조작해서 소리나게하는거 하면될듯
 	});
 	
 	// 연결끊어졌을때 작동될 함수
@@ -282,6 +287,8 @@ io.on('connection', function(socket) {
 		      			if(err ||results[0]==false){
 		      				socket.emit('submitResult' , false);
 		      				return false;
+		      			} else{
+		      				socket.emit('searchBarAlram' , true);
 		      			}
 		});
 	});
@@ -305,14 +312,37 @@ io.on('connection', function(socket) {
 					socket.emit('deleteResult' , false);
 				} else{
 					socket.emit('deleteResult' , data);
+					socket.emit('searchBarAlram' , true);
 				}
 			});
 		}
 	});
 	
+	
 	socket.on('searchBarUpdate' , function(data){
-		// console.log("여기까지옴");
+		if(data == true){
+			var alram = 0;
+			async.waterfall([
+		      function(callback){
+		    	  chat_roomDAO.findMyAlramNick1(socket.handshake.session.inform.nick , callback);  
+		      } ,  
+		      function(args1 , callback){
+		    	  alram = alram + args1[0]['sum(nick1_alram)'];
+		    	  chat_roomDAO.findMyAlramNick2(socket.handshake.session.inform.nick , callback);  
+		      }] , function(err , results){
+				if(!err){
+				alram = alram + results[0]['sum(nick2_alram)'];
+				socket.handshake.session.inform.alram = alram;
+				socket.handshake.session.save();
+				socket.emit('updateAlram' , alram);
+				}
+		});
+		} else {
+			console.log("서치바 에러");
+		}
 	});
+	
+	
 });
 
 

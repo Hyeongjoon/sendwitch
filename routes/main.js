@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
 			res.redirect('/error');
 		} else {
 			var tmp;
+			var tmpSand;
 			async.waterfall([
 					function(callback) {
 						if (req.session.searchCity.length == 0) {
@@ -47,7 +48,7 @@ router.get('/', function(req, res, next) {
 						} else {
 							callback(null, sandHelper.addCityNameInSand(arg1, tmp));
 						}
-					} ], function(err, results) {
+					}  ], function(err, results) {
 				if (err) {
 					res.redirect('/error');
 				} else if (!err) {

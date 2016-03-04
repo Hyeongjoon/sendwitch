@@ -132,3 +132,15 @@ $(function() {
 
 	}
 });
+
+$(function(){
+	socket.on('searchBarAlram', function(data){
+		socket.emit('searchBarUpdate' , true);
+	});
+});
+
+$(function(){
+	socket.on('updateAlram', function(data){
+		console.log($("#menu_alram").text(data));
+	});
+});

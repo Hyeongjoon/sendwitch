@@ -4,9 +4,12 @@ var async = require('async');
 var config = require('../helper/config.js');
 var AccountDAO = require('../model/AccountDAO.js');
 var TownDAO = require('../model/TownDAO.js');
+var chatRoomDAO = require('../model/chat_roomDAO.js');
 
 router.post('/', function(req, res, next) {
 	var tmp;
+	var tmp2;
+	var alram = 0;
 	async.waterfall([ function(callback) {
 		AccountDAO.findAccount(req.body.useremail, req.body.userPWD, callback);
 	}, function(args1, callback) {
@@ -20,6 +23,20 @@ router.post('/', function(req, res, next) {
 				TownDAO.findCityById(args1[0].interesting_city_code, callback);
 			}
 		}
+	}, function(args1 , callback){
+		tmp2 = args1;
+		if(tmp2==null){
+			callback(null , null);
+		} else{
+		  chatRoomDAO.findMyAlramNick1(tmp[0].nickname , callback);
+		}
+	} , function(args1 , callback){
+		if(args1==null){
+			callback(null , null);
+		} else{
+		alram = alram + args1[0]['sum(nick1_alram)'];
+		chatRoomDAO.findMyAlramNick2(tmp[0].nickname , callback);
+		}
 	} ], function(err, results) {
 		if (err) {
 			res.redirect('/error');
@@ -32,6 +49,7 @@ router.post('/', function(req, res, next) {
 			if(tmp[0].interesting_city_code==null){
 				tmp[0].interesting_city_code ='';
 			}
+			alram = alram + results[0]['sum(nick2_alram)'];
 			req.session.inform = {
 				login : 'sucess',
 				nick : tmp[0].nickname,
@@ -41,10 +59,11 @@ router.post('/', function(req, res, next) {
 				dLang : tmp[0].default_language,
 				addLang : tmp[0].addtional_language,
 				pageLang : tmp[0].page_language,
-				prohibit_account : tmp[0].prohibit_account
+				prohibit_account : tmp[0].prohibit_account,
+				alram : alram
 			};
 			req.session.socketIp = config.socketIODomain;
-			if (results != undefined) {
+			if (tmp2 != undefined) {
 				var today = new Date();
 				var month = today.getMonth() + 1;
 				var day = today.getDate();
@@ -56,16 +75,16 @@ router.post('/', function(req, res, next) {
 				}
 				var time = today.getFullYear() + '-' + month
 						+ '-' + day;
-				for (var i = 0; i < results.length; i++) {
-					req.session.inform.interesting_city.push(results[i]);
-					results[i].from = time;
-					results[i].to = undefined;
+				for (var i = 0; i < tmp2.length; i++) {
+					req.session.inform.interesting_city.push(tmp2[i]);
+					tmp2[i].from = time;
+					tmp2[i].to = undefined;
 				}
 			}
-			if(results ==undefined){
-				results = [];
+			if(tmp2 ==undefined){
+				tmp2 = [];
 			}
-			req.session.searchCity = results;
+			req.session.searchCity = tmp2;
 			res.redirect('/main');
 		}
 	});

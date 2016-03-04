@@ -39,7 +39,8 @@ router.post('/', function(req, res, next) {           //여기로 넘어올려�
 				roomNumber : roomNumber,
 				targetNick : req.body.targetNick,
 				myNick : req.session.inform.nick,
-				nick1 : nick1
+				nick1 : nick1,
+				inform : req.session.inform
 			});
 			}
 		});
