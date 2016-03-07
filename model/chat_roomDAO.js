@@ -9,12 +9,11 @@ exports.findChatRoom = function(myNick, targetNick, callback) {
 	base.select(sqlQuery, callback);
 };
 
-exports.findChatRoomByID = function(myNick, targetNick, roomNumber, callback) {
-	var sqlQuery = 'SELECT * from chat_room WHERE ((nick1 = '
+exports.findChatRoomByID = function(myNick, targetNick, callback) {
+	var sqlQuery = 'SELECT * from chat_room WHERE (nick1 = '
 			+ mysql.escape(myNick) + ' AND nick2 = ' + mysql.escape(targetNick)
 			+ ') OR ( nick1 = ' + mysql.escape(targetNick) + ' AND nick2 = '
-			+ mysql.escape(myNick) + ')) AND room_number = '
-			+ mysql.escape(roomNumber);
+			+ mysql.escape(myNick) + ')';
 	base.select(sqlQuery, callback);
 };
 
@@ -85,22 +84,34 @@ exports.deleteChatRoom = function(roomData, myNick, callback) {
 	} else {
 		sqlQuery = 'UPDATE chat_room SET ' + whatNick + '_deleted = '
 				+ mysql.escape(true) + ' , ' + whatNick + '_deleted_time = '
-				+ mysql.escape(new Date()) + ' , ' + whatNick
-				+ '_alram= ' + mysql.escape(0) + ' WHERE room_number = '
+				+ mysql.escape(new Date()) + ' , ' + whatNick + '_alram= '
+				+ mysql.escape(0) + ' WHERE room_number = '
 				+ mysql.escape(roomData.room_number);
 		base.update(sqlQuery, callback);
 	}
 }
 
-exports.findMyAlramNick1 = function (myNick , callback){
+exports.findMyAlramNick1 = function(myNick, callback) {
 	var sqlQuery;
-	sqlQuery = 'SELECT sum(nick1_alram) from chat_room WHERE nick1 = ' + mysql.escape(myNick);
-	base.select(sqlQuery , callback);
+	sqlQuery = 'SELECT sum(nick1_alram) from chat_room WHERE nick1 = '
+			+ mysql.escape(myNick);
+	base.select(sqlQuery, callback);
 }
 
-exports.findMyAlramNick2 = function (myNick , callback){
+exports.updateDeleted = function(roomNumber, callback) {
 	var sqlQuery;
-	sqlQuery = 'SELECT sum(nick2_alram) from chat_room WHERE nick2 = ' + mysql.escape(myNick);
-	base.select(sqlQuery , callback);
+
+	sqlQuery = 'UPDATE chat_room SET nick1_deleted = ' + mysql.escape(false)
+			+ ' , nick2_deleted = ' + mysql.escape(false)
+			+ ' WHERE room_number = '  + mysql.escape(roomNumber);
 	
+	base.update(sqlQuery , callback);
+}
+
+exports.findMyAlramNick2 = function(myNick, callback) {
+	var sqlQuery;
+	sqlQuery = 'SELECT sum(nick2_alram) from chat_room WHERE nick2 = '
+			+ mysql.escape(myNick);
+	base.select(sqlQuery, callback);
+
 }

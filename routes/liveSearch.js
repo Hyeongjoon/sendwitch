@@ -173,7 +173,7 @@ io.on('connection', function(socket) {
 			result = result.replace(/^\s+/, "");
 			async.parallel([ function(callback) {
 				accountDAO.changeProhibitAccount(socket.handshake.session.inform.email , result , callback);
-			}] , function(err,results){
+			}] , function(err , results){
 				if(results[0]!==true||err){
 					socket.emit('deleteProhibitResult', false);
 					return false;
@@ -257,14 +257,25 @@ io.on('connection', function(socket) {
 				socket.emit('searchBarAlram' , true);
 			}
 		});
-		
 	});
 	
 	socket.on('updateContent' , function(data){
-		
-		socket.to(connectingUser[data.targetNick]).emit('searchBarAlram' , true);
-		socket.to(connectingUser[data.targetNick]).emit('contents' , data);
-		//여기 조작해서 소리나게하는거 하면될듯
+		async.waterfall([
+		       function(callback){
+		    	   chat_roomDAO.findChatRoomByID(data.myNick , data.targetNick , callback);
+		       }  , function(args1 , callback){
+		    	 if(args1[0].nick1_deleted==true || args1[0].nick2_deleted == true){
+		    		 chat_roomDAO.updateDeleted(args1[0].room_number , callback);
+		    	 } else{ 
+		    		 callback(null , true);
+		    	 }
+		       }] , function(err ,results){
+			
+			if(!err || results == true){
+			socket.to(connectingUser[data.targetNick]).emit('searchBarAlram' , true);
+			socket.to(connectingUser[data.targetNick]).emit('contents' , data);
+			}
+		});
 	});
 	
 	// 연결끊어졌을때 작동될 함수
@@ -296,11 +307,12 @@ io.on('connection', function(socket) {
 	socket.on('delete_chat_room' , function(data){
 		if(socket.handshake.session.inform.nick!== data.myNick){
 			socket.emit('deleteResult' , false);
+			console.log("여기까지 왔니??");
 			return false;
 		} else {
 			async.waterfall([
 			    function(callback){
-				chat_roomDAO.findChatRoomByID(data.myNick , data.targetNick , data.roomNumber , callback);
+				chat_roomDAO.findChatRoomByID(data.myNick , data.targetNick , callback);
 			} , function(args1 , callback){
 				if(args1[0]==null){
 					socket.emit('deleteResult' , false);

@@ -141,6 +141,6 @@ $(function(){
 
 $(function(){
 	socket.on('updateAlram', function(data){
-		console.log($("#menu_alram").text(data));
+		$("#menu_alram").text(data);
 	});
 });

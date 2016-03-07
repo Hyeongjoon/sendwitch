@@ -26,7 +26,7 @@ router.post('/', function(req, res, next) {           //여기로 넘어올려�
 					} else {
 						roomNumber = roomInfo[0].room_number;
 						nick1 = roomInfo[0].nick1;
-						chat_logDAO.findChatLog( roomInfo[0].room_number , callback );
+						chat_logDAO.findChatLog( roomInfo[0] , req.body.myNick , callback );
 					}
 				} ], function(err, results) {	
 			console.log(results);
