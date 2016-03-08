@@ -92,6 +92,9 @@ $(function() {
 			form.submit();
 		} else {
 			$("." + data.targetNick + "Body").remove();
+			if($('#chat-main').length <= 0){
+				$('#chat-body').append('<div id="chat-room-none">채팅방이 없습니다.</div>');
+			} 
 		}
 	});
 });

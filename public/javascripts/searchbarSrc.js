@@ -142,5 +142,14 @@ $(function(){
 $(function(){
 	socket.on('updateAlram', function(data){
 		$("#menu_alram").text(data);
+		
+	});
+});
+
+$(function(){
+	socket.on('searchBarBeep' , function(data){
+		if(data == true){
+			document.getElementById('beepSound').play();
+		}
 	});
 });

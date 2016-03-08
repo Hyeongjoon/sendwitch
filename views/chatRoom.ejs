@@ -103,6 +103,7 @@ li{
     <input id="selectedCityId" type="hidden">
 <script src="http://<%=socketIP%>:3001/socket.io/socket.io.js"></script>
 <script src ='/javascripts/connectionSrc.js'></script>
+<audio id='beepSound' src='/sound/beep.mp3' preload="auto"></audio>
 <script type="text/javascript"> 
 var inform = {roomNumber : <%=roomNumber%>,
 targetNick : '<%=targetNick%>',
@@ -112,7 +113,21 @@ nick1 : '<%=nick1%>'
 
 $(function() {socket.emit('new', inform)});
 
-
+$(function () {
+    $("#chating-write").keydown(function (key) {
+        if (key.keyCode == 13) {
+        	if($("#chating-write").val()==''){
+        		$("#chating-write").val('');
+        		key.preventDefault();
+        		alert("식빵?");
+        		return false;
+        	} else{
+        	reply('<%=roomNumber%>','<%=targetNick%>','<%=myNick%>');
+        	key.preventDefault();
+        		}
+      		 }
+        });
+    });
 </script>
   </body>
 </html>

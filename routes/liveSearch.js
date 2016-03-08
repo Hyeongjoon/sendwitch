@@ -232,6 +232,7 @@ io.on('connection', function(socket) {
 				socket.emit('submitResult' , false);
 				return false;
 			} else{
+				
 			socket.emit('submitResult' , data.contents );
 			socket.to(room[tmpRoomInfo.room_number]).emit('broadcast_msg', data.contents);
 			}
@@ -260,20 +261,24 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('updateContent' , function(data){
-		async.waterfall([
+		var tmpRoomNum = 0;
+		async.waterfall([		       
 		       function(callback){
 		    	   chat_roomDAO.findChatRoomByID(data.myNick , data.targetNick , callback);
 		       }  , function(args1 , callback){
+		    	   tmpRoomNum = args1[0].room_number; 
 		    	 if(args1[0].nick1_deleted==true || args1[0].nick2_deleted == true){
 		    		 chat_roomDAO.updateDeleted(args1[0].room_number , callback);
 		    	 } else{ 
 		    		 callback(null , true);
 		    	 }
 		       }] , function(err ,results){
-			
 			if(!err || results == true){
-			socket.to(connectingUser[data.targetNick]).emit('searchBarAlram' , true);
-			socket.to(connectingUser[data.targetNick]).emit('contents' , data);
+				if(roomNum[data.targetNick]!==tmpRoomNum){
+					socket.to(connectingUser[data.targetNick]).emit('searchBarAlram' , true);
+					socket.to(connectingUser[data.targetNick]).emit('searchBarBeep' , true);
+					socket.to(connectingUser[data.targetNick]).emit('contents' , data);
+				} 
 			}
 		});
 	});

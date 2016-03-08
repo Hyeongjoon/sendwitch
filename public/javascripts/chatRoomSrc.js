@@ -7,13 +7,16 @@ $(function(){
 
 function reply(roomNumber , targetNick , myNick ){
 	var contents = $("#chating-write").val();
+	var tmp = $("#chating-write").val();
 	$("#chating-write").val('');
+	contents = contents.replace(/(^\s*)|(\s*$)/gi, "");
+	tmp = tmp.replace(/\s/g,'&nbsp;');
 	if(contents==''){
 		alert("내용을 입력해 주세요");
 		return false;
 	} else {
 		data = {
-				contents : contents,
+				contents : tmp,
 				roomNumber : 1*roomNumber,
 				targetNick : targetNick,
 				myNick : myNick
@@ -21,6 +24,7 @@ function reply(roomNumber , targetNick , myNick ){
 		socket.emit('chatRoom' , data);
 		socket.emit('updateContent' , data);
 	}
+	
 }
 
 $(function(){
@@ -41,7 +45,7 @@ $(function(){
 
 $(function(){
 	socket.on('submitResult', function (data){
-		if(data == false){
+		if(data === false){
 			var form = document.createElement("form");
 			form.setAttribute("method", "get");
 			form.setAttribute("action", "/error");
