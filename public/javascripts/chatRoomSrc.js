@@ -8,13 +8,15 @@ $(function(){
 function reply(roomNumber , targetNick , myNick ){
 	var contents = $("#chating-write").val();
 	var tmp = $("#chating-write").val();
-	$("#chating-write").val('');
 	contents = contents.replace(/(^\s*)|(\s*$)/gi, "");
-	tmp = tmp.replace(/\s/g,'&nbsp;');
 	if(contents==''){
-		alert("내용을 입력해 주세요");
 		return false;
 	} else {
+		tmp = tmp.replace(/\n/g, '<br/>');
+		tmp = tmp.replace(/\s/g, '&nbsp;');
+		
+		
+		
 		data = {
 				contents : tmp,
 				roomNumber : 1*roomNumber,
@@ -23,8 +25,8 @@ function reply(roomNumber , targetNick , myNick ){
 		}
 		socket.emit('chatRoom' , data);
 		socket.emit('updateContent' , data);
+		$("#chating-write").val('');
 	}
-	
 }
 
 $(function(){

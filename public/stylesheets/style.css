@@ -362,7 +362,8 @@ a {
   margin-top:5px;
   margin-bottom: 5px;
   border-radius: 10px;
-  clear: both;
+  clear: right;
+  word-break:break-word;
 }
 #chating-foot{
   width:566px;
@@ -374,8 +375,7 @@ a {
   height:88px;
   float:left;
   outline-style: none;
-  resize:none;
-  overflow: auto;
+  resize:both;
 }
 #chating-submit{
   width:95px;

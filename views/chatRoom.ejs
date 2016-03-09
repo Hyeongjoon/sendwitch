@@ -46,16 +46,16 @@ li{
           } else{
           for(var i = chatInfo.length-1 ; i >= 0 ; i--){
           	if(myNick==chatInfo[i].from_user) {
-          %><li id="chating-mine"><%=chatInfo[i].log_text%></li><%} else {%>
+          %><li id="chating-mine" ><%-chatInfo[i].log_text%></li><%} else {%>
            <li id="chating-others">
-          <%=chatInfo[i].log_text%>
+          <%-chatInfo[i].log_text%>
             </li><%}}} %>
             </ul><div id="chating-readHere">
             </div>
          
           </div>
           <div id="chating-foot">
-            <textarea id="chating-write"></textarea>
+            <textarea id="chating-write" maxlength="1000" ></textarea>
             <input id="chating-submit" type="button" value="reply" onclick="reply('<%=roomNumber%>','<%=targetNick%>','<%=myNick%>')">
             </input>
           </div>
@@ -113,21 +113,30 @@ nick1 : '<%=nick1%>'
 
 $(function() {socket.emit('new', inform)});
 
+var shift = false;
+
 $(function () {
     $("#chating-write").keydown(function (key) {
-        if (key.keyCode == 13) {
-        	if($("#chating-write").val()==''){
-        		$("#chating-write").val('');
-        		key.preventDefault();
-        		alert("식빵?");
+        if (key.keyCode == 13 && shift==false) {
+        	var contents = $("#chating-write").val();
+        	contents = contents.replace(/(^\s*)|(\s*$)/gi, "");
+        	if(contents==''){
         		return false;
         	} else{
         	reply('<%=roomNumber%>','<%=targetNick%>','<%=myNick%>');
         	key.preventDefault();
         		}
+      		 } else if(key.keyCode == 16){
+      			shift = true;
       		 }
         });
-    });
+
+    $("#chating-write").keyup(function (key) {
+		if(key.keyCode == 16){
+			shift=false;
+		}
+	});
+});
 </script>
   </body>
 </html>
