@@ -1,11 +1,9 @@
 DROP DATABASE IF exists sendwitch;
-CREATE DATABASE sendwitch;
+CREATE DATABASE sendwitch  DEFAULT CHARACTER SET utf8;
 
 use sendwitch;
 
-
 SET foreign_key_checks = 0;
-
 
 DROP TABLE IF exists account;
 create table account
@@ -21,7 +19,6 @@ create table account
         primary key (email),
         UNIQUE (nickname)
 )Engine =InnoDB DEFAULT CHARSET = utf8;
-
 
 
         DROP TABLE IF exists sand;

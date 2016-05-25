@@ -6,7 +6,7 @@ var townDAO = require('../model/TownDAO.js');
 var sandHelper = require('../helper/SandHelper.js');
 
 router.get('/', function(req, res, next) {
-
+	console.log(req.session);
 	if (req.session.inform == undefined) {
 		res.redirect('/error');
 	} else {

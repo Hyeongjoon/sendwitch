@@ -50,6 +50,7 @@ router.post('/', function(req, res, next) {
 				tmp[0].interesting_city_code ='';
 			}
 			alram = alram + results[0]['sum(nick2_alram)'];
+			req.session['login'] = 'sucess';
 			req.session.inform = {
 				login : 'sucess',
 				nick : tmp[0].nickname,
@@ -85,6 +86,9 @@ router.post('/', function(req, res, next) {
 				tmp2 = [];
 			}
 			req.session.searchCity = tmp2;
+			console.log("여기가 로그요");
+			console.log(req.session);
+			 req.session.save();
 			res.redirect('/main');
 		}
 	});

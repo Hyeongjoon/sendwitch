@@ -5,28 +5,45 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var Session = require('express-session');
+var sharedsession = require("express-socket.io-session");
+
+
+var app = express();
+app.set('port',80);
+app.listen(app.get('port'));
+/*var RedisStore = require('connect-redis')(Session);
+var redis = require("redis").createClient({ host: "127.0.0.1",
+	      port: 6379});*/
+
+
+
+
 var session = new Session({
-	//store: new RedisStore({
-	//}),
+	/*store: new RedisStore({
+	      client: redis,
+	      //prefix : "session:",
+	      db : 2
+	}),*/
 	cookie:{
 		maxAge: 1000 * 60 * 60
 	},
 	key : 'sid',
 	resave : false,
     saveUninitialized : false,
-    secret: 'keyboard cat'
+    secret : 'keyboard cat'
 });
-var app = express();
+app.use(cookieParser());
+app.set('trust proxy', 1) 
 app.use(session);
-var sharedsession = require("express-socket.io-session");
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 var io = require('socket.io').listen(3001);
 exports.tmp = io.use(sharedsession(session));
 
-
-
-
-//var RedisStore = require('connect-redis')(session);
-//var redis = require('redis').createClient();
 
 
 
@@ -55,10 +72,7 @@ app.set('view engine', 'ejs');
  
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser('secretkey'));
+
 
 
 
@@ -120,6 +134,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
- 
+
  
 module.exports = app;
