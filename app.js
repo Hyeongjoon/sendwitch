@@ -9,8 +9,7 @@ var sharedsession = require("express-socket.io-session");
 
 
 var app = express();
-app.set('port',80);
-app.listen(app.get('port'));
+
 /*var RedisStore = require('connect-redis')(Session);
 var redis = require("redis").createClient({ host: "127.0.0.1",
 	      port: 6379});*/
