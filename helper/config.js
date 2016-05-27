@@ -1,9 +1,9 @@
 exports.mysql = {
-		host : 'localhost',
-		user : 'root',
+		host : 'superstar.cakmmqoiibzo.ap-northeast-2.rds.amazonaws.com',
+		user : 'Hyeongjoon',
 		database : 'sendwitch',
-		password : '1234',
+		password : '7557523m',
 		port : '3306'
 };
 
-exports.socketIODomain = "192.168.0.30";
+exports.socketIODomain = "52.78.18.19";

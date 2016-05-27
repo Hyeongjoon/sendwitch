@@ -14,7 +14,8 @@ var app = express();
 var redis = require("redis").createClient({ host: "127.0.0.1",
 	      port: 6379});*/
 
-
+app.set('port', 80);
+app.listen(app.get('port'));
 
 
 var session = new Session({
